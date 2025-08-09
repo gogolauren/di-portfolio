@@ -6,7 +6,9 @@ import Link from "next/link";
 import { FireIcon } from "@heroicons/react/24/solid";
 
 export default function BrandApprovalProject() {
-  window.scroll(0, 0);
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
   return (
     <>
       {" "}
