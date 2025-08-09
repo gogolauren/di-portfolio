@@ -3,8 +3,16 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-
+import { useRouter } from "next/navigation";
 export default function BrandApprovalProject() {
+  const router = useRouter();
+
+  useEffect(() => {
+    const hasAccess = sessionStorage.getItem("hasAccess");
+    if (!hasAccess) {
+      router.replace("/projects/project-access");
+    }
+  }, [router]);
   // Add this inside your component, where you want the tab section:
   const [activeTab, setActiveTab] = useState<MyKey>("A");
   const tabContent = {

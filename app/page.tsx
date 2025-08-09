@@ -22,12 +22,12 @@ export default function Home() {
               Di.X
             </Link>
             <div className="flex items-center justify-center gap-16">
-              <Link
-                href="/projects"
-                className="text-md font-medium text-gray-800 dark:text-gray-200 hover:text-beige-anchor hover:underline transition"
+              <a
+                className="text-md font-medium text-gray-800 dark:text-gray-200 hover:text-beige-anchor hover:underline transition cursor-pointer"
+                onClick={handleScrollToProjects}
               >
                 Projects
-              </Link>
+              </a>
               <Link
                 href="/about"
                 className="text-md font-medium text-gray-800 dark:text-gray-200 hover:text-beige-anchor hover:underline transition"
@@ -150,11 +150,17 @@ export default function Home() {
             <div className="absolute w-[800px] h-[800px] bg-gradient-to-br from-[#D3D8EB] to-[#7B86A8] rounded-full opacity-70 blur-3xl top-[120px] left-[25%]" />
             <div className="absolute w-[600px] h-[600px] bg-gradient-to-br from-[#b0c4b1] to-[#4a5759] rounded-full opacity-30 blur-2xl top-[500px] left-[70%]" />
           </div>
-          <section className="flex flex-col gap-8 max-w-6xl w-full py-20">
+          <section
+            id="target-projects"
+            className="flex flex-col gap-8 max-w-6xl w-full py-20"
+          >
             <h2 className="text-lg font-md mb-1 text-gray-700 dark:text-gray-100 text-left">
               Projects
             </h2>
-            <Link href="/projects/brand-approval" className="block">
+            <Link
+              href={`/projects/project-access?target=brand-approval`}
+              className="block"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-lg p-8 flex flex-col md:flex-row items-center w-full">
                 <Image
                   src="/cover-BrandApproval.png"
@@ -176,7 +182,10 @@ export default function Home() {
                 </div>
               </div>
             </Link>
-            <Link href="/projects/episode" className="block">
+            <Link
+              href={`/projects/project-access?target=episode`}
+              className="block"
+            >
               <div className="bg-white dark:bg-gray-800 rounded-lg p-8 flex flex-col md:flex-row items-center w-full">
                 <Image
                   src="/cover-episode.png"

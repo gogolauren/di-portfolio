@@ -4,8 +4,17 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { FireIcon } from "@heroicons/react/24/solid";
+import { useRouter } from "next/navigation";
 
 export default function BrandApprovalProject() {
+  const router = useRouter();
+
+  useEffect(() => {
+    const hasAccess = sessionStorage.getItem("hasAccess");
+    if (!hasAccess) {
+      router.replace("/projects/project-access");
+    }
+  }, [router]);
   useEffect(() => {
     window.scroll(0, 0);
   }, []);
