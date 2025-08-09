@@ -1,5 +1,7 @@
 @import "tailwindcss";
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -10,7 +12,39 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-clash-grotesk: var(--font-clash-grotesk);
+  --color-golden-anchor: #d9730b;
+  --color-golden-dark: #8c5800;
+  --color-beige-anchor: #d4c566;
+  --color-beige-shade: #d8d2a9;
+  --color-beige-base: #f0eaca;
+  --color-beige-tint1: #f7f4de;
+  --color-beige-tint2: #fcfaf1; /* yellow series*/
+  --color-blue-dark: #5a5e6f;
+  --color-blue-anchor: #adb7d9;
+  --color-blue-shade: #d3d8eb;
+  --color-blue-pink1: #eacaf0;
+  --color-blue-pink2: #f5eff7; /* pink blue series*/
+  --color-gray-beige: #f6f6f3; /* grays series*/
 }
+
+/* @theme {
+  
+ extend: {
+      colors: {
+          beige: {
+            anchor: '#D4C566',
+            shade: '#D8D2A9',
+            base: '#F0EACA',
+            tint1: '#F7F4DE',
+            tint2: '#FCFAF1',
+              },
+          golden: {
+            dark: '#8C5800',
+            },
+     },
+  } 
+}*/
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -22,5 +56,5 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-dm-sans), Arial, Helvetica, sans-serif;
 }
