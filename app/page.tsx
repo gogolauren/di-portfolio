@@ -2,6 +2,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowDownCircleIcon } from "@heroicons/react/24/solid";
 
 export default function Home() {
   // Ref for scrolling to projects section
@@ -29,17 +30,17 @@ export default function Home() {
                 Projects
               </a>
               <Link
-                href="/about"
-                className="text-md font-medium text-gray-800 dark:text-gray-200 hover:text-beige-anchor hover:underline transition"
-              >
-                About
-              </Link>
-              <Link
-                href="/contact"
+                href="mailto:xiaodishaw@gmail.com"
                 className="text-md font-medium text-gray-800 dark:text-gray-200 hover:text-beige-anchor hover:underline transition"
               >
                 Contact
               </Link>
+              {/*<Link
+                href="/contact"
+                className="text-md font-medium text-gray-800 dark:text-gray-200 hover:text-beige-anchor hover:underline transition"
+              >
+                About
+              </Link> */}
             </div>
           </div>
         </nav>
@@ -132,30 +133,32 @@ export default function Home() {
           </div> */}
         <button
           onClick={handleScrollToProjects}
-          className="mt-24 px-8 py-4 rounded-full border-2 border-golden-anchor text-golden-anchor text-md font-bold hover:bg-beige-tint1 transition cursor-pointer"
+          className="mt-24 px-8 py-4 rounded-full border-2 border-golden-anchor text-golden-anchor text-md font-bold hover:bg-golden-anchor hover:text-white transition cursor-pointer flex items-center gap-2"
         >
           See My Work
+          <ArrowDownCircleIcon className="w-6 h-6 ml-2" />
         </button>
       </section>
 
       {/* Projects Section with gradient background */}
-      <main className="min-h-screen flex flex-col items-center justify-center px-4">
+      <main className="min-h-screen flex flex-col items-center bg-purple-tint1 justify-center px-4">
         <div
           ref={projectsRef}
           className="relative w-full flex flex-col items-center"
         >
           {/* Gradient Circles as background for projects only */}
-          <div className="absolute inset-0 -z-10 pointer-events-none">
+          {/*<div className="absolute inset-0 -z-10 pointer-events-none">
             <div className="absolute w-[600px] h-[600px] bg-gradient-to-br from-[#f7f4de] to-[#d4c566] rounded-full opacity-40 blur-3xl top-[60px] left-[-200px]" />
             <div className="absolute w-[800px] h-[800px] bg-gradient-to-br from-[#D3D8EB] to-[#7B86A8] rounded-full opacity-70 blur-3xl top-[120px] left-[25%]" />
             <div className="absolute w-[600px] h-[600px] bg-gradient-to-br from-[#b0c4b1] to-[#4a5759] rounded-full opacity-30 blur-2xl top-[500px] left-[70%]" />
-          </div>
+          </div>*/}
+
           <section
             id="target-projects"
             className="flex flex-col gap-8 max-w-6xl w-full py-20"
           >
-            <h2 className="text-lg font-md mb-1 text-gray-700 dark:text-gray-100 text-left">
-              Projects
+            <h2 className="text-sm font-bold text-gray-700 font-[var(--font-clash-grotesk)]">
+              My Projects
             </h2>
             <Link
               href={`/projects/project-access?target=brand-approval`}
@@ -164,7 +167,7 @@ export default function Home() {
               <div className="bg-white dark:bg-gray-800 rounded-lg p-8 flex flex-col md:flex-row items-center w-full">
                 <Image
                   src="/cover-BrandApproval.png"
-                  alt="Project 1"
+                  alt="Project Brand Approval"
                   width={600}
                   height={400}
                   className="rounded mb-4 md:mb-0 md:mr-16"
@@ -174,11 +177,21 @@ export default function Home() {
                     Brand Approval Flow to Automate Ad Delivery on Podcasts
                   </h2>
                   <p className="text-gray-900 dark:text-gray-300 text-center md:text-left">
-                    Created a 2-step, policy-driven system that balances network
-                    control and show-level autonomy. Cut approval time from 25+
-                    hours to under 2 hours per month, enabled real-time brand
-                    activation, and eliminated manual errors.
+                    Cut approval time from 25+ hours to under 2 hours per month,
+                    enabled real-time brand activation, and eliminated manual
+                    errors.
                   </p>
+                  <div className="flex items-center gap-2 flex-wrap mt-4">
+                    <span className="border border-beige-shade text-golden-anchor dark:text-gray-200 px-3 py-1 rounded-full text-sm">
+                      Amazon
+                    </span>
+                    <span className="border border-beige-shade text-golden-anchor dark:text-gray-200 px-3 py-1 rounded-full text-sm">
+                      Monetization{" "}
+                    </span>
+                    <span className="border border-beige-shade text-golden-anchor dark:text-gray-200 px-3 py-1 rounded-full text-sm">
+                      Advertising
+                    </span>
+                  </div>
                 </div>
               </div>
             </Link>
@@ -189,7 +202,7 @@ export default function Home() {
               <div className="bg-white dark:bg-gray-800 rounded-lg p-8 flex flex-col md:flex-row items-center w-full">
                 <Image
                   src="/cover-episode.png"
-                  alt="Project 2"
+                  alt="Project Episodes Publishing"
                   width={600}
                   height={400}
                   className="rounded mb-4 md:mb-0 md:mr-16"
@@ -200,22 +213,130 @@ export default function Home() {
                   </h2>
                   <p className="text-gray-900 dark:text-gray-300 text-center md:text-left">
                     Redesigned the episode publishing experience to support
-                    self-serve onboarding. By consolidating content editing and
-                    scheduling into a single page with simplified actions, we
-                    significantly cut publishing time and introduced a reusable
-                    design pattern for future scalability.{" "}
+                    self-serve onboarding.{" "}
                   </p>
+                  <div className="flex items-center gap-2 flex-wrap mt-4">
+                    <span className="border border-purple-base text-purple-anchor dark:text-gray-200 px-3 py-1 rounded-full text-sm">
+                      Amazon
+                    </span>
+                    <span className="border border-purple-base text-purple-anchor dark:text-gray-200 px-3 py-1 rounded-full text-sm">
+                      Podcast{" "}
+                    </span>
+                    <span className="border border-purple-base text-purple-anchor dark:text-gray-200 px-3 py-1 rounded-full text-sm">
+                      Creator Experience
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </Link>
+            <Link href={`/projects/risk-detection`} className="block">
+              <div className="bg-white dark:bg-gray-800 rounded-lg p-8 flex flex-col md:flex-row items-center w-full">
+                <Image
+                  src="/Risk-cover.png"
+                  alt="Project risk detection"
+                  width={600}
+                  height={400}
+                  className="rounded mb-4 md:mb-0 md:mr-16"
+                />
+                <div>
+                  <h2 className="text-xl font-semibold mb-2">
+                    Enhancing Access Requests with Risk Detection
+                  </h2>
+                  <p className="text-gray-900 dark:text-gray-300 text-center md:text-left">
+                    A key outcome was the discovery of two core personas: People
+                    Managers and Risk Owners. Created a tailored workflow that
+                    serves both use cases.{" "}
+                  </p>
+                  <div className="flex items-center gap-2 flex-wrap mt-4">
+                    <span className="border border-purple-base text-purple-anchor dark:text-gray-200 px-3 py-1 rounded-full text-sm">
+                      SaaS
+                    </span>
+                    <span className="border border-purple-base text-purple-anchor dark:text-gray-200 px-3 py-1 rounded-full text-sm">
+                      B2B{" "}
+                    </span>
+                    <span className="border border-purple-base text-purple-anchor dark:text-gray-200 px-3 py-1 rounded-full text-sm">
+                      Access Management
+                    </span>
+                  </div>
                 </div>
               </div>
             </Link>
           </section>
         </div>
+      </main>
+
+      {/* Introduction Section */}
+      <section className="w-full flex flex-col justify-center items-center bg-[#F6F7F1] pt-20 pb-8">
+        <div className="max-w-6xl w-full px-6 text-left">
+          <h2 className="text-sm font-bold mb-6 text-gray-700 font-[var(--font-clash-grotesk)]">
+            My Experience
+          </h2>
+          <div className="flex flex-col md:flex-row text-left gap-8">
+            <div className="flex-1 rounded-lg pr-6 py-6">
+              <Image
+                src="/logo-amazon.png"
+                alt="Amazon Logo"
+                width={100}
+                height={40}
+                className="object-cover mb-4"
+              />
+              <p>
+                Currently work at Amazon in the podcast industry —{" "}
+                <a
+                  href="https://art19.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-golden-anchor transition"
+                >
+                  ART19.com
+                </a>{" "}
+                who offers a comprehensive suite of enterprise-level hosting,
+                distribution, and monetization tools. I optimized the publisher
+                experience and streamlined campaign workflows to enable precise
+                and dynamic audience targeting.
+              </p>
+            </div>
+
+            <div className="flex-1 rounded-lg p-6">
+              <Image
+                src="/logo-saviynt.png"
+                alt="Saviynt Logo"
+                width={100}
+                height={40}
+                className="object-cover mb-4"
+              />
+              <p>
+                As founding designer at{" "}
+                <a
+                  href="https://saviynt.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-golden-anchortransition"
+                >
+                  Saviynt, Inc.
+                </a>{" "}
+                , I led full-platform redesigns and initiated most major
+                features — from core Identity and Access Management (IAM)
+                products to Cloud Privileged Access Management. Saviynt is a
+                leading SaaS company in the Identity Governance and
+                Administration (IGA) space.
+              </p>
+            </div>
+          </div>
+        </div>
 
         {/* Footer */}
-        <footer className="mt-12 text-gray-500 text-sm">
-          &copy; {new Date().getFullYear()} DX. All rights reserved.
+        <footer className="mt-12 text-gray-500 text-sm mb-4 text-center">
+          &copy; {new Date().getFullYear()} Di Xiao. All rights
+          reserved.&emsp;&emsp; Contact:{" "}
+          <a
+            href="mailto:hello@dixiao.com"
+            className="underline text-gray-700 hover:text-golden-anchor transition"
+          >
+            xiaodishaw@gmail.com
+          </a>
         </footer>
-      </main>
+      </section>
     </>
   );
 }

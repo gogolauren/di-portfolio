@@ -6,7 +6,7 @@ import Link from "next/link";
 import { FireIcon } from "@heroicons/react/24/solid";
 import { useRouter } from "next/navigation";
 
-export default function BrandApprovalProject() {
+export default function EpisodeProject() {
   const router = useRouter();
 
   useEffect(() => {
