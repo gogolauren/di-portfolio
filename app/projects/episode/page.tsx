@@ -235,14 +235,14 @@ export default function EpisodeProject() {
           </p>
           <div className="flex gap-4 max-w-3xl mx-auto">
             <Image
-              src="/Epi-sketch-a.jpg"
+              src="/Epi-sketch-1.jpg"
               alt="Episode Sketches"
               width={600}
               height={400}
               className="w-1/2 h-auto rounded-lg object-cover"
             />
             <Image
-              src="/Epi-sketch-b.jpg"
+              src="/Epi-sketch-2.jpg"
               alt="Episode Sketches"
               width={600}
               height={400}
