@@ -178,7 +178,7 @@ export default function EpisodeProject() {
           </div>
           <div className="flex flex-1 justify-center">
             <Image
-              src="/epi-oldpage.png"
+              src="/Epi-oldpage.png"
               alt="user research and analytics"
               width={600}
               height={300}
@@ -433,7 +433,7 @@ export default function EpisodeProject() {
           </div>
           <div className="flex flex-1 justify-center">
             <Image
-              src="/epi-statusmachine.png"
+              src="/Epi-statusmachine.png"
               alt="user research and analytics"
               width={800}
               height={600}

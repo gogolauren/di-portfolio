@@ -45,7 +45,7 @@ export default function ProjectAccess() {
 
   return (
     <div className="max-w-md mx-auto mt-20 p-6 bg-white rounded shadow">
-      <h1 className="text-xl mb-4">Please enter the access password</h1>
+      <h1 className="text-xl mb-4">Please enter the password</h1>
       <form onSubmit={handleSubmit}>
         <input
           type="password"
