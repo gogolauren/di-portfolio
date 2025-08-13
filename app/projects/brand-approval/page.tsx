@@ -93,7 +93,7 @@ export default function BrandApprovalProject() {
           priority
         />
       </div>
-      <main className="min-h-screen flex flex-col items-center px-4 py-8 bg-white dark:bg-black">
+      <main className="min-h-screen flex flex-col items-center px-4 py-8 bg-white">
         {/* Back button below header */}
         <div className="max-w-5xl w-full flex justify-start mb-4">
           <Link
@@ -127,7 +127,7 @@ export default function BrandApprovalProject() {
             <h1 className="text-4xl font-bold mb-4">
               Brand Approval Flow to Automate Ad Delivery on Podcasts
             </h1>
-            <p className="text-md text-gray-900 dark:text-gray-300 mb-4">
+            <p className="text-md text-gray-900 mb-4">
               Created a 2-step, policy-driven system that balances network
               control and show-level autonomy. Cut approval time from 25+ hours
               to under 2 hours per month, enabled real-time brand activation,
@@ -135,43 +135,39 @@ export default function BrandApprovalProject() {
             </p>
           </div>
           {/* Side column */}
-          <aside className="flex flex-col gap-4 border border-gray-200 dark:border-gray-700 bg-gray-0 dark:bg-gray-800 rounded-lg p-6">
+          <aside className="flex flex-col gap-4 border border-gray-200 bg-gray-0 rounded-lg p-6">
             <div className="flex items-center gap-2 flex-wrap">
-              <span className="font-semibold text-gray-900 dark:text-gray-100 text-sm">
-                Tags:
-              </span>
-              <span className="border border-gray-200 text-gray-800 dark:text-gray-200 px-3 py-1 rounded-full text-sm">
+              <span className="font-semibold text-gray-900 text-sm">Tags:</span>
+              <span className="border border-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm">
                 Amazon
               </span>
-              <span className="border border-gray-200 text-gray-800 dark:text-gray-200 px-3 py-1 rounded-full text-sm">
+              <span className="border border-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm">
                 Advertising
               </span>
-              <span className="border border-gray-200 text-gray-800 dark:text-gray-200 px-3 py-1 rounded-full text-sm">
+              <span className="border border-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm">
                 Monetization
               </span>
             </div>
             <div>
-              <span className="font-semibold text-gray-900 dark:text-gray-100 text-sm">
+              <span className="font-semibold text-gray-900 text-sm">
                 My Role:
               </span>
-              <span className="ml-2 text-gray-900 dark:text-gray-300 text-sm">
+              <span className="ml-2 text-gray-900 text-sm">
                 Led the end-to-end UX process, including user research, workflow
                 analysis, interaction design, and delivery strategy.
               </span>
             </div>
             <div>
-              <span className="font-semibold text-gray-900 dark:text-gray-100 text-sm">
+              <span className="font-semibold text-gray-900 text-sm">
                 Platform:
               </span>
-              <span className="ml-2 text-gray-900 dark:text-gray-300 text-sm">
-                Desktop App
-              </span>
+              <span className="ml-2 text-gray-900 text-sm">Desktop App</span>
             </div>
           </aside>
         </section>
         {/* Outcomes Section*/}
         <section className="max-w-5xl w-full mb-20">
-          <h2 className="text-2xl font-bold mb-8 text-gray-900 dark:text-gray-100 text-left">
+          <h2 className="text-2xl font-bold mb-8 text-gray-900 text-left">
             Project Outcomes
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
@@ -203,21 +199,21 @@ export default function BrandApprovalProject() {
         </section>
         {/* Outcomes Section 绿色底色*
       <section className="max-w-5xl w-full mb-20">
-      <h2 className="text-2xl font-bold mb-8 text-gray-900 dark:text-gray-100 text-left">Project Outcomes</h2>
+      <h2 className="text-2xl font-bold mb-8 text-gray-900 text-left">Project Outcomes</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
-        <div className="flex flex-col items-left bg-slate-100 dark:bg-slate-800 rounded-lg p-6">
-          <span className="w-3 h-3 bg-emerald-800 dark:bg-emerald-50 rounded-full mb-4"></span>
-          <p className="text-emerald-800 dark:text-emerald-100 text-left font-medium">
+        <div className="flex flex-col items-left bg-slate-100 rounded-lg p-6">
+          <span className="w-3 h-3 bg-emerald-800 rounded-full mb-4"></span>
+          <p className="text-emerald-800 text-left font-medium">
             Developed a streamlined Brand Approval process that accelerates campaign delivery while maintaining brand safety.
           </p>
         </div>
-        <div className="flex flex-col items-left bg-emerald-800 dark:bg-gray-50 rounded-lg p-6">
+        <div className="flex flex-col items-left bg-emerald-800 rounded-lg p-6">
           <span className="w-3 h-3 bg-gray-50 rounded-full mb-2"></span>
           <p className="text-gray-50 text-left font-medium">
             Reduced approval time from <span className="text-2xl font-extrabold">25+ </span> hours to <span className="text-2xl font-extrabold"> less than 2 </span> hours per month, and minimized human errors, significantly increasing efficiency.
           </p>
         </div>
-        <div className="flex flex-col items-left bg-lime-100 dark:bg-lime-100 rounded-lg p-6">
+        <div className="flex flex-col items-left bg-lime-100 rounded-lg p-6">
           <span className="w-3 h-3 bg-emerald-800 rounded-full mb-4"></span>
           <p className="text-emerald-800 text-left font-medium">
             <span className="text-2xl font-extrabold">1st app</span> {" "} in the industry to enable publishers to control their shows' branding.
@@ -227,12 +223,12 @@ export default function BrandApprovalProject() {
       </section> /}
     {/* Existing Problems */}
         <section className="max-w-5xl w-full mb-20">
-          <h2 className="text-2xl font-bold mb-8 text-gray-900 dark:text-gray-100 text-left">
+          <h2 className="text-2xl font-bold mb-8 text-gray-900 text-left">
             Existing Problems
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
-            <div className="flex flex-col gap-4 border-l-8 border-beige-tint1 dark:border-gray-700 bg-gray-0 dark:bg-gray-800 rounded py-2 px-6">
-              <p className="font text-gray-900 dark:text-gray-100">
+            <div className="flex flex-col gap-4 border-l-8 border-beige-tint1 bg-gray-0 rounded py-2 px-6">
+              <p className="font text-gray-900">
                 {" "}
                 <span className="font-extrabold text-3xl italic text-beige-anchor">
                   1.{" "}
@@ -241,8 +237,8 @@ export default function BrandApprovalProject() {
                 late, risking conflicts with their intended brand image.
               </p>
             </div>
-            <div className="flex flex-col gap-4 border-l-8 border-beige-tint1 dark:border-gray-700 bg-gray-0 dark:bg-gray-800 rounded py-2 px-6">
-              <p className="font text-gray-900 dark:text-gray-100">
+            <div className="flex flex-col gap-4 border-l-8 border-beige-tint1 bg-gray-0 rounded py-2 px-6">
+              <p className="font text-gray-900">
                 {" "}
                 <span className="font-extrabold text-3xl italic text-beige-anchor">
                   2.{" "}
@@ -256,65 +252,65 @@ export default function BrandApprovalProject() {
         </section>
         {/* User Interviews & Findings
     <section className="max-w-5xl w-full mb-32">
-      <h2 className="text-2xl font-bold mb-8 text-gray-900 dark:text-gray-100 text-left">User Interviews & Findings</h2>
+      <h2 className="text-2xl font-bold mb-8 text-gray-900 text-left">User Interviews & Findings</h2>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-8">
-        <div className="flex flex-col gap-2 border border-gray-200 dark:border-gray-700 bg-slate-100 dark:bg-slate-800 rounded-lg p-6">
-          <span className="text-2xl font-extrabold text-emerald-700 dark:text-emerald-200 mb-2">📒 1000+ brands</span>
-          <p className="text-gray-900 dark:text-gray-100 font-medium">to review initially</p>
+        <div className="flex flex-col gap-2 border border-gray-200 bg-slate-100 rounded-lg p-6">
+          <span className="text-2xl font-extrabold text-emerald-700 mb-2">📒 1000+ brands</span>
+          <p className="text-gray-900 font-medium">to review initially</p>
         </div>
-        <div className="flex flex-col gap-2 border border-gray-200 dark:border-gray-700 bg-slate-100 dark:bg-slate-800 rounded-lg p-6">
-          <span className="text-2xl font-extrabold text-emerald-700 dark:text-emerald-200 mb-2">⏱️ 2 weeks ~ 2 months</span>
-          <p className="text-gray-900 dark:text-gray-100 font-medium">to complete review</p>
+        <div className="flex flex-col gap-2 border border-gray-200 bg-slate-100 rounded-lg p-6">
+          <span className="text-2xl font-extrabold text-emerald-700 mb-2">⏱️ 2 weeks ~ 2 months</span>
+          <p className="text-gray-900 font-medium">to complete review</p>
         </div>
-        <div className="flex flex-col gap-2 border border-gray-200 dark:border-gray-700 bg-slate-100 dark:bg-slate-800 rounded-lg p-6">
-          <span className="text-2xl font-extrabold text-emerald-700 dark:text-emerald-200 mb-2">⏰ 25 hours/month</span>
-          <p className="text-gray-900 dark:text-gray-100 font-medium">were required</p>
+        <div className="flex flex-col gap-2 border border-gray-200 bg-slate-100 rounded-lg p-6">
+          <span className="text-2xl font-extrabold text-emerald-700 mb-2">⏰ 25 hours/month</span>
+          <p className="text-gray-900 font-medium">were required</p>
         </div>
-        <div className="flex flex-col gap-2 border border-gray-200 dark:border-gray-700 bg-slate-100 dark:bg-slate-800 rounded-lg p-6">
-          <span className="text-2xl font-extrabold text-emerald-700 dark:text-emerald-200 mb-2">⚠️ Errors & delays</span>
-          <p className="text-gray-900 dark:text-gray-100 font-medium">caused by people jeopardize revenue</p>
+        <div className="flex flex-col gap-2 border border-gray-200 bg-slate-100 rounded-lg p-6">
+          <span className="text-2xl font-extrabold text-emerald-700 mb-2">⚠️ Errors & delays</span>
+          <p className="text-gray-900 font-medium">caused by people jeopardize revenue</p>
         </div>
       </div>
     </section> */}
 
         {/* User Interviews & Findings */}
         <section className="max-w-5xl w-full mb-32">
-          <h2 className="text-2xl font-bold mb-8 text-gray-900 dark:text-gray-100 text-left">
+          <h2 className="text-2xl font-bold mb-8 text-gray-900 text-left">
             User Interviews & Findings
           </h2>
           <div className="flex flex-row justify-center bg-transparent">
             <div className="flex-1 flex flex-col items-center justify-center px-4">
-              <span className="text-2xl font-extrabold text-golden-dark dark:text-emerald-200 mb-2 text-center">
+              <span className="text-2xl font-extrabold text-golden-dark mb-2 text-center">
                 1000+
               </span>
-              <span className="text-lg text-gray-900 dark:text-gray-100 font-medium text-center">
+              <span className="text-lg text-gray-900 font-medium text-center">
                 brands to review initially
               </span>
             </div>
-            <div className="w-0.5 bg-beige-shade dark:bg-gray-700 mx-2" />
+            <div className="w-0.5 bg-beige-shade mx-2" />
             <div className="flex-1 flex flex-col items-center justify-center px-4">
-              <span className="text-2xl font-extrabold text-golden-dark dark:text-emerald-200 mb-2 text-center">
+              <span className="text-2xl font-extrabold text-golden-dark mb-2 text-center">
                 1/2 - 2 months
               </span>
-              <span className="text-lg text-gray-900 dark:text-gray-100 font-medium text-center">
+              <span className="text-lg text-gray-900 font-medium text-center">
                 to complete review
               </span>
             </div>
-            <div className="w-0.5 bg-beige-shade dark:bg-gray-700 mx-2" />
+            <div className="w-0.5 bg-beige-shade mx-2" />
             <div className="flex-1 flex flex-col items-center justify-center px-4">
-              <span className="text-2xl font-extrabold text-golden-dark dark:text-emerald-200 mb-2 text-center">
+              <span className="text-2xl font-extrabold text-golden-dark mb-2 text-center">
                 25h/month
               </span>
-              <span className="text-lg text-gray-900 dark:text-gray-100 font-medium text-center">
+              <span className="text-lg text-gray-900 font-medium text-center">
                 were required
               </span>
             </div>
-            <div className="w-0.5 bg-beige-shade dark:bg-gray-700 mx-2" />
+            <div className="w-0.5 bg-beige-shade mx-2" />
             <div className="flex-1 flex flex-col items-center justify-center px-4">
-              <span className="text-2xl font-extrabold text-golden-dark dark:text-emerald-200 mb-2 text-center">
+              <span className="text-2xl font-extrabold text-golden-dark mb-2 text-center">
                 Errors & delays
               </span>
-              <span className="text-lg text-gray-900 dark:text-gray-100 font-medium text-center">
+              <span className="text-lg text-gray-900 font-medium text-center">
                 jeopardize revenue
               </span>
             </div>
@@ -323,10 +319,10 @@ export default function BrandApprovalProject() {
         {/* Another Key Challenge */}
         <section className="max-w-5xl w-full mb-20 flex flex-col md:flex-row gap-8">
           <div className="w-full md:w-1/3 flex-none md:flex-initial pr-6">
-            <h2 className="text-2xl font-bold mb-8 text-gray-900 dark:text-gray-100 text-left">
+            <h2 className="text-2xl font-bold mb-8 text-gray-900 text-left">
               Another Key Challenge
             </h2>
-            <p className="text text-gray-900 dark:text-gray-100 mb-4">
+            <p className="text text-gray-900 mb-4">
               Nuanced brand evaluation approaches is the key challenge —{" "}
               <span className="font-extrabold">
                 Series Autonomy v.s. Network Control
@@ -341,22 +337,22 @@ export default function BrandApprovalProject() {
               alt="user research and analytics"
               width={1200}
               height={900}
-              className="rounded-lg border border-gray-100 dark:border-gray-700 object-cover"
+              className="rounded-lg border border-gray-100 object-cover"
             />
           </div>
         </section>
         {/* Roles and Responsibilities */}
         <section className="max-w-5xl w-full mb-20">
-          <h2 className="text-2xl font-bold mb-8 text-gray-900 dark:text-gray-100 text-left w-full">
+          <h2 className="text-2xl font-bold mb-8 text-gray-900 text-left w-full">
             Roles and Responsibilities
           </h2>
-          <div className="flex flex-col gap-8 dark:border-gray-700 bg-beige-tint2 dark:bg-gray-800 rounded-lg p-8">
+          <div className="flex flex-col gap-8 bg-beige-tint2 rounded-lg p-8">
             <div className="flex flex-col md:flex-row gap-8">
-              <div className="flex-1 border border-beige-base dark:border-gray-700 bg-white dark:bg-gray-800 rounded-lg p-6">
+              <div className="flex-1 border border-beige-base bg-white rounded-lg p-6">
                 <div className="text-semibold text-gray-50 mb-4">
                   <span className="bg-golden-dark px-2 py-1">Advertising:</span>
                 </div>
-                <ul className="list-disc pl-6 text-gray-900 dark:text-gray-100">
+                <ul className="list-disc pl-6 text-gray-900">
                   <li>
                     {" "}
                     <span className="font-extrabold">Ad Sellers</span> send new
@@ -372,11 +368,11 @@ export default function BrandApprovalProject() {
                   </li>
                 </ul>
               </div>
-              <div className="flex-1 gap-4 border border-beige-base dark:border-gray-700 bg-white dark:bg-gray-800 rounded-lg p-6">
+              <div className="flex-1 gap-4 border border-beige-base bg-white rounded-lg p-6">
                 <div className="text-semibold text-gray-50 mb-4">
                   <span className="bg-golden-dark px-2 py-1">Publishing:</span>
                 </div>
-                <ul className="list-disc pl-6 text-gray-900 dark:text-gray-100">
+                <ul className="list-disc pl-6 text-gray-900">
                   <li>
                     {" "}
                     <span className="font-extrabold">
@@ -395,13 +391,13 @@ export default function BrandApprovalProject() {
                 </ul>
               </div>
             </div>
-            {/*<div className="flex-1 flex justify-center border-beige-base dark:border-gray-700 bg-beige-tint2 dark:bg-gray-800 rounded-lg p-6">
+            {/*<div className="flex-1 flex justify-center border-beige-base bg-beige-tint2 rounded-lg p-6">
                 <Image
                 src="/BA-roles.png"
                 alt="roles and responsibilities"
                 width={800}
                 height={600}
-                className="rounded-lg border border-gray-100 dark:border-gray-700 object-cover"
+                className="rounded-lg border border-gray-100 object-cover"
                 />
             </div> */}
           </div>
@@ -409,7 +405,7 @@ export default function BrandApprovalProject() {
 
         {/* Product Goal */}
         <section className="max-w-5xl w-full mx-auto mb-20">
-          <h2 className="text-2xl font-bold mb-12 text-gray-900 dark:text-gray-100 text-left">
+          <h2 className="text-2xl font-bold mb-12 text-gray-900 text-left">
             Product Goal
           </h2>
           <div className="relative flex flex-col items-center justify-center">
@@ -450,21 +446,21 @@ export default function BrandApprovalProject() {
 
         {/* Exploration and Validation */}
         <section className="max-w-5xl w-full mx-auto mb-20">
-          <h2 className="text-2xl font-bold mb-12 text-gray-900 dark:text-gray-100 text-left">
+          <h2 className="text-2xl font-bold mb-12 text-gray-900 text-left">
             Exploration and Validation
           </h2>
           <div className="flex flex-col gap-16">
             {/* Sub-section 1 */}
             <div>
-              <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100 text-left">
+              <h3 className="text-xl font-bold mb-4 text-gray-900 text-left">
                 Deep Dive into Data Structure & Logic:
               </h3>
-              <p className="text-md text-gray-900 dark:text-gray-300 mb-6 text-left">
+              <p className="text-md text-gray-900 mb-6 text-left">
                 To design the end-to-end flow of Brand Approval, I needed to
                 deeply understand our system and data hierarchy. A holistic
                 design begins with permission design — determining who makes
                 requests and who receives them.
-                <ul className="list-disc pl-6 text-gray-900 dark:text-gray-100">
+                <ul className="list-disc pl-6 text-gray-900">
                   <li>
                     {" "}
                     <span className="font-extrabold">Requesting:</span> Ad
@@ -479,24 +475,24 @@ export default function BrandApprovalProject() {
                   alt="Data hierarchy"
                   width={600}
                   height={400}
-                  className="w-1/2 h-auto rounded-lg border border-gray-100 dark:border-gray-700 object-cover"
+                  className="w-1/2 h-auto rounded-lg border border-gray-100 object-cover"
                 />
                 <Image
                   src="/BA-data.png"
                   alt="Data flow"
                   width={600}
                   height={400}
-                  className="w-1/2 h-auto rounded-lg border border-gray-100 dark:border-gray-700 object-cover"
+                  className="w-1/2 h-auto rounded-lg border border-gray-100 object-cover"
                 />
               </div>
             </div>
             {/* Sub-section 2 */}
             <div>
-              <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100 text-left">
+              <h3 className="text-xl font-bold mb-4 text-gray-900 text-left">
                 Introduce 2-Step Review to Accommodate Separate Users:
               </h3>
-              <p className="text-md text-gray-900 dark:text-gray-300 mb-6 text-left">
-                <ul className="list-disc pl-6 text-gray-900 dark:text-gray-100">
+              <p className="text-md text-gray-900 mb-6 text-left">
+                <ul className="list-disc pl-6 text-gray-900">
                   <li>
                     {" "}
                     <span className="font-extrabold">
@@ -505,7 +501,7 @@ export default function BrandApprovalProject() {
                     Brands are initially reviewed at the network level,
                     representing a collection of series. Network managers can
                     apply{" "}
-                    <span className="italic font-bold text-golden-dark underline decoration-wavy underline-offset-4 decoration-beige-anchor dark:decoration-gray-700">
+                    <span className="italic font-bold text-golden-dark underline decoration-wavy underline-offset-4 decoration-beige-anchor">
                       Network Policies — advanced filtering rules that
                       categorize brands by sensitivities.
                     </span>{" "}
@@ -532,9 +528,9 @@ export default function BrandApprovalProject() {
                   className="mx-auto rounded-lg object-cover"
                 />
               </div>
-              <p className="text-md text-gray-900 dark:text-gray-300 mb-6 text-left">
+              <p className="text-md text-gray-900 mb-6 text-left">
                 By designing a{" "}
-                <span className="italic font-bold text-golden-dark underline decoration-wavy underline-offset-4 decoration-beige-anchor dark:decoration-gray-700">
+                <span className="italic font-bold text-golden-dark underline decoration-wavy underline-offset-4 decoration-beige-anchor">
                   configurable, two-step process,
                 </span>{" "}
                 I accounted for the varying levels of scrutiny different
@@ -548,7 +544,7 @@ export default function BrandApprovalProject() {
                   alt="Brand Approval Flowcharts"
                   width={1200}
                   height={800}
-                  className="w-full h-auto rounded-lg border border-gray-0 dark:border-gray-700 object-cover"
+                  className="w-full h-auto rounded-lg border border-gray-0 object-cover"
                 />
               </div>
             </div>
@@ -557,7 +553,7 @@ export default function BrandApprovalProject() {
 
         {/* Tabs Section Wireframes */}
         <section className="max-w-5xl w-full mx-auto mb-20">
-          <h2 className="text-2xl font-bold mb-8 text-gray-900 dark:text-gray-100 text-left">
+          <h2 className="text-2xl font-bold mb-8 text-gray-900 text-left">
             Wireframes
           </h2>
           <div className="relative mb-8">
@@ -568,7 +564,7 @@ export default function BrandApprovalProject() {
                   className={`bg-transparent px-0 py-2 font text transition-colors cursor-pointer ${
                     activeTab === tab
                       ? "font-bold text-golden-dark underline underline-offset-11 decoration-3"
-                      : "text-gray-900 dark:text-gray-300 hover:text-beige-anchor hover:underline underline-offset-11 decoration-3"
+                      : "text-gray-900 hover:text-beige-anchor hover:underline underline-offset-11 decoration-3"
                   } transition`}
                   onClick={() => handleTabClick(tab)}
                 >
@@ -583,10 +579,10 @@ export default function BrandApprovalProject() {
           {/* Content for the active tab */}
           <div className="flex flex-col md:flex-row w-full bg-beige-tint2 gap-8 rounded-lg px-8 py-6">
             <div className="w-full md:w-1/4 max-w-2xl flex-initial mb-8 mt-8">
-              <h3 className="text-lg font-bold mb-4 text-golden-dark dark:text-gray-100 text-left w-full mt-6">
+              <h3 className="text-lg font-bold mb-4 text-golden-dark text-left w-full mt-6">
                 {tabContent[activeTab].title}
               </h3>
-              <p className="text-md text-gray-900 dark:text-gray-300 mb-8 text-left w-full">
+              <p className="text-md text-gray-900 mb-8 text-left w-full">
                 {tabContent[activeTab].text}
               </p>
             </div>
@@ -604,10 +600,10 @@ export default function BrandApprovalProject() {
 
         {/* High Fidelity in Design System Adoption */}
         <section className="max-w-5xl w-full mx-auto mb-20">
-          <h2 className="text-2xl font-bold mb-8 text-gray-900 dark:text-gray-100 text-left">
+          <h2 className="text-2xl font-bold mb-8 text-gray-900 text-left">
             High Fidelity in Design System Adoption
           </h2>
-          <p className="text-md text-gray-900 dark:text-gray-300 mb-8 text-left">
+          <p className="text-md text-gray-900 mb-8 text-left">
             <span className="font-extrabold">Requesting:</span> Initiates the
             brand approval workflow. Ad sellers include specific requirements in
             their brand requests.
@@ -621,7 +617,7 @@ export default function BrandApprovalProject() {
               className="mx-autoobject-cover"
             />
           </div>
-          <p className="text-md text-gray-900 dark:text-gray-300 mb-8 text-left">
+          <p className="text-md text-gray-900 mb-8 text-left">
             <span className="font-extrabold">Network Review:</span> Brands are
             either auto-approved or rejected based on policy, or manually
             reviewed by the network.
@@ -635,7 +631,7 @@ export default function BrandApprovalProject() {
               className="mx-auto object-cover"
             />
           </div>
-          <p className="text-md text-gray-900 dark:text-gray-300 mb-8 text-left">
+          <p className="text-md text-gray-900 mb-8 text-left">
             <span className="font-extrabold">Series Review:</span> Introduced a
             mechanism to remember approval decisions for the same brand across
             different sellers, reducing repeated reviews.

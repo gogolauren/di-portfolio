@@ -13,7 +13,7 @@ export default function Home() {
   };
   return (
     <>
-      <header className="w-full bg-beige-tint1 dark:bg-black border-b border-beige-base dark:border-gray-800">
+      <header className="w-full bg-beige-tint1 border-b border-beige-base">
         <nav className="max-w-6xl mx-auto flex items-center px-4 py-3">
           <div className="flex items-center justify-between w-full">
             <Link
@@ -24,20 +24,20 @@ export default function Home() {
             </Link>
             <div className="flex items-center justify-center gap-16">
               <a
-                className="text-md font-medium text-gray-800 dark:text-gray-200 hover:text-beige-anchor hover:underline transition cursor-pointer"
+                className="text-md font-medium text-gray-800 hover:text-beige-anchor hover:underline transition cursor-pointer"
                 onClick={handleScrollToProjects}
               >
                 Projects
               </a>
               <Link
                 href="mailto:xiaodishaw@gmail.com"
-                className="text-md font-medium text-gray-800 dark:text-gray-200 hover:text-beige-anchor hover:underline transition"
+                className="text-md font-medium text-gray-800 hover:text-beige-anchor hover:underline transition"
               >
                 Contact
               </Link>
               {/*<Link
                 href="/contact"
-                className="text-md font-medium text-gray-800 dark:text-gray-200 hover:text-beige-anchor hover:underline transition"
+                className="text-md font-medium text-gray-800 hover:text-beige-anchor hover:underline transition"
               >
                 About
               </Link> */}
@@ -48,7 +48,7 @@ export default function Home() {
 
       {/* Hero Section */}
 
-      {/* <section className="min-h-screen flex flex-col items-center justify-center text-gray-900 dark:text-white gap-10">
+      {/* <section className="min-h-screen flex flex-col items-center justify-center text-gray-900 gap-10">
           <div className="flex flex-col md:flex-row items-center justify-center gap-12">
             <div className="text-center md:text-right">
               <h1 className="text-3xl font-extrabold mb-4">Hello,</h1>
@@ -164,7 +164,7 @@ export default function Home() {
               href={`/projects/project-access?target=brand-approval`}
               className="block"
             >
-              <div className="bg-white dark:bg-gray-800 rounded-lg p-8 flex flex-col md:flex-row items-center w-full">
+              <div className="bg-white rounded-lg p-8 flex flex-col md:flex-row items-center w-full">
                 <Image
                   src="/cover-BrandApproval.png"
                   alt="Project Brand Approval"
@@ -176,19 +176,19 @@ export default function Home() {
                   <h2 className="text-xl font-semibold mb-4">
                     Brand Approval Flow to Automate Ad Delivery on Podcasts
                   </h2>
-                  <p className="text-gray-900 dark:text-gray-300 text-center md:text-left">
+                  <p className="text-gray-900 text-center md:text-left">
                     Cut approval time from 25+ hours to under 2 hours per month,
                     enabled real-time brand activation, and eliminated manual
                     errors.
                   </p>
                   <div className="flex items-center gap-2 flex-wrap mt-4">
-                    <span className="border border-beige-shade text-golden-anchor dark:text-gray-200 px-3 py-1 rounded-full text-sm">
+                    <span className="border border-beige-shade text-golden-anchor px-3 py-1 rounded-full text-sm">
                       Amazon
                     </span>
-                    <span className="border border-beige-shade text-golden-anchor dark:text-gray-200 px-3 py-1 rounded-full text-sm">
+                    <span className="border border-beige-shade text-golden-anchor px-3 py-1 rounded-full text-sm">
                       Monetization{" "}
                     </span>
-                    <span className="border border-beige-shade text-golden-anchor dark:text-gray-200 px-3 py-1 rounded-full text-sm">
+                    <span className="border border-beige-shade text-golden-anchor px-3 py-1 rounded-full text-sm">
                       Advertising
                     </span>
                   </div>
@@ -199,7 +199,7 @@ export default function Home() {
               href={`/projects/project-access?target=episode`}
               className="block"
             >
-              <div className="bg-white dark:bg-gray-800 rounded-lg p-8 flex flex-col md:flex-row items-center w-full">
+              <div className="bg-white rounded-lg p-8 flex flex-col md:flex-row items-center w-full">
                 <Image
                   src="/cover-episode.png"
                   alt="Project Episodes Publishing"
@@ -211,18 +211,18 @@ export default function Home() {
                   <h2 className="text-xl font-semibold mb-2">
                     Episode Publishing Experience Redesign
                   </h2>
-                  <p className="text-gray-900 dark:text-gray-300 text-center md:text-left">
+                  <p className="text-gray-900 text-center md:text-left">
                     Redesigned the episode publishing experience to support
                     self-serve onboarding.{" "}
                   </p>
                   <div className="flex items-center gap-2 flex-wrap mt-4">
-                    <span className="border border-purple-base text-purple-anchor dark:text-gray-200 px-3 py-1 rounded-full text-sm">
+                    <span className="border border-purple-base text-purple-anchor px-3 py-1 rounded-full text-sm">
                       Amazon
                     </span>
-                    <span className="border border-purple-base text-purple-anchor dark:text-gray-200 px-3 py-1 rounded-full text-sm">
+                    <span className="border border-purple-base text-purple-anchor px-3 py-1 rounded-full text-sm">
                       Podcast{" "}
                     </span>
-                    <span className="border border-purple-base text-purple-anchor dark:text-gray-200 px-3 py-1 rounded-full text-sm">
+                    <span className="border border-purple-base text-purple-anchor px-3 py-1 rounded-full text-sm">
                       Creator Experience
                     </span>
                   </div>
@@ -230,7 +230,7 @@ export default function Home() {
               </div>
             </Link>
             <Link href={`/projects/risk-detection`} className="block">
-              <div className="bg-white dark:bg-gray-800 rounded-lg p-8 flex flex-col md:flex-row items-center w-full">
+              <div className="bg-white rounded-lg p-8 flex flex-col md:flex-row items-center w-full">
                 <Image
                   src="/Risk-cover.png"
                   alt="Project risk detection"
@@ -242,19 +242,19 @@ export default function Home() {
                   <h2 className="text-xl font-semibold mb-2">
                     Enhancing Access Requests with Risk Detection
                   </h2>
-                  <p className="text-gray-900 dark:text-gray-300 text-center md:text-left">
+                  <p className="text-gray-900 text-center md:text-left">
                     A key outcome was the discovery of two core personas: People
                     Managers and Risk Owners. Created a tailored workflow that
                     serves both use cases.{" "}
                   </p>
                   <div className="flex items-center gap-2 flex-wrap mt-4">
-                    <span className="border border-purple-base text-purple-anchor dark:text-gray-200 px-3 py-1 rounded-full text-sm">
+                    <span className="border border-purple-base text-purple-anchor px-3 py-1 rounded-full text-sm">
                       SaaS
                     </span>
-                    <span className="border border-purple-base text-purple-anchor dark:text-gray-200 px-3 py-1 rounded-full text-sm">
+                    <span className="border border-purple-base text-purple-anchor px-3 py-1 rounded-full text-sm">
                       B2B{" "}
                     </span>
-                    <span className="border border-purple-base text-purple-anchor dark:text-gray-200 px-3 py-1 rounded-full text-sm">
+                    <span className="border border-purple-base text-purple-anchor px-3 py-1 rounded-full text-sm">
                       Access Management
                     </span>
                   </div>

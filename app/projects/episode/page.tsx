@@ -32,7 +32,7 @@ export default function EpisodeProject() {
           priority
         />
       </div>
-      <main className="min-h-screen flex flex-col items-center px-4 py-8 bg-white dark:bg-black">
+      <main className="min-h-screen flex flex-col items-center px-4 py-8 bg-white">
         {/* Back button below header */}
         <div className="max-w-5xl w-full flex justify-start mb-4">
           <Link
@@ -66,7 +66,7 @@ export default function EpisodeProject() {
             <h1 className="text-4xl font-bold mb-4">
               Episode Publishing Experience Redesign
             </h1>
-            <p className="text-md text-gray-900 dark:text-gray-300 mb-4">
+            <p className="text-md text-gray-900 mb-4">
               Redesigned the episode publishing experience to support self-serve
               onboarding. By consolidating content editing and scheduling into a
               single page with simplified actions, we significantly cut
@@ -75,43 +75,39 @@ export default function EpisodeProject() {
             </p>
           </div>
           {/* Side column */}
-          <aside className="flex flex-col gap-4 border border-gray-200 dark:border-gray-700 bg-gray-0 dark:bg-gray-800 rounded-lg p-6">
+          <aside className="flex flex-col gap-4 border border-gray-200 bg-gray-0 rounded-lg p-6">
             <div className="flex items-center gap-2 flex-wrap">
-              <span className="font-semibold text-gray-900 dark:text-gray-100 text-sm">
-                Tags:
-              </span>
-              <span className="border border-gray-200 text-gray-800 dark:text-gray-200 px-3 py-1 rounded-full text-sm">
+              <span className="font-semibold text-gray-900 text-sm">Tags:</span>
+              <span className="border border-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm">
                 Amazon
               </span>
-              <span className="border border-gray-200 text-gray-800 dark:text-gray-200 px-3 py-1 rounded-full text-sm">
+              <span className="border border-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm">
                 Creator Experience
               </span>
-              <span className="border border-gray-200 text-gray-800 dark:text-gray-200 px-3 py-1 rounded-full text-sm">
+              <span className="border border-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm">
                 Podcast
               </span>
             </div>
             <div>
-              <span className="font-semibold text-gray-900 dark:text-gray-100 text-sm">
+              <span className="font-semibold text-gray-900 text-sm">
                 My Role:
               </span>
-              <span className="ml-2 text-gray-900 dark:text-gray-300 text-sm">
+              <span className="ml-2 text-gray-900 text-sm">
                 Led the end-to-end UX process: user research, workflow
                 iterations, interaction design, and design system improvements.
               </span>
             </div>
             <div>
-              <span className="font-semibold text-gray-900 dark:text-gray-100 text-sm">
+              <span className="font-semibold text-gray-900 text-sm">
                 Platform:
               </span>
-              <span className="ml-2 text-gray-900 dark:text-gray-300 text-sm">
-                Desktop App
-              </span>
+              <span className="ml-2 text-gray-900 text-sm">Desktop App</span>
             </div>
           </aside>
         </section>
         {/* Outcomes Section*/}
         <section className="max-w-5xl w-full mb-20">
-          <h2 className="text-2xl font-bold mb-8 text-gray-900 dark:text-gray-100 text-left">
+          <h2 className="text-2xl font-bold mb-8 text-gray-900 text-left">
             Project Outcomes
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-8">
@@ -152,11 +148,11 @@ export default function EpisodeProject() {
         {/* Existing Problems */}
         <section className="max-w-5xl w-full mb-20 flex flex-col md:flex-row gap-8">
           <div className="w-full md:w-1/2 flex-none md:flex-initial pr-6">
-            <h2 className="text-2xl font-bold mb-8 text-gray-900 dark:text-gray-100 text-left">
+            <h2 className="text-2xl font-bold mb-8 text-gray-900 text-left">
               Existing Problems
             </h2>
-            <div className="gap-4 border-l-6 border-blue-anchor dark:border-gray-700 bg-gray-0 dark:bg-gray-800 py-1 px-6 mb-10">
-              <p className="font text-gray-900 dark:text-gray-100">
+            <div className="gap-4 border-l-6 border-blue-anchor bg-gray-0 py-1 px-6 mb-10">
+              <p className="font text-gray-900">
                 {" "}
                 <span className="font-bold text-gray-900">
                   Lack of a Guided Flow{" "}
@@ -165,8 +161,8 @@ export default function EpisodeProject() {
                 publishing episodes, leading to confusion and drop-off.
               </p>
             </div>
-            <div className="gap-4 border-l-6 border-blue-anchor dark:border-gray-700 bg-gray-0 dark:bg-gray-800 py-1 px-6">
-              <p className="font text-gray-900 dark:text-gray-100">
+            <div className="gap-4 border-l-6 border-blue-anchor bg-gray-0 py-1 px-6">
+              <p className="font text-gray-900">
                 {" "}
                 <span className="font-bold text-gray-900">
                   Unclear Episode Actions{" "}
@@ -182,14 +178,14 @@ export default function EpisodeProject() {
               alt="user research and analytics"
               width={600}
               height={300}
-              className="rounded-lg border border-gray-100 dark:border-gray-700 object-cover blur-[2px]"
+              className="rounded-lg border border-gray-100 object-cover blur-[2px]"
             />
           </div>
         </section>
 
         {/* Project Vision */}
         <section className="max-w-5xl w-full mb-32">
-          <h2 className="text-2xl font-bold mb-8 text-gray-900 dark:text-gray-100 text-left">
+          <h2 className="text-2xl font-bold mb-8 text-gray-900 text-left">
             Project Vision{" "}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
@@ -197,7 +193,7 @@ export default function EpisodeProject() {
               <span className="text-xl font-extrabold text-blue-dark mb-2">
                 👏 Self-Serve Flow
               </span>
-              <p className="text-sm text-gray-900 dark:text-gray-100 font-medium">
+              <p className="text-sm text-gray-900 font-medium">
                 to publish & edit episodes
               </p>
             </div>
@@ -205,7 +201,7 @@ export default function EpisodeProject() {
               <span className="text-xl font-extrabold text-blue-dark mb-2">
                 😊 Sufficient Instruction
               </span>
-              <p className="text-sm text-gray-900 dark:text-gray-100 font-medium">
+              <p className="text-sm text-gray-900 font-medium">
                 that explains configurations
               </p>
             </div>
@@ -214,7 +210,7 @@ export default function EpisodeProject() {
               <span className="text-xl font-extrabold text-blue-dark mb-2">
                 🥰 Reduce CX load
               </span>
-              <p className="text-sm text-gray-900 dark:text-gray-100 font-medium">
+              <p className="text-sm text-gray-900 font-medium">
                 & decrease support tickets
               </p>
             </div>
@@ -223,10 +219,10 @@ export default function EpisodeProject() {
 
         {/* Product Shaping */}
         <section className="max-w-5xl w-full mx-auto mb-20">
-          <h2 className="text-2xl font-bold mb-8 text-gray-900 dark:text-gray-100 text-left">
+          <h2 className="text-2xl font-bold mb-8 text-gray-900 text-left">
             Product Shaping
           </h2>
-          <p className="text-md text-gray-900 dark:text-gray-300 mb-8 text-left">
+          <p className="text-md text-gray-900 mb-8 text-left">
             After conducting researches among competitors and similar products
             like Squarespace, Mailchimp, …, it is pretty straightforward to have
             a guided flow to create the episode, and edit the episodes if
@@ -253,27 +249,27 @@ export default function EpisodeProject() {
 
         {/* Exploration and Validation */}
         <section className="max-w-5xl w-full mx-auto mb-20">
-          <h2 className="text-2xl font-bold mb-12 text-gray-900 dark:text-gray-100 text-left">
+          <h2 className="text-2xl font-bold mb-12 text-gray-900 text-left">
             Exploration and Validation
           </h2>
           <div className="flex flex-col gap-16">
             {/* Sub-section 1 */}
             <div>
-              <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100 text-left">
+              <h3 className="text-xl font-bold mb-4 text-gray-900 text-left">
                 Flow Exploration:
               </h3>
-              <p className="text-md text-gray-900 dark:text-gray-300 mb-6 text-left">
+              <p className="text-md text-gray-900 mb-6 text-left">
                 <span className="font-extrabold">
                   Flow 1 – Inline Scheduling:
                 </span>{" "}
                 This approach keeps everything — episode content and scheduling
                 options on a single page. Users have access to two primary
                 actions: “
-                <span className="italic font-bold text-blue-dark underline decoration-wavy underline-offset-4 decoration-blue-pink1 dark:decoration-gray-700">
+                <span className="italic font-bold text-blue-dark underline decoration-wavy underline-offset-4 decoration-blue-pink1">
                   Save as Draft
                 </span>{" "}
                 ” and “
-                <span className="italic font-bold text-blue-dark underline decoration-wavy underline-offset-4 decoration-blue-pink1 dark:decoration-gray-700">
+                <span className="italic font-bold text-blue-dark underline decoration-wavy underline-offset-4 decoration-blue-pink1">
                   Publish
                 </span>{" "}
                 ”. The ability to save at any time supports a flexible,
@@ -291,23 +287,23 @@ export default function EpisodeProject() {
             </div>
             {/* Sub-section 2 */}
             <div>
-              <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100 text-left">
+              <h3 className="text-xl font-bold mb-4 text-gray-900 text-left">
                 Flow Exploration:
               </h3>
-              <p className="text-md text-gray-900 dark:text-gray-300 mb-6 text-left">
+              <p className="text-md text-gray-900 mb-6 text-left">
                 <span className="font-extrabold">
                   Flow 2 – Schedule via Modal:
                 </span>{" "}
                 The main page focuses solely on episode content. Actions like “
-                <span className="italic font-bold text-blue-dark underline decoration-wavy underline-offset-4 decoration-blue-pink1 dark:decoration-gray-700">
+                <span className="italic font-bold text-blue-dark underline decoration-wavy underline-offset-4 decoration-blue-pink1">
                   Save
                 </span>{" "}
                 ”, “
-                <span className="italic font-bold text-blue-dark underline decoration-wavy underline-offset-4 decoration-blue-pink1 dark:decoration-gray-700">
+                <span className="italic font-bold text-blue-dark underline decoration-wavy underline-offset-4 decoration-blue-pink1">
                   Schedule
                 </span>{" "}
                 ", or "
-                <span className="italic font-bold text-blue-dark underline decoration-wavy underline-offset-4 decoration-blue-pink1 dark:decoration-gray-700">
+                <span className="italic font-bold text-blue-dark underline decoration-wavy underline-offset-4 decoration-blue-pink1">
                   Publish Now
                 </span>{" "}
                 ” are triggered through a dedicated modal, providing a more
@@ -327,7 +323,7 @@ export default function EpisodeProject() {
 
         {/* Manager Quote */}
         <section className="max-w-5xl w-full mx-auto mb-20">
-          <h2 className="text-2xl font-bold mb-12 text-gray-900 dark:text-gray-100 text-left">
+          <h2 className="text-2xl font-bold mb-12 text-gray-900 text-left">
             “Can We Simplify It Even Further?” — Manager’s Suggestion
           </h2>
           <div className="relative flex flex-col items-center justify-center">
@@ -353,11 +349,11 @@ export default function EpisodeProject() {
               </svg>
             </div>
             <div>
-              <p className="text-md font-bold text-gray-900 dark:text-gray-300 mb-2 text-left">
+              <p className="text-md font-bold text-gray-900 mb-2 text-left">
                 🤔 The question becomes: how can we streamline actions without
                 sacrificing clarity?{" "}
               </p>
-              <p className="text-md text-gray-900 dark:text-gray-300 mb-8 text-left">
+              <p className="text-md text-gray-900 mb-8 text-left">
                 As a result, we explored simplifying Flow 1 by using a single
                 “Save” button, instead of dynamically showing different buttons
                 like “Save as Draft” or “Update as Published”. The challenge
@@ -370,10 +366,10 @@ export default function EpisodeProject() {
 
         {/* User Testing */}
         <section className="max-w-5xl w-full mx-auto mb-20">
-          <h2 className="text-2xl font-bold mb-8 text-gray-900 dark:text-gray-100 text-left">
+          <h2 className="text-2xl font-bold mb-8 text-gray-900 text-left">
             Usability Testing Informs Direction
           </h2>
-          <div className="text-md text-gray-900 dark:text-gray-300 mb-8 text-left">
+          <div className="text-md text-gray-900 mb-8 text-left">
             We tested two flows:
             <ul className="list-disc pl-6">
               <li>
@@ -399,25 +395,25 @@ export default function EpisodeProject() {
         {/* Design Episode Status Machine */}
         <section className="max-w-5xl w-full mb-20 flex flex-col md:flex-row gap-8">
           <div className="w-full md:w-2/5 flex-none md:flex-initial pr-8">
-            <h2 className="text-2xl font-bold mb-8 text-gray-900 dark:text-gray-100 text-left">
+            <h2 className="text-2xl font-bold mb-8 text-gray-900 text-left">
               Design Episode Status Machine
             </h2>
             <div className="gap-4 mb-10">
-              <p className="text-md text-gray-900 dark:text-gray-300 mb-6 text-left">
+              <p className="text-md text-gray-900 mb-6 text-left">
                 Episodes can exist in one of four states:{" "}
-                <span className="italic font-bold text-blue-dark underline decoration-wavy underline-offset-4 decoration-blue-pink1 dark:decoration-gray-700">
+                <span className="italic font-bold text-blue-dark underline decoration-wavy underline-offset-4 decoration-blue-pink1">
                   Draft
                 </span>{" "}
                 ,{" "}
-                <span className="italic font-bold text-blue-dark underline decoration-wavy underline-offset-4 decoration-blue-pink1 dark:decoration-gray-700">
+                <span className="italic font-bold text-blue-dark underline decoration-wavy underline-offset-4 decoration-blue-pink1">
                   Scheduled
                 </span>{" "}
                 ,{" "}
-                <span className="italic font-bold text-blue-dark underline decoration-wavy underline-offset-4 decoration-blue-pink1 dark:decoration-gray-700">
+                <span className="italic font-bold text-blue-dark underline decoration-wavy underline-offset-4 decoration-blue-pink1">
                   Published
                 </span>{" "}
                 ,{" "}
-                <span className="italic font-bold text-blue-dark underline decoration-wavy underline-offset-4 decoration-blue-pink1 dark:decoration-gray-700">
+                <span className="italic font-bold text-blue-dark underline decoration-wavy underline-offset-4 decoration-blue-pink1">
                   Unpublished
                 </span>{" "}
                 .
@@ -437,21 +433,21 @@ export default function EpisodeProject() {
               alt="user research and analytics"
               width={800}
               height={600}
-              className="rounded-lg border border-gray-100 dark:border-gray-700 object-cover"
+              className="rounded-lg border border-gray-100 object-cover"
             />
           </div>
         </section>
 
         {/* High Fidelity */}
         <section className="max-w-5xl w-full mx-auto mb-20">
-          <h2 className="text-2xl font-bold mb-8 text-gray-900 dark:text-gray-100 text-left">
+          <h2 className="text-2xl font-bold mb-8 text-gray-900 text-left">
             High Fidelity
           </h2>
-          <p className="text-md text-gray-900 dark:text-gray-300 mb-8 text-left">
+          <p className="text-md text-gray-900 mb-8 text-left">
             Based on usability feedback, we moved forward with a single-page
             design -- includes both episode content and scheduling options, and
             display the main CTA be just "
-            <span className="text-blue-dark font-extrabold underline decoration-wavy underline-offset-4 decoration-blue-pink1 dark:decoration-gray-700">
+            <span className="text-blue-dark font-extrabold underline decoration-wavy underline-offset-4 decoration-blue-pink1">
               Save
             </span>
             ".
