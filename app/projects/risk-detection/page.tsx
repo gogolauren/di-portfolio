@@ -22,8 +22,8 @@ export default function RiskDetectionProject() {
       {/* Header image on top */}
       <div className="w-full flex justify-center mb-2 bg-purple-tint1">
         <Image
-          src="/Risk-cover.png"
-          alt="Brand Approval Project"
+          src="/cover-risk.png"
+          alt="Risk Detection Project"
           width={1920}
           height={400}
           className="w-screen max-w-none h-[300px] md:h-[500px] object-contain"

@@ -27,7 +27,7 @@ export default function EpisodeProject() {
       <div className="w-full flex justify-center mb-2 bg-gradient-to-br from-[#EACAF0] to-[#ADB7D9]">
         <Image
           src="/cover-episodeonly.svg"
-          alt="Brand Approval Project"
+          alt="Episode Publishing Project"
           width={1920}
           height={400}
           className="w-screen max-w-none h-[300px] md:h-[500px] object-contain"
