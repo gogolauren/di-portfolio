@@ -6,7 +6,7 @@ import "./globals.css";
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
   subsets: ["latin"],
-  weight: ["400", "700"], // Add weights you need
+  weight: ["400", "500", "700"], // Add weights you need
 });
 
 const geistMono = Geist_Mono({

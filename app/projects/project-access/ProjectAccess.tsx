@@ -44,23 +44,34 @@ export default function ProjectAccess() {
   }
 
   return (
-    <div className="max-w-md mx-auto mt-20 p-6 bg-white rounded shadow">
-      <h1 className="text-xl mb-4">Please enter the password</h1>
+    <div className="max-w-md mx-auto mt-20 p-6 bg-white border border-gray-100 rounded shadow">
+      <h1 className="text-lg mb-4">Please enter the password</h1>
       <form onSubmit={handleSubmit}>
         <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="border p-2 w-full mb-2"
+          className="border border-gray-300 p-2 w-full rounded mb-6 "
           placeholder="Password"
         />
         {error && <p className="text-red-600 mb-2">{error}</p>}
-        <button
-          type="submit"
-          className="bg-blue-600 text-white px-4 py-2 rounded"
-        >
-          Confirm
-        </button>
+        <div className="flex flex-row justify-end gap-8 text-sm font-medium">
+          <button
+            type="button"
+            className="text-golden-anchor font-medium px-4 py-2 rounded cursor-pointer hover:bg-beige-tint2"
+            onClick={() => {
+              router.back();
+            }}
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            className="bg-golden-anchor  text-white px-4 py-2 rounded cursor-pointer hover:bg-golden-dark transition-colors"
+          >
+            Confirm
+          </button>
+        </div>
       </form>
     </div>
   );

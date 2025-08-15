@@ -5,6 +5,8 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { FireIcon } from "@heroicons/react/24/solid";
 import { useRouter } from "next/navigation";
+import { BottomNav } from "../shared-components/bottom-nav";
+import Footer from "../shared-components/footer";
 
 export default function EpisodeProject() {
   const router = useRouter();
@@ -55,7 +57,7 @@ export default function EpisodeProject() {
                 />
               </svg>
             </span>
-            Back
+            Back to Home
           </Link>
         </div>
 
@@ -489,6 +491,17 @@ export default function EpisodeProject() {
             className="h-auto mx-auto object-cover mb-8"
           />
         </section>
+
+        {/* Bottom Nav and Footer */}
+        <BottomNav
+          previousProject="/projects/project-access?target=brand-approval"
+          previousProjectName="Brand Approval"
+          nextProject="/projects/risk-detection"
+          nextProjectName="Risk Detection"
+          textColor="text-blue-dark"
+          hoverColor="hover:text-blue-anchor"
+        />
+        <Footer customValue="max-w-5xl" />
       </main>
     </>
   );

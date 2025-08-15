@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import Footer from "../shared-components/footer";
+import { BottomNav } from "../shared-components/bottom-nav";
 export default function BrandApprovalProject() {
   const router = useRouter();
 
@@ -116,7 +118,7 @@ export default function BrandApprovalProject() {
                 />
               </svg>
             </span>
-            Back
+            Back to Home
           </Link>
         </div>
 
@@ -460,15 +462,16 @@ export default function BrandApprovalProject() {
                 deeply understand our system and data hierarchy. A holistic
                 design begins with permission design — determining who makes
                 requests and who receives them.
-                <ul className="list-disc pl-6 text-gray-900">
-                  <li>
-                    {" "}
-                    <span className="font-extrabold">Requesting:</span> Ad
-                    Operation Managers (or Ad Sellers) select brands and send
-                    request to series.
-                  </li>
-                </ul>
               </p>
+              <ul className="list-disc pl-6 text-gray-900">
+                <li>
+                  {" "}
+                  <span className="font-extrabold">Requesting:</span> Ad
+                  Operation Managers (or Ad Sellers) select brands and send
+                  request to series.
+                </li>
+              </ul>
+
               <div className="flex gap-4 w-full">
                 <Image
                   src="/BA-datahierarchy.png"
@@ -491,7 +494,7 @@ export default function BrandApprovalProject() {
               <h3 className="text-xl font-bold mb-4 text-gray-900 text-left">
                 Introduce 2-Step Review to Accommodate Separate Users:
               </h3>
-              <p className="text-md text-gray-900 mb-6 text-left">
+              <div className="text-md text-gray-900 mb-6 text-left">
                 <ul className="list-disc pl-6 text-gray-900">
                   <li>
                     {" "}
@@ -518,7 +521,7 @@ export default function BrandApprovalProject() {
                     network approvals when necessary.
                   </li>
                 </ul>
-              </p>
+              </div>
               <div className="flex gap-4 w-full">
                 <Image
                   src="/BA-sketch.jpeg"
@@ -653,6 +656,17 @@ export default function BrandApprovalProject() {
             />
           </div>
         </section>
+
+        {/* Bottom Nav and Footer */}
+        <BottomNav
+          previousProject="/projects/risk-detection"
+          previousProjectName="Risk Detection"
+          nextProject="/projects/project-access?target=episode"
+          nextProjectName="Episode Publishing"
+          textColor="text-golden-dark"
+          hoverColor="hover:text-beige-anchor"
+        />
+        <Footer customValue="max-w-5xl" />
       </main>
     </>
   );

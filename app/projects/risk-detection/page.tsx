@@ -3,8 +3,14 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { CheckBadgeIcon } from "@heroicons/react/24/solid";
+import {
+  CheckBadgeIcon,
+  ArrowDownRightIcon,
+  ArrowRightIcon,
+} from "@heroicons/react/24/solid";
 import { useRouter } from "next/navigation";
+import { BottomNav } from "../shared-components/bottom-nav";
+import Footer from "../shared-components/footer";
 
 export default function RiskDetectionProject() {
   useEffect(() => {
@@ -21,7 +27,6 @@ export default function RiskDetectionProject() {
           width={1920}
           height={400}
           className="w-screen max-w-none h-[300px] md:h-[500px] object-contain"
-          priority
         />
       </div>
       <main className="min-h-screen flex flex-col items-center px-4 py-8 bg-white">
@@ -47,7 +52,7 @@ export default function RiskDetectionProject() {
                 />
               </svg>
             </span>
-            Back
+            Back to Home
           </Link>
         </div>
 
@@ -355,6 +360,17 @@ export default function RiskDetectionProject() {
             className="h-auto mx-auto object-cover mb-8"
           />
         </section>
+
+        {/* Footer */}
+        <BottomNav
+          previousProject="/projects/project-access?target=episode"
+          previousProjectName="Episode Publishing"
+          nextProject="/projects/project-access?target=brand-approval"
+          nextProjectName="Brand Approval"
+          textColor="text-purple-anchor"
+          hoverColor="hover:text-purple-dark"
+        />
+        <Footer customValue="max-w-5xl" />
       </main>
     </>
   );
