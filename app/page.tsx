@@ -244,7 +244,7 @@ export default function Home() {
               <div className="bg-white rounded-lg p-8 flex flex-col md:flex-row items-center w-full">
                 <div className="flex-1 min-w-0 max-w-[600px] basis-[55%] mb-4 md:mb-0 md:mr-16">
                   <Image
-                    src="/cover-Episode.png"
+                    src="/cover-episode.png"
                     alt="Project Episode Publishing"
                     width={600}
                     height={400}
@@ -277,7 +277,7 @@ export default function Home() {
               <div className="bg-white rounded-lg p-8 flex flex-col md:flex-row items-center w-full">
                 <div className="flex-1 min-w-0 max-w-[600px] basis-[55%] mb-4 md:mb-0 md:mr-16">
                   <Image
-                    src="/Risk-cover.png"
+                    src="/cover-risk.png"
                     alt="Project Risk Detection"
                     width={600}
                     height={400}
