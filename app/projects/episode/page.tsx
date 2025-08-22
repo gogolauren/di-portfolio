@@ -10,6 +10,13 @@ import Footer from "../shared-components/footer";
 
 export default function EpisodeProject() {
   const router = useRouter();
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 1.5; // 1.5x speed, adjust as needed
+    }
+  }, []);
 
   useEffect(() => {
     const hasAccess = sessionStorage.getItem("hasAccess");
@@ -17,9 +24,11 @@ export default function EpisodeProject() {
       router.replace("/projects/project-access");
     }
   }, [router]);
+
   useEffect(() => {
     window.scroll(0, 0);
   }, []);
+
   return (
     <>
       {" "}
@@ -157,7 +166,7 @@ export default function EpisodeProject() {
               <p className="font text-gray-900">
                 {" "}
                 <span className="font-bold text-gray-900">
-                  Lack of a Guided Flow{" "}
+                  Lack of a Guided Flow:{" "}
                 </span>
                 Users didn’t have a clear, linear path for creating and
                 publishing episodes, leading to confusion and drop-off.
@@ -167,7 +176,7 @@ export default function EpisodeProject() {
               <p className="font text-gray-900">
                 {" "}
                 <span className="font-bold text-gray-900">
-                  Unclear Episode Actions{" "}
+                  Unclear Episode Actions:{" "}
                 </span>
                 Status-changing actions like scheduling or publishing were not
                 easily discoverable.
@@ -258,12 +267,9 @@ export default function EpisodeProject() {
             {/* Sub-section 1 */}
             <div>
               <h3 className="text-xl font-bold mb-4 text-gray-900 text-left">
-                Flow Exploration:
+                Flow 1 – Inline Scheduling:
               </h3>
               <p className="text-md text-gray-900 mb-6 text-left">
-                <span className="font-extrabold">
-                  Flow 1 – Inline Scheduling:
-                </span>{" "}
                 This approach keeps everything — episode content and scheduling
                 options on a single page. Users have access to two primary
                 actions: “
@@ -290,12 +296,9 @@ export default function EpisodeProject() {
             {/* Sub-section 2 */}
             <div>
               <h3 className="text-xl font-bold mb-4 text-gray-900 text-left">
-                Flow Exploration:
+                Flow 2 – Schedule via Modal:
               </h3>
               <p className="text-md text-gray-900 mb-6 text-left">
-                <span className="font-extrabold">
-                  Flow 2 – Schedule via Modal:
-                </span>{" "}
                 The main page focuses solely on episode content. Actions like “
                 <span className="italic font-bold text-blue-dark underline decoration-wavy underline-offset-4 decoration-blue-pink1">
                   Save
@@ -369,28 +372,13 @@ export default function EpisodeProject() {
         {/* User Testing */}
         <section className="max-w-5xl w-full mx-auto mb-20">
           <h2 className="text-2xl font-bold mb-8 text-gray-900 text-left">
-            Usability Testing Informs Direction
+            Usability Testing: User Favored Flow 1
           </h2>
           <div className="text-md text-gray-900 mb-8 text-left">
-            We tested two flows:
-            <ul className="list-disc pl-6">
-              <li>
-                <span className="font-extrabold">
-                  Flow 1 - Inline scheduling
-                </span>{" "}
-                with a simplified, single-action button approach.
-              </li>
-              <li>
-                <span className="font-extrabold">
-                  Flow 2 – Schedule via Modal,
-                </span>{" "}
-                which presents more tailored options based on user intent.
-              </li>
-            </ul>
-            Users favored Flow 1 for its simplicity and ease of use, especially
-            when making quick changes or ongoing edits. This feedback supports
-            our direction toward a streamlined interaction model for episode
-            management.
+            We tested 2 flows. Users favored Flow 1 for its simplicity and ease
+            of use, especially when making quick changes or ongoing edits. This
+            feedback supports our direction toward a streamlined interaction
+            model for episode management.
           </div>
         </section>
 
@@ -403,26 +391,25 @@ export default function EpisodeProject() {
             <div className="gap-4 mb-10">
               <p className="text-md text-gray-900 mb-6 text-left">
                 Episodes can exist in one of four states:{" "}
-                <span className="italic font-bold text-blue-dark underline decoration-wavy underline-offset-4 decoration-blue-pink1">
+                <span className="inline-flex items-center justify-center px-2 rounded-full bg-gray-100 text-gray-900 font-bold text-sm">
                   Draft
                 </span>{" "}
                 ,{" "}
-                <span className="italic font-bold text-blue-dark underline decoration-wavy underline-offset-4 decoration-blue-pink1">
+                <span className="inline-flex items-center justify-center px-2 rounded-full bg-sky-100 text-gray-900 font-bold text-sm">
                   Scheduled
                 </span>{" "}
                 ,{" "}
-                <span className="italic font-bold text-blue-dark underline decoration-wavy underline-offset-4 decoration-blue-pink1">
+                <span className="inline-flex items-center justify-center px-2 rounded-full bg-emerald-100 text-gray-900 font-bold text-sm">
                   Published
                 </span>{" "}
                 ,{" "}
-                <span className="italic font-bold text-blue-dark underline decoration-wavy underline-offset-4 decoration-blue-pink1">
+                <span className="inline-flex items-center justify-center px-2 rounded-full bg-rose-100 text-gray-900 font-bold text-sm">
                   Unpublished
                 </span>{" "}
                 .
               </p>
               <p>
-                I collaborated with the Product Manager and Engineering team to
-                define the logic and criteria for transitioning between these
+                I defined the logic and criteria for transitioning between these
                 statuses. This structured status model also helps us handle edge
                 cases and error scenarios more effectively within the
                 experience.
@@ -443,7 +430,7 @@ export default function EpisodeProject() {
         {/* High Fidelity */}
         <section className="max-w-5xl w-full mx-auto mb-20">
           <h2 className="text-2xl font-bold mb-8 text-gray-900 text-left">
-            High Fidelity
+            Final Design: Clever System, Simple Choices
           </h2>
           <p className="text-md text-gray-900 mb-8 text-left">
             Based on usability feedback, we moved forward with a single-page
@@ -454,17 +441,18 @@ export default function EpisodeProject() {
             </span>
             ".
           </p>
-          <Image
+          {/* <Image
             src="/Epi-final-0.png"
             alt="Episode final product design"
             width={800}
             height={400}
             className="h-auto mx-auto object-cover mb-8"
-          />
+          /> */}
 
           <div className="flex flex-col gap-4 mb-8">
             <div className="text-bold">
-              The system interprets the user's intent based on input:
+              The system interprets the user's scheduling intention based on
+              input:
               <ul className="list-disc pl-6 mb-8">
                 <li>
                   If the user has not set a publish date, the episode is saved
@@ -472,23 +460,25 @@ export default function EpisodeProject() {
                 </li>
                 <li>
                   If a publish date is set, the episode is{" "}
-                  <span className="font-bold">scheduled</span> for that date.
-                </li>
-                <li>
-                  If the user selects "Publish Now," the episode is immediately
-                  <span className="font-bold"> published</span>.
+                  <span className="font-bold">scheduled</span> for that date; or{" "}
+                  <span className="font-bold">published</span> if the date is
+                  right now.
                 </li>
               </ul>
               This logic enables a cleaner UI while preserving flexibility for
               different publishing scenarios.
             </div>
           </div>
-          <Image
-            src="/Epi-final-1.png"
-            alt="Episode final product design"
-            width={800}
-            height={400}
+          <video
+            ref={videoRef}
+            src="/Epi-screenrecord.mov"
             className="h-auto mx-auto object-cover mb-8"
+            width={1000}
+            height={400}
+            autoPlay
+            loop
+            muted
+            playsInline
           />
         </section>
 

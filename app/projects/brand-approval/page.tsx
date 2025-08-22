@@ -601,6 +601,36 @@ export default function BrandApprovalProject() {
           </div>
         </section>
 
+        {/* Customer Feedback */}
+        <section className="max-w-5xl w-full mx-auto mb-20">
+          <h2 className="text-2xl font-bold mb-12 text-gray-900 text-left">
+            Customer Feedback
+          </h2>
+          <p className="text-md text-gray-900 mb-8 text-left">
+            The wireframes received 100% satisfaction from customers during
+            testing. Our largest client,{" "}
+            <span className="italic font-bold">Wondery</span>, praised the
+            Network Policy feature, calling it a{" "}
+            <span className="italic font-bold text-2xl text-golden-dark underline decoration-wavy underline-offset-4 decoration-beige-anchor">
+              set-it-and-forget-it
+            </span>{" "}
+            solution that saves significant time!{" "}
+          </p>
+          <p className="text-md text-gray-900 mb-2 text-left">
+            They also offered thoughtful feedback:
+          </p>
+          <p className="text-md italic font-bold text-gray-900 mb-8 text-left border-l-4 border-gray-200 pl-4">
+            We want to be pinged if a series retrieves a denial that the network
+            made.
+          </p>
+          <p className="text-md text-gray-900 mb-8 text-left">
+            This surfaced a new opportunity—while the current system doesn’t
+            allow series to override network rejections, future iterations would
+            consider policy exceptions for select shows or allow flexibility in
+            policy definitions, giving certain series more autonomy.
+          </p>
+        </section>
+
         {/* High Fidelity in Design System Adoption */}
         <section className="max-w-5xl w-full mx-auto mb-20">
           <h2 className="text-2xl font-bold mb-8 text-gray-900 text-left">
