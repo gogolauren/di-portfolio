@@ -200,6 +200,7 @@ export default function Home() {
             <h2 className="text-sm font-bold text-gray-700 font-[var(--font-clash-grotesk)]">
               My Projects
             </h2>
+            {/* Brand Approval */}
             <Link
               href={`/projects/project-access?target=brand-approval`}
               className="block"
@@ -237,6 +238,8 @@ export default function Home() {
                 </div>
               </div>
             </Link>
+
+            {/* Episode Publishing */}
             <Link
               href={`/projects/project-access?target=episode`}
               className="block"
@@ -273,6 +276,8 @@ export default function Home() {
                 </div>
               </div>
             </Link>
+
+            {/* Risk Detection */}
             <Link href={`/projects/risk-detection`} className="block">
               <div className="bg-white rounded-lg p-8 flex flex-col md:flex-row items-center w-full">
                 <div className="flex-1 min-w-0 max-w-[600px] basis-[55%] mb-4 md:mb-0 md:mr-16">
@@ -301,7 +306,45 @@ export default function Home() {
                       B2B{" "}
                     </span>
                     <span className="border border-purple-base text-purple-anchor px-3 py-1 rounded-full text-sm">
-                      Access Management
+                      Access Management, IGA & IAM
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </Link>
+
+            {/* App Onboarding */}
+            <Link href={`/projects/app-onboard`} className="block">
+              <div className="bg-white rounded-lg p-8 flex flex-col md:flex-row items-center w-full">
+                <div className="flex-1 min-w-0 max-w-[600px] basis-[55%] mb-4 md:mb-0 md:mr-16">
+                  <Image
+                    src="/cover-aob-1.png"
+                    alt="Project Application Onboarding"
+                    width={600}
+                    height={400}
+                    className="rounded w-full h-auto"
+                  />
+                </div>
+                <div className="flex-1 min-w-0 basis-[45%]">
+                  <h2 className="text-xl font-semibold mb-2">
+                    Onboard Applications with Zero Coding Required
+                  </h2>
+                  <p className="text-gray-900 text-left">
+                    Introduced visual UI alternatives to technical inputs such
+                    as code and policy configurations.{" "}
+                  </p>
+                  <div className="flex items-center gap-2 flex-wrap mt-4">
+                    <span className="border border-beige-shade text-golden-anchor px-3 py-1 rounded-full text-sm">
+                      SaaS
+                    </span>
+                    <span className="border border-beige-shade text-golden-anchor px-3 py-1 rounded-full text-sm">
+                      B2B{" "}
+                    </span>
+                    <span className="border border-beige-shade text-golden-anchor px-3 py-1 rounded-full text-sm">
+                      Admin Function
+                    </span>
+                    <span className="border border-beige-shade text-golden-anchor px-3 py-1 rounded-full text-sm">
+                      IGA & IAM
                     </span>
                   </div>
                 </div>

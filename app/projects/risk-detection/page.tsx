@@ -81,7 +81,7 @@ export default function RiskDetectionProject() {
                 B2B{" "}
               </span>
               <span className="border border-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm">
-                Access Management, IGA/IAM
+                Access Management, IGA & IAM
               </span>
             </div>
             <div>
@@ -96,7 +96,9 @@ export default function RiskDetectionProject() {
               <span className="font-semibold text-gray-900 text-sm">
                 Platform:
               </span>
-              <span className="ml-2 text-gray-900 text-sm">Desktop App</span>
+              <span className="ml-2 text-gray-900 text-sm">
+                Desktop & Mobile
+              </span>
             </div>
           </aside>
         </section>
@@ -107,15 +109,15 @@ export default function RiskDetectionProject() {
             Project Outcomes
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-6 gap-4 md:gap-8">
-            <div className="grid md:col-span-3 flex flex-row items-left bg-purple-tint1 rounded-lg p-6">
+            <div className="grid md:col-span-3 items-left bg-purple-tint1 rounded-lg p-6">
               <div className="flex flex-row gap-3 items-start">
                 <CheckBadgeIcon className="w-6 h-6 text-purple-dark mt-1 flex-none" />
                 <p className="flex-1 text-purple-dark text-left font-medium">
                   <span className="font-extrabold">
-                    Discovered a new Risk Owner persona.
+                    Discovered a new Risk Owner persona.{" "}
                   </span>
-                  , Addressed the issue of users multitasking. Further
-                  prioritized and simplified users' tasks.
+                  Addressed the issue of users multitasking. Further prioritized
+                  and simplified users' tasks.
                 </p>
               </div>
             </div>
@@ -124,7 +126,7 @@ export default function RiskDetectionProject() {
                 <CheckBadgeIcon className="w-6 h-6 text-purple-dark mt-1 flex-none" />
                 <p className="flex-1 text-purple-dark text-left font-medium">
                   <span className="font-extrabold">
-                    Successfully launched the 2021 Release
+                    Successfully launched the 2021 Release{" "}
                   </span>
                   by adopting Risk Criticality and Presentation Ecosystem across
                   other security products.
@@ -365,8 +367,8 @@ export default function RiskDetectionProject() {
         <BottomNav
           previousProject="/projects/project-access?target=episode"
           previousProjectName="Episode Publishing"
-          nextProject="/projects/project-access?target=brand-approval"
-          nextProjectName="Brand Approval"
+          nextProject="/projects/app-onboard"
+          nextProjectName="Application Onboarding"
           textColor="text-purple-anchor"
           hoverColor="hover:text-purple-dark"
         />

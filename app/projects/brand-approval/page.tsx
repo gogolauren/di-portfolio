@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Footer from "../shared-components/footer";
 import { BottomNav } from "../shared-components/bottom-nav";
+
 export default function BrandApprovalProject() {
   const router = useRouter();
 
@@ -280,8 +281,8 @@ export default function BrandApprovalProject() {
           <h2 className="text-2xl font-bold mb-8 text-gray-900 text-left">
             User Interviews & Findings
           </h2>
-          <div className="flex flex-row justify-center bg-transparent">
-            <div className="flex-1 flex flex-col items-center justify-center px-4">
+          <div className="flex flex-col md:flex-row justify-center bg-transparent">
+            <div className="flex-1 flex flex-col items-center justify-center px-4 mb-8 md:mb-0">
               <span className="text-2xl font-extrabold text-golden-dark mb-2 text-center">
                 1000+
               </span>
@@ -290,7 +291,7 @@ export default function BrandApprovalProject() {
               </span>
             </div>
             <div className="w-0.5 bg-beige-shade mx-2" />
-            <div className="flex-1 flex flex-col items-center justify-center px-4">
+            <div className="flex-1 flex flex-col items-center justify-center px-4 mb-8 md:mb-0">
               <span className="text-2xl font-extrabold text-golden-dark mb-2 text-center">
                 1/2 - 2 months
               </span>
@@ -299,7 +300,7 @@ export default function BrandApprovalProject() {
               </span>
             </div>
             <div className="w-0.5 bg-beige-shade mx-2" />
-            <div className="flex-1 flex flex-col items-center justify-center px-4">
+            <div className="flex-1 flex flex-col items-center justify-center px-4 mb-8 md:mb-0">
               <span className="text-2xl font-extrabold text-golden-dark mb-2 text-center">
                 25h/month
               </span>
@@ -308,7 +309,7 @@ export default function BrandApprovalProject() {
               </span>
             </div>
             <div className="w-0.5 bg-beige-shade mx-2" />
-            <div className="flex-1 flex flex-col items-center justify-center px-4">
+            <div className="flex-1 flex flex-col items-center justify-center px-4 mb-8 md:mb-0">
               <span className="text-2xl font-extrabold text-golden-dark mb-2 text-center">
                 Errors & delays
               </span>
@@ -318,6 +319,7 @@ export default function BrandApprovalProject() {
             </div>
           </div>
         </section>
+
         {/* Another Key Challenge */}
         <section className="max-w-5xl w-full mb-20 flex flex-col md:flex-row gap-8">
           <div className="w-full md:w-1/3 flex-none md:flex-initial pr-6">
@@ -457,13 +459,13 @@ export default function BrandApprovalProject() {
               <h3 className="text-xl font-bold mb-4 text-gray-900 text-left">
                 Deep Dive into Data Structure & Logic:
               </h3>
-              <p className="text-md text-gray-900 mb-6 text-left">
+              <p className="text-md text-gray-900 mb-2 text-left">
                 To design the end-to-end flow of Brand Approval, I needed to
                 deeply understand our system and data hierarchy. A holistic
                 design begins with permission design — determining who makes
                 requests and who receives them.
               </p>
-              <ul className="list-disc pl-6 text-gray-900">
+              <ul className="list-disc pl-6 text-gray-900 mb-6">
                 <li>
                   {" "}
                   <span className="font-extrabold">Requesting:</span> Ad
@@ -689,8 +691,8 @@ export default function BrandApprovalProject() {
 
         {/* Bottom Nav and Footer */}
         <BottomNav
-          previousProject="/projects/risk-detection"
-          previousProjectName="Risk Detection"
+          previousProject="/projects/app-onboard"
+          previousProjectName="Application Onboarding"
           nextProject="/projects/project-access?target=episode"
           nextProjectName="Episode Publishing"
           textColor="text-golden-dark"
