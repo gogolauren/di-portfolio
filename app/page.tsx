@@ -19,7 +19,7 @@ export default function Home() {
   return (
     <>
       <header className="w-full bg-beige-tint1 border-b border-beige-base">
-        <nav className="max-w-6xl mx-auto flex items-center px-4 py-3">
+        <nav className="max-w-6xl mx-auto flex items-center py-3">
           <div className="flex items-center justify-between w-full">
             <Link
               href="/"
@@ -35,17 +35,18 @@ export default function Home() {
                 Projects
               </a>
               <Link
+                href="/gallery"
+                className="text-md font-medium text-gray-800 hover:text-beige-anchor hover:underline transition"
+              >
+                Photos
+              </Link>
+              <Link
                 href="mailto:xiaodishaw@gmail.com"
                 className="text-md font-medium text-gray-800 hover:text-beige-anchor hover:underline transition"
               >
                 Contact
               </Link>
-              {/*<Link
-                href="/contact"
-                className="text-md font-medium text-gray-800 hover:text-beige-anchor hover:underline transition"
-              >
-                About
-              </Link> */}
+             
             </div>
           </div>
         </nav>
