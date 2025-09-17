@@ -58,14 +58,37 @@ export default function GalleryPage() {
             >
               Di.X
             </Link>
+            <div className="flex items-center justify-center gap-16">
+              <a
+                className="text-md font-medium text-gray-800 hover:text-beige-anchor hover:underline transition cursor-pointer"
+                href="/#projects"
+              >
+                Projects
+              </a>
+              <Link
+                href="/gallery"
+                className="text-md font-medium text-gray-800 hover:text-beige-anchor hover:underline transition"
+              >
+                Photos
+              </Link>
+              <Link
+                href="mailto:xiaodishaw@gmail.com"
+                className="text-md font-medium text-gray-800 hover:text-beige-anchor hover:underline transition"
+              >
+                Contact
+              </Link>
+            </div>
           </div>
         </nav>
       </header>
 
-    
-
       {/* Photography Section */}
       <section className="w-full max-w-6xl mb-16">
+        {/* Title */}
+        <h1 className="text-xl text-gray-900 font-bold text-center mb-8">
+          Photography & Design
+        </h1>
+
         <h2 className="text-sm font-bold text-gray-700 font-[var(--font-clash-grotesk)] mb-6 text-left">
           Photography
         </h2>

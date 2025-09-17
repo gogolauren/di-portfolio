@@ -46,7 +46,6 @@ export default function Home() {
               >
                 Contact
               </Link>
-             
             </div>
           </div>
         </nav>
@@ -181,8 +180,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Projects Section with gradient background */}
-      <main className="min-h-screen flex flex-col items-center bg-[#F6F7F1] justify-center">
+      {/* Projects Section */}
+      <main
+        id="projects"
+        className="min-h-screen flex flex-col items-center bg-[#F6F7F1] justify-center"
+      >
         <div
           ref={projectsRef}
           className="relative max-w-6xl w-full flex flex-col items-center px-6"
