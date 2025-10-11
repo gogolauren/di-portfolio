@@ -13,9 +13,18 @@ import { BottomNav } from "../shared-components/bottom-nav";
 import Footer from "../shared-components/footer";
 
 export default function RiskDetectionProject() {
+  const router = useRouter();
+  useEffect(() => {
+    const hasAccess = sessionStorage.getItem("hasAccess");
+    if (!hasAccess) {
+      router.replace("/projects/project-access");
+    }
+  }, [router]);
+
   useEffect(() => {
     window.scroll(0, 0);
   }, []);
+
   return (
     <>
       {" "}

@@ -281,7 +281,11 @@ export default function Home() {
             </Link>
 
             {/* Risk Detection */}
-            <Link href={`/projects/risk-detection`} className="block">
+            <Link
+              href={`/projects/project-access?target=risk-detection`}
+              className="block"
+            >
+              {" "}
               <div className="bg-white rounded-lg p-8 flex flex-col md:flex-row items-center w-full">
                 <div className="flex-1 min-w-0 max-w-[600px] basis-[55%] mb-4 md:mb-0 md:mr-16">
                   <Image
