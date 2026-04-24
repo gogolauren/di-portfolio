@@ -375,7 +375,7 @@ export default function AppOnboardProject() {
           textColor="text-blue-dark"
           hoverColor="hover:text-blue-anchor"
         />
-        <Footer customValue="max-w-5xl" />
+        <Footer customValue="max-w-5xl" dark />
       </main>
     </>
   );

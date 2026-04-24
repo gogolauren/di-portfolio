@@ -381,7 +381,7 @@ export default function RiskDetectionProject() {
           textColor="text-purple-anchor"
           hoverColor="hover:text-purple-dark"
         />
-        <Footer customValue="max-w-5xl" />
+        <Footer customValue="max-w-5xl" dark />
       </main>
     </>
   );

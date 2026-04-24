@@ -125,7 +125,7 @@ export default function Home() {
   };
 
   return (
-    <>
+    <div className={`transition-colors duration-500 ${navFaded ? 'bg-white' : 'bg-[#F3E7C4]'}`}>
       {/* Custom project hover cursor */}
       <div
         className={`fixed pointer-events-none z-[9999] transition-opacity duration-200 ${showCursor ? "opacity-100" : "opacity-0"}`}
@@ -135,8 +135,8 @@ export default function Home() {
           👁 View
         </div>
       </div>
-      <header className={`sticky top-0 z-50 w-full transition-all duration-300 ${navFaded ? 'px-6 pt-4 pb-1' : 'px-0 pt-0 pb-0'}`}>
-        <div className={`flex items-center justify-between px-8 py-3 transition-all duration-300 ${navFaded ? 'rounded-2xl bg-[#F3E7C4]/60 backdrop-blur-md' : 'rounded-none bg-[#F3E7C4]'} ${navOnDark && navFaded ? 'bg-[#F3E7C4]/40' : ''}`}>
+      <header className={`sticky top-0 z-50 w-full transition-all duration-300 ${navFaded ? 'px-20 pt-4 pb-1' : 'px-20 pt-2 pb-0'}`}>
+        <div className={`flex items-center justify-between px-8 py-3 transition-all duration-300 ${navFaded ? 'rounded-2xl bg-white/50 backdrop-blur-md' : 'rounded-none bg-[#F3E7C4]'}`}>
           <Link
             href="/"
             className="text-4xl font-clash-grotesk text-golden-anchor font-bold hover:text-beige-anchor"
@@ -236,23 +236,6 @@ export default function Home() {
         </button>
         </div>{/* end z-10 content wrapper */}
 
-        {/* Marquee pinned to bottom of hero */}
-        {(() => {
-          const items = ["🎾 Tennis", "📷 Photography", "📚 Reading", "☕ Coffee", "🎨 Design", "🌱 Plants", "🍜 Noodles", "✈️ Travel"];
-          const repeated = [...items, ...items];
-          return (
-            <div className="absolute bottom-0 left-0 right-0 overflow-hidden bg-golden-anchor py-3 z-10">
-              <div className="flex animate-marquee whitespace-nowrap">
-                {repeated.map((item, i) => (
-                  <span key={i} className="text-sm font-medium text-white mx-6 shrink-0">
-                    {item}
-                    <span className="ml-6 text-white/40">◆</span>
-                  </span>
-                ))}
-              </div>
-            </div>
-          );
-        })()}
       </section>
 
       {/* Experience Section */}
@@ -325,7 +308,7 @@ export default function Home() {
             id="target-projects"
             className="flex flex-col gap-8 max-w-6xl w-full py-20"
           >
-            <span className="text-xs font-bold uppercase tracking-widest text-stone-400 mb-2 block">My Projects</span>
+            <span className="text-xs font-bold uppercase tracking-widest text-stone-200 mb-2 block">My Projects</span>
 
             {/* Brand Approval */}
             <div
@@ -545,6 +528,6 @@ export default function Home() {
 
         <Footer customValue="max-w-6xl" />
       </main>
-    </>
+    </div>
   );
 }

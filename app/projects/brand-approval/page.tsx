@@ -698,7 +698,7 @@ export default function BrandApprovalProject() {
           textColor="text-golden-dark"
           hoverColor="hover:text-beige-anchor"
         />
-        <Footer customValue="max-w-5xl" />
+        <Footer customValue="max-w-5xl" dark />
       </main>
     </>
   );

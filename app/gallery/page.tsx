@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Footer from "../projects/shared-components/footer";
@@ -47,43 +48,37 @@ const photographyItems = Array.from({ length: 20 }, (_, i) => ({
 }));
 
 export default function GalleryPage() {
+  const [navFaded, setNavFaded] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setNavFaded(window.scrollY > 10);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <main className="min-h-screen flex flex-col items-center bg-[#F6F7F1]">
-      <header className="w-full bg-beige-tint1 border-b border-beige-base mb-12">
-        <nav className="max-w-6xl mx-auto flex items-center py-3">
-          <div className="flex items-center justify-between w-full">
-            <Link
-              href="/"
-              className="text-4xl font-clash-grotesk text-golden-anchor font-bold hover:text-beige-anchor"
-            >
-              Di.X
+      <header className={`sticky top-0 z-50 w-full transition-all duration-300 ${navFaded ? 'px-20 pt-4 pb-1' : 'bg-[#F3E7C4] px-20 pt-2 pb-0'}`}>
+        <div className={`flex items-center justify-between px-8 py-3 transition-all duration-300 ${navFaded ? 'rounded-2xl bg-white/50 backdrop-blur-md' : 'rounded-none'}`}>
+          <Link href="/" className="text-4xl font-clash-grotesk text-golden-anchor font-bold hover:text-beige-anchor">
+            Di.X
+          </Link>
+          <div className="flex items-center justify-center gap-16">
+            <a className="text-md font-medium text-black hover:text-golden-anchor transition cursor-pointer" href="/#projects">
+              Projects
+            </a>
+            <Link href="/gallery" className="text-md font-medium text-black hover:text-golden-anchor transition">
+              Photos
             </Link>
-            <div className="flex items-center justify-center gap-16">
-              <a
-                className="text-md font-medium text-gray-800 hover:text-beige-anchor hover:underline transition cursor-pointer"
-                href="/#projects"
-              >
-                Projects
-              </a>
-              <Link
-                href="/gallery"
-                className="text-md font-medium text-gray-800 hover:text-beige-anchor hover:underline transition"
-              >
-                Photos
-              </Link>
-              <Link
-                href="mailto:xiaodishaw@gmail.com"
-                className="text-md font-medium text-gray-800 hover:text-beige-anchor hover:underline transition"
-              >
-                Contact
-              </Link>
-            </div>
+            <Link href="mailto:xiaodishaw@gmail.com" className="text-md font-medium text-black hover:text-golden-anchor transition">
+              Contact
+            </Link>
           </div>
-        </nav>
+        </div>
       </header>
 
       {/* Photography Section */}
-      <section className="w-full max-w-6xl mb-16">
+      <section className="w-full max-w-6xl mb-16 mt-16">
         {/* Title */}
         <h1 className="text-xl text-gray-900 font-bold text-center mb-8">
           Photography & Design
@@ -136,7 +131,7 @@ export default function GalleryPage() {
       </section>
 
       {/* Footer */}
-      <Footer customValue="max-w-6xl" />
+      <Footer customValue="max-w-6xl" dark />
     </main>
   );
 }
