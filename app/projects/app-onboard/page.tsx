@@ -370,8 +370,8 @@ export default function AppOnboardProject() {
         <BottomNav
           previousProject="/projects/risk-detection"
           previousProjectName="Risk Detection"
-          nextProject="/projects/project-access?target=brand-approval"
-          nextProjectName="Brand Approval"
+          nextProject="/projects/project-access?target=scalable-architecture"
+          nextProjectName="Scalable Architecture"
           textColor="text-blue-dark"
           hoverColor="hover:text-blue-anchor"
         />

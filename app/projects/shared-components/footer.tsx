@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { ArrowDownRightIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
 
-export default function Footer({ customValue = "", dark = false }: { customValue?: string; dark?: boolean }) {
+export default function Footer({ customValue = "", dark = false, style }: { customValue?: string; dark?: boolean; style?: React.CSSProperties }) {
   const c = dark
     ? { muted: "text-[#3D3530]", main: "text-[#3D3530]", ring: "focus-visible:ring-[#3D3530]/40", bar: "bg-[#3D3530]", secondary: "text-[#3D3530]/70" }
     : { muted: "text-white/70", main: "text-white", ring: "focus-visible:ring-white/40", bar: "bg-white", secondary: "text-stone-200" };
@@ -10,7 +10,7 @@ export default function Footer({ customValue = "", dark = false }: { customValue
   return (
     <>
       {/* Footer */}
-      <footer className={`w-full flex flex-col md:flex-row px-6 mt-12 mb-16 ${customValue}`}>
+      <footer className={`w-full flex flex-col md:flex-row px-6 mt-12 mb-16 ${customValue}`} style={style}>
         <div className="flex flex-col items-start w-full md:w-1/2">
           <p className={c.muted}>Yay! We’ve reached the end — say 👋 hi!</p>
           <Link

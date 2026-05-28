@@ -353,6 +353,7 @@ function WorkspacePicker({
               return (
                 <button
                   key={ws.id}
+                  data-demo-target={`workspace-item-${ws.id}`}
                   onClick={() => {
                     onOpenChange(false);
                     if (ws.id === 'publisher') onPickPublisher();
@@ -542,6 +543,12 @@ export default function WorkspaceFlowPage() {
     setSeriesSection('general');
     setStep(3);
   }
+  function openSeriesEpisodes() {
+    setCued24h(false);
+    setAppState('series');
+    setSeriesSection('series');
+    setStep(3);
+  }
   function otherRowClick() {
     setCued24h(true);
     setTimeout(() => setCued24h(false), 1800);
@@ -666,6 +673,106 @@ export default function WorkspaceFlowPage() {
       document.removeEventListener('keydown', onUserInput);
     };
     // run-once on mount
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // ── Autoplay ?autoplay=1 — 4-step workspace rotation, no user interaction ──
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('autoplay') !== '1') return;
+    const w = window as unknown as Record<string, unknown>;
+    if (w.__autoplaySingleton) return;
+    w.__autoplaySingleton = true;
+
+    const wait = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));
+
+    const moveTo = async (sel: string) => {
+      const el = document.querySelector(sel) as HTMLElement | null;
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      setDemoCursor({ x: r.left + r.width / 2, y: r.top + r.height / 2, visible: true, clicking: false });
+      await wait(900);
+    };
+
+    async function run() {
+      await wait(400);
+      // eslint-disable-next-line no-constant-condition
+      while (true) {
+        // ① Ads workspace
+        openAds();
+        setPickerOpen(false);
+        setNavOpen(true);
+        setDemoCursor(p => ({ ...p, visible: false }));
+        await wait(2200);
+
+        // Move cursor to workspace picker trigger
+        await moveTo('[data-demo-target="workspace-picker"]');
+        await wait(300);
+
+        // Click → open picker
+        setDemoCursor(p => ({ ...p, clicking: true }));
+        setPickerOpen(true);
+        await wait(360);
+        setDemoCursor(p => ({ ...p, clicking: false }));
+        await wait(1300);
+
+        // Move to Publishers cell (picker is now open → element in DOM)
+        await moveTo('[data-demo-target="workspace-item-publisher"]');
+        await wait(400);
+
+        // Click Publishers → publisher workspace
+        setDemoCursor(p => ({ ...p, clicking: true }));
+        await wait(320);
+        setDemoCursor(p => ({ ...p, clicking: false }));
+        setPickerOpen(false);
+        openPublisher();
+        await wait(300);
+        setDemoCursor(p => ({ ...p, visible: false }));
+        await wait(2200);
+
+        // ② Publishers workspace — move to Hysterical row
+        await moveTo('[data-demo-target="hysterical-row"]');
+        await wait(400);
+
+        // Click Hysterical → series episodes view
+        setDemoCursor(p => ({ ...p, clicking: true }));
+        await wait(320);
+        setDemoCursor(p => ({ ...p, clicking: false }));
+        openSeriesEpisodes();
+        await wait(300);
+        setDemoCursor(p => ({ ...p, visible: false }));
+        await wait(2200);
+
+        // ③ Series Episodes — move to workspace picker
+        await moveTo('[data-demo-target="workspace-picker"]');
+        await wait(300);
+
+        // Click → open picker
+        setDemoCursor(p => ({ ...p, clicking: true }));
+        setPickerOpen(true);
+        await wait(360);
+        setDemoCursor(p => ({ ...p, clicking: false }));
+        await wait(1300);
+
+        // Move to Ads cell
+        await moveTo('[data-demo-target="workspace-item-ads"]');
+        await wait(400);
+
+        // Click Ads → back to ads, loop restarts
+        setDemoCursor(p => ({ ...p, clicking: true }));
+        await wait(320);
+        setDemoCursor(p => ({ ...p, clicking: false }));
+        setPickerOpen(false);
+        await wait(300);
+        setDemoCursor(p => ({ ...p, visible: false }));
+        await wait(600);
+      }
+    }
+
+    setTimeout(() => run(), 400);
+
+    return () => { w.__autoplaySingleton = false; };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

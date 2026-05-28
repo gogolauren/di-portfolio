@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
-import { DM_Sans, Geist_Mono, Fraunces } from "next/font/google";
+import { DM_Sans, Geist_Mono, Fraunces, Instrument_Serif } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
+
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
+  subsets: ["latin"],
+  weight: "400",
+});
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -62,7 +68,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${dmSans.variable} ${geistMono.variable} ${clashGrotesk.variable} ${fraunces.variable} antialiased`}
+        className={`${dmSans.variable} ${geistMono.variable} ${clashGrotesk.variable} ${fraunces.variable} ${instrumentSerif.variable} antialiased`}
       >
         {children}
         <Analytics />

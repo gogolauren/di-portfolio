@@ -7,6 +7,7 @@ export function BottomNav({
   nextProjectName,
   textColor = "text-purple-anchor",
   hoverColor = "hover:text-purple-dark",
+  className = "max-w-5xl w-full mx-auto bg-white px-6",
 }: {
   previousProject: string;
   previousProjectName: string;
@@ -14,9 +15,10 @@ export function BottomNav({
   nextProjectName: string;
   textColor?: string;
   hoverColor?: string;
+  className?: string;
 }) {
   return (
-    <div className="max-w-5xl w-full mx-auto bg-white px-6">
+    <div className={className}>
       <nav
         className={`flex justify-between items-center w-full ${textColor} border-b border-gray-100 pb-10 mb-4`}
       >

@@ -89,6 +89,7 @@ export default function Home() {
   const r2 = useReveal();
   const r3 = useReveal();
   const r4 = useReveal();
+  const r5 = useReveal();
   const rExp1 = useReveal();
   const rExp2 = useReveal();
   const rSlogan = useReveal();
@@ -310,10 +311,59 @@ export default function Home() {
           >
             <span className="text-xs font-bold uppercase tracking-widest text-stone-200 mb-2 block">My Projects</span>
 
+            {/* Scalable Architecture */}
+            <div
+              ref={r5.ref}
+              style={{ transitionDelay: "0ms" }}
+              className={`transition-all duration-700 ease-out ${
+                r5.visible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-10"
+              }`}
+            >
+              <Link href="/projects/project-access?target=scalable-architecture" className="group block cursor-none"
+                onMouseEnter={() => setShowCursor(true)}
+                onMouseLeave={() => setShowCursor(false)}>
+                <div className="bg-white rounded-2xl p-8 pr-14 flex flex-col md:flex-row items-stretch md:h-[460px] w-full group-hover:-translate-y-1 group-hover:shadow-xl transition-all duration-300">
+                  <div className="flex-1 min-w-0 max-w-[600px] basis-[55%] mb-4 md:mb-0 md:mr-16 overflow-hidden rounded-lg">
+                    <Image
+                      src="/cover-scalable-architecture.png"
+                      alt="Scalable Architecture — from profile-centric to task-centric"
+                      width={600}
+                      height={400}
+                      className="rounded-lg w-full h-48 md:h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                    />
+                  </div>
+                  <div className="flex-1 min-w-0 basis-[45%] flex flex-col justify-center">
+                    <h2 className="text-2xl font-semibold mb-4">
+                      AI Co-Piloting: Re-architect and Scale Enterprise Platform
+                    </h2>
+                    <p className="text-gray-600 text-left">
+                      Won 1st place at an internal hackathon — redesigned the platform IA from a fragmented profile picker to a task-based workspace hub.
+                    </p>
+                    <div className="flex items-center gap-2 flex-wrap mt-4">
+                      <span className="border border-beige-shade text-golden-anchor px-3 py-1 rounded-full text-sm">
+                        Vibe Coding
+                      </span>
+                      <span className="border border-beige-shade text-golden-anchor px-3 py-1 rounded-full text-sm">
+                        SaaS Architecture
+                      </span>
+                      <span className="border border-beige-shade text-golden-anchor px-3 py-1 rounded-full text-sm">
+                        Product Strategy
+                      </span>
+                    </div>
+                    <div className="mt-6 flex items-center gap-1 text-golden-anchor font-semibold text-sm opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                      View Case Study <ArrowRightIcon className="w-4 h-4 ml-1" />
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </div>
+
             {/* Brand Approval */}
             <div
               ref={r1.ref}
-              style={{ transitionDelay: "0ms" }}
+              style={{ transitionDelay: "80ms" }}
               className={`transition-all duration-700 ease-out ${
                 r1.visible
                   ? "opacity-100 translate-y-0"
@@ -326,17 +376,17 @@ export default function Home() {
                 onMouseEnter={() => setShowCursor(true)}
                 onMouseLeave={() => setShowCursor(false)}
               >
-                <div className="bg-white rounded-2xl p-8 flex flex-col md:flex-row items-center w-full group-hover:-translate-y-1 group-hover:shadow-xl transition-all duration-300">
+                <div className="bg-white rounded-2xl p-8 pr-14 flex flex-col md:flex-row items-stretch md:h-[460px] w-full group-hover:-translate-y-1 group-hover:shadow-xl transition-all duration-300">
                   <div className="flex-1 min-w-0 max-w-[600px] basis-[55%] mb-4 md:mb-0 md:mr-16 overflow-hidden rounded-lg">
                     <Image
                       src="/cover-BrandApproval.png"
                       alt="Project Brand Approval"
                       width={600}
                       height={400}
-                      className="rounded-lg w-full h-auto group-hover:scale-[1.02] transition-transform duration-500"
+                      className="rounded-lg w-full h-48 md:h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
                     />
                   </div>
-                  <div className="flex-1 min-w-0 basis-[45%]">
+                  <div className="flex-1 min-w-0 basis-[45%] flex flex-col justify-center">
                     <h2 className="text-2xl font-semibold mb-4">
                       Brand Approval Flow to Automate Ad Delivery on Podcasts
                     </h2>
@@ -367,7 +417,7 @@ export default function Home() {
             {/* Episode Publishing */}
             <div
               ref={r2.ref}
-              style={{ transitionDelay: "80ms" }}
+              style={{ transitionDelay: "160ms" }}
               className={`transition-all duration-700 ease-out ${
                 r2.visible
                   ? "opacity-100 translate-y-0"
@@ -380,17 +430,17 @@ export default function Home() {
                 onMouseEnter={() => setShowCursor(true)}
                 onMouseLeave={() => setShowCursor(false)}
               >
-                <div className="bg-white rounded-2xl p-8 flex flex-col md:flex-row items-center w-full group-hover:-translate-y-1 group-hover:shadow-xl transition-all duration-300">
+                <div className="bg-white rounded-2xl p-8 pr-14 flex flex-col md:flex-row items-stretch md:h-[460px] w-full group-hover:-translate-y-1 group-hover:shadow-xl transition-all duration-300">
                   <div className="flex-1 min-w-0 max-w-[600px] basis-[55%] mb-4 md:mb-0 md:mr-16 overflow-hidden rounded-lg">
                     <Image
                       src="/cover-episode.png"
                       alt="Project Episode Publishing"
                       width={600}
                       height={400}
-                      className="rounded-lg w-full h-auto group-hover:scale-[1.02] transition-transform duration-500"
+                      className="rounded-lg w-full h-48 md:h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
                     />
                   </div>
-                  <div className="flex-1 min-w-0 basis-[45%]">
+                  <div className="flex-1 min-w-0 basis-[45%] flex flex-col justify-center">
                     <h2 className="text-2xl font-semibold mb-4">
                       Episode Publishing Experience Redesign
                     </h2>
@@ -420,7 +470,7 @@ export default function Home() {
             {/* Risk Detection */}
             <div
               ref={r3.ref}
-              style={{ transitionDelay: "160ms" }}
+              style={{ transitionDelay: "240ms" }}
               className={`transition-all duration-700 ease-out ${
                 r3.visible
                   ? "opacity-100 translate-y-0"
@@ -433,17 +483,17 @@ export default function Home() {
                 onMouseEnter={() => setShowCursor(true)}
                 onMouseLeave={() => setShowCursor(false)}
               >
-                <div className="bg-white rounded-2xl p-8 flex flex-col md:flex-row items-center w-full group-hover:-translate-y-1 group-hover:shadow-xl transition-all duration-300">
+                <div className="bg-white rounded-2xl p-8 pr-14 flex flex-col md:flex-row items-stretch md:h-[460px] w-full group-hover:-translate-y-1 group-hover:shadow-xl transition-all duration-300">
                   <div className="flex-1 min-w-0 max-w-[600px] basis-[55%] mb-4 md:mb-0 md:mr-16 overflow-hidden rounded-lg">
                     <Image
                       src="/cover-risk.png"
                       alt="Project Risk Detection"
                       width={600}
                       height={400}
-                      className="rounded-lg w-full h-auto group-hover:scale-[1.02] transition-transform duration-500"
+                      className="rounded-lg w-full h-48 md:h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
                     />
                   </div>
-                  <div className="flex-1 min-w-0 basis-[45%]">
+                  <div className="flex-1 min-w-0 basis-[45%] flex flex-col justify-center">
                     <h2 className="text-2xl font-semibold mb-4">
                       Enhancing Access Requests with Risk Detection
                     </h2>
@@ -474,7 +524,7 @@ export default function Home() {
             {/* App Onboarding */}
             <div
               ref={r4.ref}
-              style={{ transitionDelay: "240ms" }}
+              style={{ transitionDelay: "320ms" }}
               className={`transition-all duration-700 ease-out ${
                 r4.visible
                   ? "opacity-100 translate-y-0"
@@ -484,17 +534,17 @@ export default function Home() {
               <Link href={`/projects/app-onboard`} className="group block cursor-none"
                 onMouseEnter={() => setShowCursor(true)}
                 onMouseLeave={() => setShowCursor(false)}>
-                <div className="bg-white rounded-2xl p-8 flex flex-col md:flex-row items-center w-full group-hover:-translate-y-1 group-hover:shadow-xl transition-all duration-300">
+                <div className="bg-white rounded-2xl p-8 pr-14 flex flex-col md:flex-row items-stretch md:h-[460px] w-full group-hover:-translate-y-1 group-hover:shadow-xl transition-all duration-300">
                   <div className="flex-1 min-w-0 max-w-[600px] basis-[55%] mb-4 md:mb-0 md:mr-16 overflow-hidden rounded-lg">
                     <Image
                       src="/cover-aob-1.png"
                       alt="Project Application Onboarding"
                       width={600}
                       height={400}
-                      className="rounded-lg w-full h-auto group-hover:scale-[1.02] transition-transform duration-500"
+                      className="rounded-lg w-full h-48 md:h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
                     />
                   </div>
-                  <div className="flex-1 min-w-0 basis-[45%]">
+                  <div className="flex-1 min-w-0 basis-[45%] flex flex-col justify-center">
                     <h2 className="text-2xl font-semibold mb-4">
                       Onboard Applications with Zero Coding Required
                     </h2>
