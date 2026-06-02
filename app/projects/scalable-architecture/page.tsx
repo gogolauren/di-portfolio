@@ -47,6 +47,85 @@ function H2({ children, style }: { children: React.ReactNode; style?: React.CSSP
   );
 }
 
+// ── Role-mapping matrix data ──────────────────────────────────────────────────
+const RMAP_TASKS: [string, string][] = [
+  ["Check", "avails"],
+  ["Set up", "campaigns"],
+  ["Set up VAST", "campaigns"],
+  ["Create & upload", "ads"],
+  ["Monitor &", "ensure delivery"],
+  ["Add 3p pixels", "to campaigns"],
+  ["Report Ad Ops", "insights"],
+  ["Track campaign", "performance"],
+];
+
+const RMAP_CLUSTER_STRIPES: Record<string, string> = {
+  pub: "#8b5dc4",
+  sales: "#2563eb",
+  ops: "#f0a13a",
+  data: "#c25a4f",
+};
+
+const RMAP_ROLES: { name: string; blurb: string; cluster: string; cells: string[] }[] = [
+  { name: "Social Media & Marketing", blurb: "Grows listenership; promotes show",       cluster: "pub",   cells: ["e","e","e","e","e","e","e","e"] },
+  { name: "Monetization",             blurb: "Drives subscriptions + ad revenue",        cluster: "pub",   cells: ["e","e","e","e","e","e","e","e"] },
+  { name: "Podcast Data Analyst",     blurb: "Reports show performance",                 cluster: "pub",   cells: ["e","e","e","e","e","e","e","e"] },
+  { name: "Account Executive",        blurb: "Sells inventory to brands",                cluster: "sales", cells: ["e","h","h","e","e","e","e","m"] },
+  { name: "Account Manager",          blurb: "Implements deals as IOs",                  cluster: "sales", cells: ["h","e","e","e","h","e","e","e"] },
+  { name: "Ad Producer",              blurb: "Records + delivers ad creative",           cluster: "ops",   cells: ["e","e","e","h","e","e","e","e"] },
+  { name: "Ad Ops Team Lead",         blurb: "Manages structure + assignments",          cluster: "ops",   cells: ["e","e","e","e","e","e","m","m"] },
+  { name: "Ad Ops Campaign Manager",  blurb: "Owns delivery end-to-end",                 cluster: "ops",   cells: ["m","h","h","m","h","m","m","m"] },
+  { name: "Marketing Manager",        blurb: "Attracts new ad customers",                cluster: "ops",   cells: ["e","e","e","e","e","e","e","m"] },
+  { name: "Rev Ops / Yield Ops",      blurb: "Tracks avails + sell-through",             cluster: "data",  cells: ["m","e","e","e","e","e","e","m"] },
+  { name: "Data Analyst",             blurb: "Reports performance + insights",           cluster: "data",  cells: ["m","e","e","e","e","e","e","h"] },
+];
+
+const RMAP_CLUSTERS: {
+  id: string; tag: string; accent: string; tagBg: string;
+  title: { prefix: string; em: string; suffix: string };
+  roles: string[]; persona: string;
+}[] = [
+  { id: "pub",   tag: "Cluster 01", accent: "#6b41a8", tagBg: "#f0e7fb", title: { prefix: "Show & ",     em: "growth",  suffix: "." }, roles: ["Social Media & Marketing", "Monetization", "Podcast Data Analyst"],       persona: "Podcast Manager" },
+  { id: "sales", tag: "Cluster 02", accent: "#1d4ed8", tagBg: "#eaf1fc", title: { prefix: "Deals & ",    em: "billing", suffix: "." }, roles: ["Account Executive", "Account Manager", "Marketing Manager"],              persona: "Account Manager / Sales" },
+  { id: "ops",   tag: "Cluster 03", accent: "#9c5715", tagBg: "#fbeacb", title: { prefix: "Daily ",      em: "ad ops",  suffix: "." }, roles: ["Ad Producer", "Ad Ops Team Lead", "Ad Ops Campaign Manager"],            persona: "Campaign Manager" },
+  { id: "data",  tag: "Cluster 04", accent: "#a14a40", tagBg: "#f4dcd6", title: { prefix: "Reporting & ", em: "yield",  suffix: "." }, roles: ["Rev Ops / Yield Ops", "Data Analyst"],                                   persona: "Analyst" },
+];
+// ─────────────────────────────────────────────────────────────────────────────
+
+const ROLE_DEFS: { id: string; persona: string; perms: { cat: string; tone: string; segs: { items: string; scope: string }[] }[] }[] = [
+  {
+    id: "Role_1", persona: "Podcast Manager",
+    perms: [
+      { cat: "Publisher",       tone: "resource", segs: [{ items: "owned Series, owned Network, Publisher Settings", scope: "Edit" }] },
+      { cat: "User Management", tone: "identity", segs: [{ items: "User Access", scope: "Edit" }] },
+      { cat: "Reports",         tone: "analysis", segs: [{ items: "Performance of owned Series", scope: "Edit" }] },
+    ],
+  },
+  {
+    id: "Role_2", persona: "Campaign Manager",
+    perms: [
+      { cat: "Ads",     tone: "global",   segs: [{ items: "owned Ad Reps", scope: "Edit" }, { items: "System Brands, Agencies, Creatives", scope: "Read" }] },
+      { cat: "Reports", tone: "analysis", segs: [{ items: "Performance of owned Ad Reps/campaigns", scope: "Edit" }] },
+    ],
+  },
+];
+
+const PERM_BG: Record<string, string> = {
+  resource: "#ece1f9",
+  global:   "#d8e6fb",
+  identity: "#d3eedd",
+  profile:  "#e6e4de",
+  analysis: "#f7dcd6",
+  deals:    "#fbecc4",
+};
+
+const USER_ACCESS: { name: string; account: string; roles: string[]; profiles: string[] }[] = [
+  { name: "Amy",    account: "amya@art19.com",    roles: ["Role_1"],           profiles: ["Series a", "Series b", "Series c", "Network a"] },
+  { name: "Betty",  account: "bettyb@art19.com",  roles: ["Role_2"],           profiles: ["Ad Rep a", "Ad Rep b", "Ad Rep c"] },
+  { name: "Carlos", account: "carlosc@art19.com", roles: ["Role_3"],           profiles: ["Series f", "Network c"] },
+  { name: "Daniel", account: "danield@art19.com", roles: ["Role_1", "Role_2"], profiles: ["Series e", "Network b", "Ad Rep d"] },
+];
+
 export default function ScalableArchitectureProject() {
   const router = useRouter();
   const beforeBandRef = useRef<HTMLDivElement>(null);
@@ -116,6 +195,35 @@ export default function ScalableArchitectureProject() {
   return (
     <div style={{ fontSize: "17px", lineHeight: "1.6", background: "#fff", color: tk.ink, WebkitFontSmoothing: "antialiased" }}>
 
+      {/* ── Global responsive overrides (inline styles need !important to beat) ── */}
+      <style>{`
+        @media (max-width: 860px) {
+          .imp-grid { grid-template-columns: 1fr !important; gap: 40px !important; padding-top: 40px !important; padding-bottom: 48px !important; }
+          .imp-visual-flip { order: 2; }
+          .ba2-band { padding: 48px 20px !important; }
+          .ba2-transition { padding: 28px 20px !important; }
+        }
+        @media (max-width: 720px) {
+          .outcomes-grid { grid-template-columns: 1fr !important; }
+          .tldr-grid { grid-template-columns: 1fr !important; gap: 4px !important; }
+          .tldr-arrow { transform: rotate(90deg); margin: 6px 0; }
+          .tldr-col-l { padding-right: 0 !important; }
+          .tldr-col-r { padding-left: 0 !important; }
+        }
+        @media (max-width: 640px) {
+          .wrap { padding-left: 20px !important; padding-right: 20px !important; }
+          .move-head-01 { grid-template-columns: 64px minmax(0,1fr) !important; }
+          .move-head-01 .move-legend {
+            grid-column: 2 !important; grid-row: auto !important; order: 1;
+            border-left: none !important; padding-left: 0 !important;
+            border-top: 1px solid #e8e6e0; padding-top: 12px; margin-top: 6px;
+          }
+        }
+        @media (max-width: 460px) {
+          .persona-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
+
       {/* HERO IMAGE */}
       <div className="w-full flex justify-center mb-2">
         <Image
@@ -172,19 +280,19 @@ export default function ScalableArchitectureProject() {
 
       {/* TLDR STRIP */}
       <section style={{ padding: "32px 0" }}>
-        <div style={WRAP}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 64px 1fr", borderTop: `1px solid ${tk.ink}`, borderBottom: `1px solid ${tk.ink}`, padding: "32px 0" }}>
-            <div style={{ paddingRight: "24px", display: "flex", flexDirection: "column", gap: "10px" }}>
+        <div className="wrap" style={WRAP}>
+          <div className="tldr-grid" style={{ display: "grid", gridTemplateColumns: "1fr 64px 1fr", borderTop: `1px solid ${tk.ink}`, borderBottom: `1px solid ${tk.ink}`, padding: "32px 0" }}>
+            <div className="tldr-col-l" style={{ paddingRight: "24px", display: "flex", flexDirection: "column", gap: "10px" }}>
               <span style={{ fontSize: "11px", letterSpacing: "0.14em", textTransform: "uppercase", color: tk.rose }}>The Problem</span>
               <h3 style={{ fontFamily: "var(--font-instrument-serif)", fontWeight: 400, fontSize: "28px", lineHeight: 1.15, margin: 0, color: tk.ink }}>
                 Built for one creator. Broke at <em>50 series</em>.
               </h3>
               <p style={{ fontSize: "14px", color: tk.muted, margin: 0 }}>Profile dropdown didn&apos;t scale. Brands duplicated per profile. Admin tasks required pogo-sticking in and out of every show.</p>
             </div>
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <div className="tldr-arrow" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
               <span style={{ fontSize: "38px", background: tk.ink, color: "#fff", width: "48px", height: "48px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center" }}>→</span>
             </div>
-            <div style={{ paddingLeft: "24px", display: "flex", flexDirection: "column", gap: "10px" }}>
+            <div className="tldr-col-r" style={{ paddingLeft: "24px", display: "flex", flexDirection: "column", gap: "10px" }}>
               <span style={{ fontSize: "11px", letterSpacing: "0.14em", textTransform: "uppercase", color: tk.green }}>The Shift</span>
               <h3 style={{ fontFamily: "var(--font-instrument-serif)", fontWeight: 400, fontSize: "28px", lineHeight: 1.15, margin: 0, color: tk.ink }}>
                 One <em style={{ fontStyle: "italic", color: tk.green }}>workspace.</em> Apps and entities go global.
@@ -197,10 +305,10 @@ export default function ScalableArchitectureProject() {
 
       {/* OUTCOMES */}
       <section style={SEC}>
-        <div style={WRAP}>
+        <div className="wrap" style={WRAP}>
           <SectionLabel>Outcomes</SectionLabel>
           <h3 style={{ fontFamily: "var(--font-instrument-serif)", fontWeight: 400, fontSize: "28px", lineHeight: 1.15, margin: 0, color: tk.ink }}>Won the <span style={{ color: tk.rose }}>1<em>st</em> place </span> in Hackathon.</h3>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "16px", marginTop: "32px" }}>
+          <div className="outcomes-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "16px", marginTop: "32px" }}>
             {(
               [
                 {
@@ -248,7 +356,8 @@ export default function ScalableArchitectureProject() {
               gap: 32px !important;
             }
             .ba2-figure {
-              max-width: 50vw;
+              max-width: 520px;
+              width: 100%;
             }
           }
         `}</style>
@@ -268,7 +377,7 @@ export default function ScalableArchitectureProject() {
 
         {/* BEFORE band */}
         <div style={{ width: "100%", position: "relative", overflow: "hidden", background: "radial-gradient(ellipse at 12% 8%, rgba(194,90,79,.10), transparent 55%), radial-gradient(ellipse at 95% 85%, rgba(194,90,79,.05), transparent 60%), linear-gradient(180deg, #fbf7f4 0%, #fdfaf7 100%)", borderTop: `1px solid ${tk.line}`, borderBottom: `1px solid ${tk.line}` }}>
-          <div style={{ maxWidth: "1300px", margin: "0 auto", padding: "80px 40px" }}>
+          <div className="ba2-band" style={{ maxWidth: "1300px", margin: "0 auto", padding: "80px 40px" }}>
             <div ref={beforeBandRef} className="ba2-grid" style={{ display: "grid", gridTemplateColumns: "minmax(300px, 400px) 1fr", gap: "64px", alignItems: "center", position: "relative" }}>
 
               {/* Left: notes */}
@@ -318,7 +427,7 @@ export default function ScalableArchitectureProject() {
 
         {/* Transition strip */}
         <div style={{ background: "linear-gradient(180deg, #fdfaf7 0%, #f1f6f1 100%)" }}>
-          <div style={{ maxWidth: "1300px", margin: "0 auto", padding: "36px 40px", display: "flex", alignItems: "center", gap: "20px" }}>
+          <div className="ba2-transition" style={{ maxWidth: "1300px", margin: "0 auto", padding: "36px 40px", display: "flex", alignItems: "center", gap: "20px" }}>
             <span style={{ flex: 1, height: "1px", background: tk.line2 }} />
             <span style={{ display: "inline-flex", alignItems: "center", gap: "10px", fontFamily: "var(--font-geist-mono)", fontSize: "11px", letterSpacing: "0.28em", textTransform: "uppercase", padding: "9px 18px", borderRadius: "999px", background: "#fff", color: tk.ink, border: `1px solid ${tk.line2}`, boxShadow: "0 14px 30px -12px rgba(0,0,0,.12)" }}>
               Became <span style={{ fontFamily: "var(--font-instrument-serif)", fontStyle: "italic", fontSize: "18px", lineHeight: 1, color: tk.ink }}>↓</span>
@@ -329,7 +438,7 @@ export default function ScalableArchitectureProject() {
 
         {/* AFTER band */}
         <div style={{ width: "100%", position: "relative", overflow: "hidden", background: "radial-gradient(ellipse at 15% 8%, rgba(58,125,91,.14), transparent 55%), radial-gradient(ellipse at 95% 85%, rgba(58,125,91,.06), transparent 60%), linear-gradient(180deg, #f1f6f1 0%, #f7faf6 100%)", borderTop: "1px solid #d8e3d8", borderBottom: "1px solid #d8e3d8" }}>
-          <div style={{ maxWidth: "1300px", margin: "0 auto", padding: "80px 40px" }}>
+          <div className="ba2-band" style={{ maxWidth: "1300px", margin: "0 auto", padding: "80px 40px" }}>
             <div ref={afterBandRef} className="ba2-grid" style={{ display: "grid", gridTemplateColumns: "1fr minmax(300px, 380px)", gap: "64px", alignItems: "center", position: "relative" }}>
 
               {/* Left: screenshot */}
@@ -399,12 +508,12 @@ export default function ScalableArchitectureProject() {
 
       {/* RECEIPTS */}
       <section style={SEC}>
-        <div style={WRAP}>
+        <div className="wrap" style={WRAP}>
           <SectionLabel>Why It Works</SectionLabel>
           <H2 style={{ fontFamily: "var(--font-instrument-serif)" }}>Three key improvements</H2>
 
           {/* ── Improvement 01: Nike ── */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px", alignItems: "center", paddingTop: "24px", paddingBottom: "72px" }}>
+          <div className="imp-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px", alignItems: "center", paddingTop: "24px", paddingBottom: "72px" }}>
             <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
               <span style={{ fontSize: "16px", color: tk.muted, letterSpacing: "0.04em" }}>— 01 · Data Normalization —</span>
               <h3 style={{ fontFamily: "var(--font-instrument-serif)", fontWeight: 400, fontSize: "clamp(28px, 3vw, 38px)", lineHeight: 1.15, margin: "0 0 4px", letterSpacing: "-0.005em", color: tk.ink }}>
@@ -505,8 +614,8 @@ export default function ScalableArchitectureProject() {
           </div>
 
           {/* ── Improvement 02: Bulk Management (flip) ── */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px", alignItems: "center", borderTop: `1px solid ${tk.line}`, paddingTop: "72px", paddingBottom: "72px" }}>
-            <div>
+          <div className="imp-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px", alignItems: "center", borderTop: `1px solid ${tk.line}`, paddingTop: "72px", paddingBottom: "72px" }}>
+            <div className="imp-visual-flip">
               {/* Before: Pogo diagram */}
               <div style={{ marginBottom: "22px" }}>
                 <span style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontSize: "11px", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", padding: "6px 12px", borderRadius: "999px", marginBottom: "12px", background: tk.bgSoft, color: tk.ink }}>
@@ -629,7 +738,7 @@ export default function ScalableArchitectureProject() {
           </div>
 
           {/* ── Improvement 03: Personalization ── */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px", alignItems: "center", borderTop: `1px solid ${tk.line}`, paddingTop: "72px" }}>
+          <div className="imp-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px", alignItems: "center", borderTop: `1px solid ${tk.line}`, paddingTop: "72px" }}>
             <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
               <span style={{ fontSize: "16px", color: tk.muted, letterSpacing: "0.04em" }}>— 03 · Intelligent Personalization —</span>
               <h3 style={{ fontFamily: "var(--font-instrument-serif)", fontWeight: 400, fontSize: "clamp(28px, 3vw, 38px)", lineHeight: 1.15, margin: "0 0 4px", letterSpacing: "-0.005em", color: tk.ink }}>
@@ -656,7 +765,7 @@ export default function ScalableArchitectureProject() {
             </div>
 
             <div>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
+              <div className="persona-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
                 {[
                   {
                     name: "Podcast Manager",
@@ -708,6 +817,284 @@ export default function ScalableArchitectureProject() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* RESEARCH & ROLE MAPPING */}
+      <section style={{ ...SEC, borderTop: `1px solid ${tk.line}` }}>
+        <style>{`
+          /* ─── rmap shared grid ─── */
+          .rmap-supercat-row, .rmap-tasks-row, .rmap-role-row {
+            display: grid;
+            grid-template-columns: 180px repeat(8, minmax(0, 1fr)) 54px;
+          }
+          @media (max-width: 1100px) {
+            .rmap-supercat-row, .rmap-tasks-row, .rmap-role-row {
+              grid-template-columns: 150px repeat(8, minmax(0, 1fr)) 46px;
+            }
+          }
+          @media (max-width: 820px) {
+            .rmap-intro-row { flex-direction: column !important; gap: 16px !important; }
+            .rmap-intro-row .rmap-legend-inline { border-left: none !important; padding-left: 0 !important; border-top: 1px solid #e8e6e0; padding-top: 12px; }
+          }
+          /* ─── move headers ─── */
+          .move-head {
+            display: grid;
+            grid-template-columns: 64px minmax(0, 1fr);
+            gap: 4px 22px;
+            align-items: start;
+            padding-top: 30px;
+            margin-top: 40px;
+            border-top: 1px solid #e8e6e0;
+          }
+          .move-n {
+            font-family: var(--font-instrument-serif);
+            font-weight: 400;
+            font-size: 46px;
+            line-height: .9;
+            color: #6b6b72;
+            grid-row: 1 / span 2;
+          }
+          .move-t {
+            font-family: var(--font-instrument-serif);
+            font-weight: 400;
+            font-size: 28px;
+            line-height: 1.06;
+            letter-spacing: -0.01em;
+            margin: 0 0 7px;
+          }
+          .move-d {
+            font-size: 14.5px;
+            line-height: 1.55;
+            color: #6b6b72;
+            max-width: 62ch;
+            margin: 0;
+          }
+          .move-body { margin-top: 24px; }
+          /* ─── move 03 tables ─── */
+          .rbac-split { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 30px; margin-top: 8px; align-items: stretch; }
+          @media (max-width: 900px) { .rbac-split { grid-template-columns: 1fr; gap: 36px; } }
+          .rbac-tcap { display: grid; grid-template-columns: auto 1fr; align-items: baseline; gap: 4px 10px; margin: 0 0 14px; }
+          .rbac-tg { font-family: var(--font-geist-mono); font-size: 11px; font-weight: 700; color: #1d4ed8; letter-spacing: .06em; }
+          .rbac-tt { font-family: var(--font-instrument-serif); font-weight: 400; font-size: 20px; letter-spacing: -0.005em; line-height: 1.08; }
+          .rbac-ts { grid-column: 1 / -1; font-size: 12px; color: #6b6b72; margin: 0; }
+          .rbac-newcol {
+            grid-column: 1 / -1; justify-self: start;
+            display: inline-flex; align-items: center; gap: 6px;
+            font-family: var(--font-geist-mono); font-size: 10px; letter-spacing: .06em;
+            text-transform: uppercase; color: #2563eb;
+            background: #eaf1fc; border: 1px solid #cfe0f7;
+            border-radius: 5px; padding: 3px 8px; margin: 2px 0 0;
+          }
+          .rbac-card { border: 1px solid #e8e6e0; border-radius: 14px; background: #fff; overflow: hidden; box-shadow: 0 1px 0 rgba(0,0,0,.02), 0 20px 50px -34px rgba(0,0,0,.16); }
+          .rdef-row { display: grid; grid-template-columns: 60px 104px 1fr; align-items: start; padding: 36px 18px; border-bottom: 1px solid #e8e6e0; gap: 0 14px; }
+          .rdef-row .rid { font-family: var(--font-geist-mono); font-size: 13px; font-weight: 700; color: #0e0e10; }
+          .rdef-row .rdef-persona { font-weight: 700; font-size: 14px; letter-spacing: -0.005em; }
+          .rdef-perms { display: flex; flex-direction: column; align-items: flex-start; gap: 7px; }
+          .perm-chip { font-size: 11.5px; line-height: 1.3; padding: 5px 11px; border-radius: 6px; color: #2a2a2e; }
+          .perm-chip b { font-weight: 700; }
+          .perm-chip .scope { color: rgba(42,42,46,.62); font-weight: 500; }
+          .rdef-add { padding: 14px 18px; background: #eef4fc; font-weight: 700; font-size: 13.5px; color: #2563eb; }
+          .rbac-rowline { display: grid; grid-template-columns: 1.2fr 1fr 1.5fr; gap: 14px; align-items: start; padding: 16px 18px; border-bottom: 1px solid #e8e6e0; font-size: 13.5px; color: #0e0e10; }
+          .rbac-rowline:last-of-type { border-bottom: none; }
+          .ucell { display: flex; flex-direction: column; gap: 2px; }
+          .ucell .uname { font-weight: 700; }
+          .ucell .acct { color: #6b6b72; font-family: var(--font-geist-mono); font-size: 11px; word-break: break-all; }
+          .pills { display: flex; flex-wrap: wrap; gap: 5px; }
+          .rbac-pill { display: inline-block; font-family: var(--font-geist-mono); font-size: 11px; font-weight: 600; background: #f7f6f3; border: 1px solid #e8e6e0; color: #2a2a2e; padding: 2px 8px; border-radius: 5px; white-space: nowrap; }
+          .rbac-pill.is-role { background: #eaf1fc; border-color: #cfe0f7; color: #1d4ed8; }
+          .rbac-pill.is-prof { background: #fff; border-color: #d9d6cf; color: #2a2a2e; font-family: inherit; font-weight: 600; letter-spacing: 0; }
+          .rbac-moreline { padding: 15px 18px; color: #d9d6cf; font-size: 20px; letter-spacing: .3em; line-height: 1; }
+          @media (max-width: 620px) {
+            .rdef-row { grid-template-columns: 1fr; gap: 8px; }
+            .rbac-rowline { grid-template-columns: 1fr 1fr; gap: 8px 12px; }
+          }
+        `}</style>
+        <div className="wrap" style={WRAP}>
+          <SectionLabel>Foundation · Role Mapping</SectionLabel>
+          <H2 style={{ fontFamily: "var(--font-instrument-serif)" }}>
+            Role mapping: <em style={{ fontStyle: "italic" }}>how I came up with the idea.</em>
+          </H2>
+          <p style={{ maxWidth: "58ch", color: tk.muted, fontSize: "16px", lineHeight: 1.55, margin: 0 }}>
+            Three moves took me from raw user interviews to a permission model the platform could actually enforce.
+          </p>
+
+          {/* ── MOVE 01 ── */}
+          <div className="move-head move-head-01" style={{ gridTemplateColumns: "64px 1fr auto" }}>
+            <span className="move-n">01</span>
+            <h3 className="move-t">Interview users, map roles to tasks</h3>
+            <div className="move-legend" style={{ gridRow: "1 / span 2", gridColumn: "3", display: "flex", flexDirection: "column", gap: "6px", borderLeft: `1px solid ${tk.line}`, paddingLeft: "20px", alignSelf: "start" }}>
+              <span style={{ fontFamily: "var(--font-geist-mono)", fontSize: "10.5px", letterSpacing: ".14em", textTransform: "uppercase", color: tk.muted, marginBottom: "2px" }}>Intensity</span>
+              {([
+                { bg: tk.accentInk, label: "Hvy", desc: "Primary owner — does this daily", dashed: false },
+                { bg: "#6da3f0",    label: "Med", desc: "Contributor — touches it weekly", dashed: false },
+                { bg: "#fff",       label: "",    desc: "Set & forget — light / none",     dashed: true  },
+              ] as const).map(({ bg, label, desc, dashed }, i) => (
+                <div key={i} style={{ display: "flex", alignItems: "center", gap: "10px", fontSize: "12.5px", color: tk.ink2 }}>
+                  <span style={{ width: "28px", height: "14px", borderRadius: "3px", flexShrink: 0, background: bg, border: dashed ? `1px dashed ${tk.line2}` : "none", fontFamily: "var(--font-geist-mono)", fontSize: "8px", fontStyle: "italic", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", letterSpacing: ".04em" }}>{label}</span>
+                  <span>{desc}</span>
+                </div>
+              ))}
+            </div>
+            <p className="move-d">I sat with every team and mapped each role against the tasks in the campaign lifecycle. Two dozen distinct personas surfaced — and once each was scored by how heavily it touches each step, the heavy-touch clusters became impossible to miss.</p>
+          </div>
+          <div className="move-body">
+            {/* Matrix */}
+            <div style={{ overflowX: "auto" }}>
+              <div style={{ borderRadius: "14px", overflow: "hidden", border: `1px solid ${tk.line}`, background: "#fff", boxShadow: "0 1px 0 rgba(0,0,0,.02), 0 20px 50px -30px rgba(0,0,0,.15)", minWidth: "640px" }}>
+                {/* Super-category header */}
+                <div className="rmap-supercat-row" style={{ background: "#fafaf7", borderBottom: `1px solid ${tk.line}` }}>
+                  <div style={{ padding: "11px 16px", fontFamily: "var(--font-geist-mono)", fontSize: "10px", letterSpacing: ".14em", textTransform: "uppercase", background: tk.ink, color: "rgba(255,255,255,.62)", borderRight: `1px solid ${tk.ink}` }}>Task Category →</div>
+                  {([
+                    { label: "Campaign Creation", span: 4, color: tk.accentInk, bg: "#eef3fc" },
+                    { label: "Delivery",          span: 1, color: "#b07a1f",    bg: "#fbf2dc" },
+                    { label: "Data & Analytics",  span: 3, color: tk.rose,      bg: "#f9e9e6" },
+                  ] as const).map(({ label, span, color, bg }) => (
+                    <div key={label} style={{ gridColumn: `span ${span}`, padding: "11px 12px", fontFamily: "var(--font-geist-mono)", fontSize: "10px", fontWeight: 700, letterSpacing: ".14em", textTransform: "uppercase", borderRight: `1px solid ${tk.line}`, display: "flex", alignItems: "center", gap: "8px", color, background: bg }}>
+                      <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "currentColor", flexShrink: 0 }} />
+                      {label}
+                    </div>
+                  ))}
+                  {/* "more" column header */}
+                  <div style={{ borderLeft: "1px dashed #d9d6cf", background: "#f1efe9", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "var(--font-geist-mono)", fontSize: "11px", color: tk.muted }} />
+                </div>
+                {/* Task header */}
+                <div className="rmap-tasks-row" style={{ background: "#fff", borderBottom: `1px solid ${tk.line}` }}>
+                  <div style={{ padding: "10px 16px", background: tk.ink, color: "#fff", fontFamily: "var(--font-dm-sans)", fontWeight: 700, fontSize: "12px", letterSpacing: ".02em", display: "flex", alignItems: "center", borderRight: `1px solid ${tk.ink}` }}>Role ↓</div>
+                  {RMAP_TASKS.map(([line1, line2], i) => (
+                    <div key={i} style={{ padding: "9px 8px", fontSize: "11px", fontWeight: 600, color: tk.ink, borderRight: `1px solid ${tk.line}`, lineHeight: 1.25, background: "#fafaf7" }}>
+                      {line1}<br />{line2}
+                    </div>
+                  ))}
+                  {/* "more" task cell */}
+                  <div style={{ borderLeft: "1px dashed #d9d6cf", background: "repeating-linear-gradient(45deg,transparent 0 6px,rgba(0,0,0,.022) 6px 7px)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "var(--font-geist-mono)", fontSize: "13px", fontWeight: 700, letterSpacing: ".16em", color: tk.line2 }}>⋯</div>
+                </div>
+                {/* Role rows */}
+                {RMAP_ROLES.map((role) => (
+                  <div key={role.name} className="rmap-role-row" style={{ borderBottom: `1px solid ${tk.line}`, alignItems: "stretch", background: "#fff", position: "relative" }}>
+                    <div style={{ padding: "9px 16px 9px 20px", borderRight: `1px solid ${tk.line}`, display: "flex", flexDirection: "column", gap: "2px", background: "#fafaf7", position: "relative" }}>
+                      <span style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: "3px", background: RMAP_CLUSTER_STRIPES[role.cluster] }} />
+                      <span style={{ fontWeight: 700, fontSize: "13px", letterSpacing: "-0.005em", lineHeight: 1.2 }}>{role.name}</span>
+                      <span style={{ fontFamily: "var(--font-geist-mono)", fontSize: "9.5px", color: tk.muted, letterSpacing: ".02em", lineHeight: 1.35 }}>{role.blurb}</span>
+                    </div>
+                    {role.cells.map((cell, ci) => (
+                      <div key={ci} style={{
+                        borderRight: `1px solid ${tk.line}`,
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        fontFamily: "var(--font-geist-mono)", fontSize: "9.5px", fontWeight: 700,
+                        textTransform: "uppercase", letterSpacing: ".08em", fontStyle: "italic",
+                        minHeight: "36px",
+                        ...(cell === "h"
+                          ? { background: tk.accentInk, color: "#fff" }
+                          : cell === "m"
+                          ? { background: "#6da3f0", color: "#fff" }
+                          : { background: "repeating-linear-gradient(45deg, transparent 0 6px, rgba(0,0,0,.025) 6px 7px)" }),
+                      }}>
+                        {cell === "h" ? "Heavy" : cell === "m" ? "Medium" : null}
+                      </div>
+                    ))}
+                    {/* "more" column cell */}
+                    <div style={{ borderLeft: "1px dashed #d9d6cf", background: "repeating-linear-gradient(45deg,transparent 0 6px,rgba(0,0,0,.022) 6px 7px)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "var(--font-geist-mono)", fontSize: "13px", letterSpacing: ".16em", color: tk.line2 }}>⋯</div>
+                  </div>
+                ))}
+                {/* "more" role row */}
+                <div className="rmap-role-row" style={{ alignItems: "stretch" }}>
+                  <div style={{ padding: "10px 20px", borderRight: `1px solid ${tk.line}`, background: "#fafaf7", display: "flex", alignItems: "center", fontFamily: "var(--font-geist-mono)", fontSize: "14px", letterSpacing: ".3em", color: tk.line2 }}>⋯</div>
+                  {Array.from({ length: 8 }, (_, i) => (
+                    <div key={i} style={{ borderRight: `1px solid ${tk.line}`, minHeight: "28px", background: "repeating-linear-gradient(45deg,transparent 0 6px,rgba(0,0,0,.018) 6px 7px)" }} />
+                  ))}
+                  <div style={{ borderLeft: "1px dashed #d9d6cf", minHeight: "28px", background: "repeating-linear-gradient(45deg,transparent 0 6px,rgba(0,0,0,.018) 6px 7px)" }} />
+                </div>
+              </div>
+            </div>
+          </div>{/* /move-body 01 */}
+
+          {/* ── MOVE 02 ── */}
+          <div className="move-head">
+            <span className="move-n">02</span>
+            <h3 className="move-t">Map the relationship: user → account → access</h3>
+            <p className="move-d">The matrix told me <em>who does what</em>. Next I had to model <em>who can reach what</em>. A user is a person; they log in through an account, and it&apos;s the account that actually holds access — to Series, Networks, Ad Rep, and the tasks inside them.</p>
+          </div>
+          <div className="move-body">
+            <img
+              src="/IA-step 2 process.png"
+              alt="User logs in through an Account, which has access to Series, Network, Ad Rep (resources) and Tasks & Workspaces (workspace)."
+              style={{ display: "block", width: "80%", height: "auto", marginRight: "auto" }}
+            />
+          </div>{/* /move-body 02 */}
+
+          {/* ── MOVE 03 ── */}
+          <div className="move-head">
+            <span className="move-n">03</span>
+            <h3 className="move-t">Separate role definition from role assignment</h3>
+            <p className="move-d">Defining a role and giving it to someone are two different jobs, so I split them into two tables. Assignment then gains one extra column — <strong>Profile Access</strong> — pinning each user to the Series, Networks, or Ad Rep they&apos;re allowed to touch.</p>
+          </div>
+          <div className="move-body">
+            <div className="rbac-split">
+
+              {/* TABLE A: Define the roles */}
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <div className="rbac-tcap">
+                  <span className="rbac-tg">TABLE A</span>
+                  <span className="rbac-tt">Define the roles</span>
+                  <p className="rbac-ts">24 roles · permission bundles</p>
+                </div>
+                <div className="rbac-card" style={{ flex: 1 }}>
+                  <div style={{ display: "grid", gridTemplateColumns: "60px 104px 1fr", gap: "0 14px", padding: "12px 18px", fontFamily: "var(--font-geist-mono)", fontSize: "10px", letterSpacing: ".12em", textTransform: "uppercase", color: tk.muted, background: "#fafaf7", borderBottom: `1px solid ${tk.line}` }}>
+                    <span>Role</span><span>Persona</span><span>Permissions to Workspace</span>
+                  </div>
+                  {ROLE_DEFS.map(({ id, persona, perms }) => (
+                    <div key={id} className="rdef-row">
+                      <span className="rid">{id}</span>
+                      <span className="rdef-persona">{persona}</span>
+                      <div className="rdef-perms">
+                        {perms.map(({ cat, tone, segs }) => (
+                          <span key={cat} className="perm-chip" style={{ background: PERM_BG[tone] }}>
+                            <b>{cat}:</b>{" "}
+                            {segs.map(({ items, scope }, si) => (
+                              <span key={si}>{si > 0 && <span style={{ opacity: 0.35, margin: "0 3px" }}>·</span>}{items} <span className="scope">({scope})</span></span>
+                            ))}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                  <div className="rdef-add">+ Add New Role</div>
+                </div>
+              </div>
+
+              {/* TABLE B: Assign roles to users */}
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <div className="rbac-tcap">
+                  <span className="rbac-tg">TABLE B</span>
+                  <span className="rbac-tt">Assign roles to users</span>
+                  <p className="rbac-ts">Assign one or more roles per user, then scope their profile access.</p>
+                </div>
+                <div className="rbac-card" style={{ flex: 1 }}>
+                  <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr 1.5fr", gap: "14px", padding: "12px 18px", fontFamily: "var(--font-geist-mono)", fontSize: "10px", letterSpacing: ".12em", textTransform: "uppercase", color: tk.muted, background: "#fafaf7", borderBottom: `1px solid ${tk.line}` }}>
+                    <span>User</span><span>Roles</span><span>Profile Access</span>
+                  </div>
+                  {USER_ACCESS.map(({ name, account, roles, profiles }) => (
+                    <div key={name} className="rbac-rowline">
+                      <span className="ucell">
+                        <span className="uname">{name}</span>
+                        <span className="acct">{account}</span>
+                      </span>
+                      <span className="pills">
+                        {roles.map(r => <span key={r} className="rbac-pill is-role">{r}</span>)}
+                      </span>
+                      <span className="pills">
+                        {profiles.map(p => <span key={p} className="rbac-pill is-prof">{p}</span>)}
+                      </span>
+                    </div>
+                  ))}
+                  <div className="rbac-moreline">⋯</div>
+                </div>
+              </div>
+
+            </div>
+          </div>{/* /move-body 03 */}
+
         </div>
       </section>
 
