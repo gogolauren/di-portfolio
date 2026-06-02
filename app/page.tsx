@@ -5,6 +5,7 @@ import Link from "next/link";
 import {
   ArrowDownCircleIcon,
   ArrowRightIcon,
+  LockClosedIcon,
 } from "@heroicons/react/24/solid";
 import Footer from "./projects/shared-components/footer";
 
@@ -136,15 +137,15 @@ export default function Home() {
           👁 View
         </div>
       </div>
-      <header className={`sticky top-0 z-50 w-full transition-all duration-300 ${navFaded ? 'px-20 pt-4 pb-1' : 'px-20 pt-2 pb-0'}`}>
-        <div className={`flex items-center justify-between px-8 py-3 transition-all duration-300 ${navFaded ? 'rounded-2xl bg-white/50 backdrop-blur-md' : 'rounded-none bg-[#F3E7C4]'}`}>
+      <header className={`sticky top-0 z-50 w-full transition-all duration-300 ${navFaded ? 'px-4 md:px-20 pt-4 pb-1' : 'px-4 md:px-20 pt-2 pb-0'}`}>
+        <div className={`flex items-center justify-between px-4 md:px-8 py-3 transition-all duration-300 ${navFaded ? 'rounded-2xl bg-white/50 backdrop-blur-md' : 'rounded-none bg-[#F3E7C4]'}`}>
           <Link
             href="/"
             className="text-4xl font-clash-grotesk text-golden-anchor font-bold hover:text-beige-anchor"
           >
             Di.X
           </Link>
-          <div className="flex items-center justify-center gap-16">
+          <div className="flex items-center justify-center gap-6 md:gap-16">
             <a
               className="text-md font-medium text-black hover:text-golden-anchor transition cursor-pointer"
               onClick={handleScrollToProjects}
@@ -222,9 +223,11 @@ export default function Home() {
 
         <div className="mt-8 max-w-2xl text-lg text-center text-gray-800 leading-relaxed space-y-4">
           <p>
-            With a hybrid background in Information Engineering and HCI, I'm a
-            user-centered designer with strong logical thinking and a
-            system-level perspective.
+            I transform complex data and enterprise workflows into seamless product experiences across{" "}
+            <span className="font-semibold text-golden-anchor">B2B SaaS</span>,{" "}
+            <span className="font-semibold text-golden-anchor">AI</span>, and{" "}
+            <span className="font-semibold text-golden-anchor">Ad Tech</span>.
+            {" "}Combining Information Engineering logic with HCI empathy, I design with a systems-level perspective.
           </p>
         </div>
 
@@ -249,7 +252,7 @@ export default function Home() {
             className={`mb-14 transition-all duration-700 ease-out ${rSlogan.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
           >
             <p className="text-5xl md:text-6xl font-semibold text-gray-900 leading-[1.05]" style={{ fontFamily: 'var(--font-fraunces)' }}>
-              Design clarity in complex systems, turn ambiguity into structured experience.
+              Navigating ambiguity, scaling impact.
             </p>
           </div>
           <div className="flex flex-col md:flex-row text-left gap-8">
@@ -324,7 +327,10 @@ export default function Home() {
               <Link href="/projects/project-access?target=scalable-architecture" className="group block cursor-none"
                 onMouseEnter={() => setShowCursor(true)}
                 onMouseLeave={() => setShowCursor(false)}>
-                <div className="bg-white rounded-2xl p-8 pr-14 flex flex-col md:flex-row items-stretch md:h-[460px] w-full group-hover:-translate-y-1 group-hover:shadow-xl transition-all duration-300">
+                <div className="relative bg-white rounded-2xl p-8 pr-14 flex flex-col md:flex-row items-stretch md:h-[460px] w-full group-hover:-translate-y-1 group-hover:shadow-xl transition-all duration-300">
+                  <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">
+                    <LockClosedIcon className="w-4 h-4 text-gray-400" />
+                  </div>
                   <div className="flex-1 min-w-0 max-w-[600px] basis-[55%] mb-4 md:mb-0 md:mr-16 overflow-hidden rounded-lg">
                     <Image
                       src="/cover-scalable-architecture.png"
@@ -376,7 +382,10 @@ export default function Home() {
                 onMouseEnter={() => setShowCursor(true)}
                 onMouseLeave={() => setShowCursor(false)}
               >
-                <div className="bg-white rounded-2xl p-8 pr-14 flex flex-col md:flex-row items-stretch md:h-[460px] w-full group-hover:-translate-y-1 group-hover:shadow-xl transition-all duration-300">
+                <div className="relative bg-white rounded-2xl p-8 pr-14 flex flex-col md:flex-row items-stretch md:h-[460px] w-full group-hover:-translate-y-1 group-hover:shadow-xl transition-all duration-300">
+                  <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">
+                    <LockClosedIcon className="w-4 h-4 text-gray-400" />
+                  </div>
                   <div className="flex-1 min-w-0 max-w-[600px] basis-[55%] mb-4 md:mb-0 md:mr-16 overflow-hidden rounded-lg">
                     <Image
                       src="/cover-BrandApproval.png"
@@ -430,7 +439,10 @@ export default function Home() {
                 onMouseEnter={() => setShowCursor(true)}
                 onMouseLeave={() => setShowCursor(false)}
               >
-                <div className="bg-white rounded-2xl p-8 pr-14 flex flex-col md:flex-row items-stretch md:h-[460px] w-full group-hover:-translate-y-1 group-hover:shadow-xl transition-all duration-300">
+                <div className="relative bg-white rounded-2xl p-8 pr-14 flex flex-col md:flex-row items-stretch md:h-[460px] w-full group-hover:-translate-y-1 group-hover:shadow-xl transition-all duration-300">
+                  <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">
+                    <LockClosedIcon className="w-4 h-4 text-gray-400" />
+                  </div>
                   <div className="flex-1 min-w-0 max-w-[600px] basis-[55%] mb-4 md:mb-0 md:mr-16 overflow-hidden rounded-lg">
                     <Image
                       src="/cover-episode.png"
@@ -478,7 +490,7 @@ export default function Home() {
               }`}
             >
               <Link
-                href={`/projects/project-access?target=risk-detection`}
+                href={`/projects/risk-detection`}
                 className="group block cursor-none"
                 onMouseEnter={() => setShowCursor(true)}
                 onMouseLeave={() => setShowCursor(false)}
