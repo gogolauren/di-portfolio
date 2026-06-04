@@ -225,7 +225,8 @@ export default function Home() {
           <p>
             I transform complex data and enterprise workflows into seamless product experiences across{" "}
             <span className="font-semibold text-golden-anchor">B2B SaaS</span>,{" "}
-            <span className="font-semibold text-golden-anchor">AI</span>, and{" "}
+            <span className="font-semibold text-golden-anchor">AI</span>,{" "}
+            <span className="font-semibold text-golden-anchor">Creator Tools</span>, and{" "}
             <span className="font-semibold text-golden-anchor">Ad Tech</span>.
             {" "}Combining Information Engineering logic with HCI empathy, I design with a systems-level perspective.
           </p>
@@ -342,7 +343,7 @@ export default function Home() {
                   </div>
                   <div className="flex-1 min-w-0 basis-[45%] flex flex-col justify-center">
                     <h2 className="text-2xl font-semibold mb-4">
-                      AI Co-Piloting: Re-architect and Scale Enterprise Platform
+                      Re-architect Podcast Management & Monetization Platform (AI-Assisted)
                     </h2>
                     <p className="text-gray-600 text-left">
                       Won 1st place at an internal hackathon — redesigned the platform IA from a fragmented profile picker to a task-based workspace hub.

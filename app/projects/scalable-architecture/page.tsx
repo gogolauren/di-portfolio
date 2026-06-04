@@ -139,6 +139,11 @@ export default function ScalableArchitectureProject() {
   }, [router]);
 
   useEffect(() => {
+    const t = setTimeout(() => window.scrollTo(0, 0), 0);
+    return () => clearTimeout(t);
+  }, []);
+
+  useEffect(() => {
     const cleanups: (() => void)[] = [];
     function setupBand(wrap: HTMLDivElement | null) {
       if (!wrap) return;
@@ -251,8 +256,8 @@ export default function ScalableArchitectureProject() {
         </div>
         <section className="max-w-[1200px] mx-auto px-8 w-full grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           <div className="md:col-span-2 flex flex-col mt-4">
-            <h1 className="text-4xl font-bold mb-4">
-              AI Co-Piloting: Re-architect and Scale Enterprise Platform
+            <h1 className="text-[40px] leading-tight font-bold mb-4">
+              Re-architect Podcast Management & Monetization Platform (AI-Assisted)
             </h1>
             <p style={{ fontSize: "16px", color: tk.ink, margin: "0 0 16px" }}>
               Leveraging AI-co-piloted prototyping to resolve three legacy enterprise bottlenecks, I re-architected a dual-sided SaaS platform into a scalable, self-serve application hub. Executed in a rapid 2-week sprint, this structural overhaul won 1st place in the hackathon and was fast-tracked by executive leadership as a top-priority SVP corporate goal for the upcoming roadmap

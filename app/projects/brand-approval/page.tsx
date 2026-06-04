@@ -7,6 +7,25 @@ import { useRouter } from "next/navigation";
 import Footer from "../shared-components/footer";
 import { BottomNav } from "../shared-components/bottom-nav";
 
+function BrowserFrame({ children, url = "art19.com" }: { children: React.ReactNode; url?: string }) {
+  return (
+    <div className="rounded-xl overflow-hidden border border-gray-200 shadow-lg">
+      {/* Browser chrome */}
+      <div className="bg-gray-100 px-4 py-2.5 flex items-center gap-3 border-b border-gray-200">
+        <div className="flex items-center gap-1.5 flex-shrink-0">
+          <span className="w-3 h-3 rounded-full bg-red-400" />
+          <span className="w-3 h-3 rounded-full bg-yellow-400" />
+          <span className="w-3 h-3 rounded-full bg-green-500" />
+        </div>
+        <div className="flex-1 bg-white rounded-md px-3 py-1 text-xs text-gray-400 text-center border border-gray-200 max-w-xs mx-auto truncate">
+          {url}
+        </div>
+      </div>
+      {children}
+    </div>
+  );
+}
+
 export default function BrandApprovalProject() {
   const router = useRouter();
 
@@ -71,6 +90,11 @@ export default function BrandApprovalProject() {
   };
 
   useEffect(() => {
+    const t = setTimeout(() => window.scrollTo(0, 0), 0);
+    return () => clearTimeout(t);
+  }, []);
+
+  useEffect(() => {
     startInterval();
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
@@ -127,7 +151,7 @@ export default function BrandApprovalProject() {
         <section className="max-w-5xl w-full grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           {/* Main content */}
           <div className="md:col-span-2 flex flex-col mt-4">
-            <h1 className="text-4xl font-bold mb-4">
+            <h1 className="text-[40px] leading-tight font-bold mb-4">
               Brand Approval Flow to Automate Ad Delivery on Podcasts
             </h1>
             <p className="text-md text-gray-900 mb-4">
@@ -192,7 +216,7 @@ export default function BrandApprovalProject() {
               </p>
             </div>
             <div className="flex flex-col items-left bg-beige-base  rounded-lg p-6">
-              <span className="w-3 h-3 rounded-full mb-4"></span>
+              <span className="w-3 h-3 bg-golden-dark rounded-full mb-4"></span>
               <p className="text-golden-dark text-left font-medium">
                 <span className="text-2xl font-extrabold">1st app</span> in the
                 industry to enable publishers to control their shows' branding.
@@ -605,19 +629,92 @@ export default function BrandApprovalProject() {
 
         {/* Customer Feedback */}
         <section className="max-w-5xl w-full mx-auto mb-20">
-          <h2 className="text-2xl font-bold mb-12 text-gray-900 text-left">
+          <h2 className="text-2xl font-bold mb-8 text-gray-900 text-left">
             Customer Feedback
           </h2>
           <p className="text-md text-gray-900 mb-8 text-left">
-            The wireframes received 100% satisfaction from customers during
-            testing. Our largest client,{" "}
+            The wireframes received{" "}
+            <span className="font-bold">100% satisfaction</span> from customers
+            during testing. Our largest client,{" "}
             <span className="italic font-bold">Wondery</span>, praised the
-            Network Policy feature, calling it a{" "}
-            <span className="italic font-bold text-2xl text-golden-dark underline decoration-wavy underline-offset-4 decoration-beige-anchor">
-              set-it-and-forget-it
-            </span>{" "}
-            solution that saves significant time!{" "}
+            Network Policy feature:
           </p>
+
+          {/* Review card with stacked depth effect */}
+          <div className="relative w-full max-w-xl mx-auto pb-4 mb-10">
+            {/* Stacked cards peeking behind — furthest back (lightest) */}
+            <div
+              className="absolute inset-x-8 inset-y-0 rounded-2xl bg-beige-tint1"
+              style={{ transform: "translateY(14px)", zIndex: 0 }}
+            />
+            {/* Stacked cards peeking behind — middle */}
+            <div
+              className="absolute inset-x-4 inset-y-0 rounded-2xl bg-beige-base"
+              style={{ transform: "translateY(7px)", zIndex: 1 }}
+            />
+
+            {/* Main front card */}
+            <div
+              className="relative z-10 w-full bg-white rounded-2xl px-8 md:px-12 pt-14 pb-10 border border-beige-shade"
+              style={{
+                boxShadow:
+                  "0 10px 40px rgba(0,0,0,0.10), 0 2px 12px rgba(0,0,0,0.07)",
+              }}
+            >
+              {/* Opening quote mark — bleeds outside card top-left */}
+              <span
+                className="absolute -top-10 -left-4 text-[130px] leading-none text-golden-anchor select-none"
+                style={{ fontFamily: "var(--font-fraunces)" }}
+                aria-hidden="true"
+              >
+                &ldquo;
+              </span>
+
+              {/* Quote text in Fraunces italic */}
+              <p
+                className="relative z-10 text-lg md:text-xl text-gray-900 mb-10 leading-snug"
+                style={{
+                  fontFamily: "var(--font-fraunces)",
+                  fontStyle: "italic",
+                }}
+              >
+                <span className="text-golden-dark not-italic font-semibold">
+                  set-it-and-forget-it
+                </span>{" "}
+                — a solution that saves significant time. This is exactly what
+                we needed.
+              </p>
+
+              {/* Attribution */}
+              <div className="flex items-center gap-4 relative z-10">
+                <div className="w-11 h-11 rounded-full overflow-hidden flex-shrink-0 border border-beige-shade">
+                  <Image
+                    src="/demos/artwork/networks.png"
+                    alt="Wondery"
+                    width={44}
+                    height={44}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div>
+                  <p className="font-semibold text-gray-900 text-sm">Wondery</p>
+                  <p className="text-gray-600 text-sm">
+                    Largest Client · Network Publisher
+                  </p>
+                </div>
+              </div>
+
+              {/* Closing quote mark — bleeds outside card bottom-right */}
+              <span
+                className="absolute -bottom-10 -right-4 text-[130px] leading-none text-golden-anchor select-none"
+                style={{ fontFamily: "var(--font-fraunces)" }}
+                aria-hidden="true"
+              >
+                &rdquo;
+              </span>
+            </div>
+          </div>
+
           <p className="text-md text-gray-900 mb-2 text-left">
             They also offered thoughtful feedback:
           </p>
@@ -634,58 +731,81 @@ export default function BrandApprovalProject() {
         </section>
 
         {/* High Fidelity in Design System Adoption */}
-        <section className="max-w-5xl w-full mx-auto mb-20">
+        <section className="max-w-6xl w-full mx-auto mb-20">
           <h2 className="text-2xl font-bold mb-8 text-gray-900 text-left">
             High Fidelity in Design System Adoption
           </h2>
-          <p className="text-md text-gray-900 mb-8 text-left">
-            <span className="font-extrabold">Requesting:</span> Initiates the
-            brand approval workflow. Ad sellers include specific requirements in
-            their brand requests.
-          </p>
-          <div className="flex w-full justify-center mb-12">
-            <Image
-              src="/BA-final-request.png"
-              alt="Brand Approval Final Design"
-              width={800}
-              height={400}
-              className="mx-autoobject-cover"
-            />
+          <div className="flex gap-8 w-full mb-16 items-start">
+            {/* Requesting — left column */}
+            <div className="flex-1 flex flex-col">
+              <p className="text-md text-gray-900 mb-4">
+                <span className="font-extrabold">Requesting:</span> Initiates
+                the brand approval workflow. Ad sellers include specific
+                requirements in their brand requests.
+              </p>
+              <BrowserFrame url="art19.com/brands/request">
+                <Image
+                  src="/BA-final-request.png"
+                  alt="Requesting — Brand Approval Final Design"
+                  width={2408}
+                  height={1740}
+                  className="w-full h-auto"
+                />
+              </BrowserFrame>
+            </div>
+            {/* Network Review — right column */}
+            <div className="flex-1 flex flex-col">
+              <p className="text-md text-gray-900 mb-4">
+                <span className="font-extrabold">Network Review:</span> Brands
+                are auto-approved, rejected by policy, or manually reviewed.
+              </p>
+              <BrowserFrame url="art19.com/brands/network-policy">
+                <Image
+                  src="/BA-final-networkpolicy.png"
+                  alt="Network Review — Brand Approval Final Design"
+                  width={2412}
+                  height={2556}
+                  className="w-full h-auto"
+                />
+              </BrowserFrame>
+            </div>
           </div>
-          <p className="text-md text-gray-900 mb-8 text-left">
-            <span className="font-extrabold">Network Review:</span> Brands are
-            either auto-approved or rejected based on policy, or manually
-            reviewed by the network.
-          </p>
-          <div className="flex w-full justify-center mb-12">
-            <Image
-              src="/BA-final-networkpolicy.png"
-              alt="Brand Approval Final Design"
-              width={800}
-              height={400}
-              className="mx-auto object-cover"
-            />
-          </div>
-          <p className="text-md text-gray-900 mb-8 text-left">
-            <span className="font-extrabold">Series Review:</span> Introduced a
-            mechanism to remember approval decisions for the same brand across
-            different sellers, reducing repeated reviews.
-          </p>
-          <div className="flex flex-col w-full justify-center mb-12">
-            <Image
-              src="/BA-final-series.png"
-              alt="Brand Approval Final Design"
-              width={800}
-              height={400}
-              className="mx-auto object-cover mb-4"
-            />
-            <Image
-              src="/BA-final-series2.png"
-              alt="Data flow"
-              width={800}
-              height={400}
-              className="mx-auto object-cover"
-            />
+
+          <div className="flex gap-8 w-full mb-12 items-start">
+            {/* Series Review left column */}
+            <div className="flex-1 flex flex-col">
+              <p className="text-md text-gray-900 mb-4">
+                <span className="font-extrabold">Series Review:</span> Introduced
+                a mechanism to remember approval decisions for the same brand
+                across different sellers, reducing repeated reviews.
+              </p>
+              <BrowserFrame url="art19.com/brands/series-review">
+                <Image
+                  src="/BA-final-series.png"
+                  alt="Series Review — Brand Approval Final Design"
+                  width={2408}
+                  height={1714}
+                  className="w-full h-auto"
+                />
+              </BrowserFrame>
+            </div>
+            {/* Series Review right column */}
+            <div className="flex-1 flex flex-col">
+              <p className="text-md text-gray-900 mb-4">
+                <span className="font-extrabold">Series Review (detail):</span>{" "}
+                Approval decisions are surfaced per brand and seller, giving
+                publishers full visibility into each review.
+              </p>
+              <BrowserFrame url="art19.com/brands/series-review">
+                <Image
+                  src="/BA-final-series2.png"
+                  alt="Series Review Detail — Brand Approval Final Design"
+                  width={2408}
+                  height={1714}
+                  className="w-full h-auto"
+                />
+              </BrowserFrame>
+            </div>
           </div>
         </section>
 

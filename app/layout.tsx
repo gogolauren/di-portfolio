@@ -3,6 +3,7 @@ import { DM_Sans, Geist_Mono, Fraunces, Instrument_Serif } from "next/font/googl
 import localFont from "next/font/local";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
+import { ScrollToTop } from "./components/scroll-to-top";
 
 const instrumentSerif = Instrument_Serif({
   variable: "--font-instrument-serif",
@@ -70,6 +71,7 @@ export default function RootLayout({
       <body
         className={`${dmSans.variable} ${geistMono.variable} ${clashGrotesk.variable} ${fraunces.variable} ${instrumentSerif.variable} antialiased`}
       >
+        <ScrollToTop />
         {children}
         <Analytics />
       </body>

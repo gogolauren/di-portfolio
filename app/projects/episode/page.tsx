@@ -26,7 +26,8 @@ export default function EpisodeProject() {
   }, [router]);
 
   useEffect(() => {
-    window.scroll(0, 0);
+    const t = setTimeout(() => window.scrollTo(0, 0), 0);
+    return () => clearTimeout(t);
   }, []);
 
   return (
@@ -74,7 +75,7 @@ export default function EpisodeProject() {
         <section className="max-w-5xl w-full grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           {/* Main content */}
           <div className="md:col-span-2 flex flex-col mt-4">
-            <h1 className="text-4xl font-bold mb-4">
+            <h1 className="text-[40px] leading-tight font-bold mb-4">
               Episode Publishing Experience Redesign
             </h1>
             <p className="text-md text-gray-900 mb-4">

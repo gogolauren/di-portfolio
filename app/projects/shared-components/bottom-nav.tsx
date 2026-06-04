@@ -1,4 +1,10 @@
+"use client";
+
 import Link from "next/link";
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: "instant" });
+}
 
 export function BottomNav({
   previousProject,
@@ -25,6 +31,7 @@ export function BottomNav({
         {/* Previous Project */}
         <Link
           href={previousProject}
+          scroll={false}
           className={`inline-flex items-center text-sm font-bold hover:underline ${hoverColor} transition`}
         >
           👈 Previous Project: {previousProjectName}
@@ -33,6 +40,7 @@ export function BottomNav({
         {/* Home */}
         <Link
           href="/"
+          scroll={false}
           className={`text-sm font-bold hover:underline ${hoverColor} transition`}
         >
           🏠 Home
@@ -41,6 +49,7 @@ export function BottomNav({
         {/* Next Project */}
         <Link
           href={nextProject}
+          scroll={false}
           className={`text-sm font-bold hover:underline ${hoverColor} transition`}
         >
           Next Project: {nextProjectName} 👉
