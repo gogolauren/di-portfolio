@@ -1,9 +1,16 @@
 import type { Metadata } from "next";
-import { DM_Sans, Geist_Mono, Fraunces, Instrument_Serif } from "next/font/google";
+import { DM_Sans, Geist_Mono, Fraunces, Instrument_Serif, Newsreader } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import { ScrollToTop } from "./components/scroll-to-top";
+
+const newsreader = Newsreader({
+  variable: "--font-newsreader",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+});
 
 const instrumentSerif = Instrument_Serif({
   variable: "--font-instrument-serif",
@@ -69,7 +76,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${dmSans.variable} ${geistMono.variable} ${clashGrotesk.variable} ${fraunces.variable} ${instrumentSerif.variable} antialiased`}
+        className={`${dmSans.variable} ${geistMono.variable} ${clashGrotesk.variable} ${fraunces.variable} ${instrumentSerif.variable} ${newsreader.variable} antialiased`}
       >
         <ScrollToTop />
         {children}

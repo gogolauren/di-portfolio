@@ -1,12 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { FireIcon } from "@heroicons/react/24/solid";
 import { useRouter } from "next/navigation";
 import { BottomNav } from "../shared-components/bottom-nav";
 import Footer from "../shared-components/footer";
+import s from "./episode.module.css";
 
 export default function EpisodeProject() {
   const router = useRouter();
@@ -14,7 +14,7 @@ export default function EpisodeProject() {
 
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.playbackRate = 1.5; // 1.5x speed, adjust as needed
+      videoRef.current.playbackRate = 1.5;
     }
   }, []);
 
@@ -32,9 +32,8 @@ export default function EpisodeProject() {
 
   return (
     <>
-      {" "}
-      {/* Header image on top */}
-      <div className="w-full flex justify-center mb-2 bg-gradient-to-br from-[#EACAF0] to-[#ADB7D9]">
+      {/* ── Hero image (keep original) ── */}
+      <div className="w-full flex justify-center bg-gradient-to-br from-[#EACAF0] to-[#ADB7D9]">
         <Image
           src="/cover-episodeonly.svg"
           alt="Episode Publishing Project"
@@ -44,455 +43,573 @@ export default function EpisodeProject() {
           priority
         />
       </div>
-      <main className="min-h-screen flex flex-col items-center px-4 py-8 bg-white">
-        {/* Back button below header */}
-        <div className="max-w-5xl w-full flex justify-start mb-4">
-          <Link
-            href="/"
-            className="inline-flex items-center text-sm border border-blue-shade rounded-full pl-2 pr-3 py-1 text-blue-dark font-bold hover:bg-blue-anchor hover:text-white transition"
-          >
-            <span className="inline-flex items-center justify-center w-7 h-7 mr-2 rounded-full bg-blue-pink2">
-              {/* Arrow icon */}
-              <svg
-                className="w-3 h-3 text-blue-dark"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={4}
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M15 19l-7-7 7-7"
-                />
-              </svg>
-            </span>
-            Back to Home
-          </Link>
+
+      <main className={s.page}>
+        {/* ── Project header (keep original style) ── */}
+        <div className="max-w-5xl mx-auto px-4 pt-8 pb-0">
+          <div className="flex justify-start mb-6">
+            <Link
+              href="/"
+              className="inline-flex items-center text-sm border border-blue-shade rounded-full pl-2 pr-3 py-1 text-blue-dark font-bold hover:bg-blue-anchor hover:text-white transition"
+            >
+              <span className="inline-flex items-center justify-center w-7 h-7 mr-2 rounded-full bg-blue-pink2">
+                <svg
+                  className="w-3 h-3 text-blue-dark"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={4}
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M15 19l-7-7 7-7"
+                  />
+                </svg>
+              </span>
+              Back to Home
+            </Link>
+          </div>
+
+          <section className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+            <div className="md:col-span-2 flex flex-col mt-4">
+              <h1 className="text-[40px] leading-tight font-bold mb-4 text-gray-900">
+                Episode Publishing Experience Redesign
+              </h1>
+              <p className="text-md text-gray-700">
+                Consolidating episode editing and scheduling into a single,
+                self-serve flow — cutting publishing time and establishing a
+                reusable pattern across the product.
+              </p>
+            </div>
+            <aside className="flex flex-col gap-4 border border-gray-200 bg-gray-50 rounded-lg p-6">
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="font-semibold text-gray-900 text-sm">Tags:</span>
+                <span className="border border-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm">Amazon</span>
+                <span className="border border-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm">Creator Experience</span>
+                <span className="border border-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm">Podcast</span>
+              </div>
+              <div>
+                <span className="font-semibold text-gray-900 text-sm">My Role:</span>
+                <span className="ml-2 text-gray-700 text-sm">
+                  Led the end-to-end UX process: user research, workflow
+                  iterations, interaction design, and design system improvements.
+                </span>
+              </div>
+              <div>
+                <span className="font-semibold text-gray-900 text-sm">Platform:</span>
+                <span className="ml-2 text-gray-700 text-sm">Desktop App</span>
+              </div>
+            </aside>
+          </section>
         </div>
 
-        {/* Title, description, side column for role and tags */}
-        <section className="max-w-5xl w-full grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-          {/* Main content */}
-          <div className="md:col-span-2 flex flex-col mt-4">
-            <h1 className="text-[40px] leading-tight font-bold mb-4">
-              Episode Publishing Experience Redesign
-            </h1>
-            <p className="text-md text-gray-900 mb-4">
-              Redesigned the episode publishing experience to support self-serve
-              onboarding. By consolidating content editing and scheduling into a
-              single page with simplified actions, we significantly cut
-              publishing time and introduced a reusable design pattern for
-              future scalability.
+        {/* ══════════════════════════════════════════
+            01 — OUTCOMES
+        ══════════════════════════════════════════ */}
+        <section className={s.outcomes}>
+          <div className={s.wrap}>
+            <p className={s.eyebrow}>01 — Outcomes</p>
+            <p className={s.outcomeLead}>
+              A simplified single-page flow{" "}
+              <b>slashed publishing time</b> — saving users over 7,100 hours in
+              the first month alone.
             </p>
-          </div>
-          {/* Side column */}
-          <aside className="flex flex-col gap-4 border border-gray-200 bg-gray-0 rounded-lg p-6">
-            <div className="flex items-center gap-2 flex-wrap">
-              <span className="font-semibold text-gray-900 text-sm">Tags:</span>
-              <span className="border border-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm">
-                Amazon
-              </span>
-              <span className="border border-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm">
-                Creator Experience
-              </span>
-              <span className="border border-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm">
-                Podcast
-              </span>
-            </div>
-            <div>
-              <span className="font-semibold text-gray-900 text-sm">
-                My Role:
-              </span>
-              <span className="ml-2 text-gray-900 text-sm">
-                Led the end-to-end UX process: user research, workflow
-                iterations, interaction design, and design system improvements.
-              </span>
-            </div>
-            <div>
-              <span className="font-semibold text-gray-900 text-sm">
-                Platform:
-              </span>
-              <span className="ml-2 text-gray-900 text-sm">Desktop App</span>
-            </div>
-          </aside>
-        </section>
-        {/* Outcomes Section*/}
-        <section className="max-w-5xl w-full mb-20">
-          <h2 className="text-2xl font-bold mb-8 text-gray-900 text-left">
-            Project Outcomes
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-8">
-            <div className="grid md:col-span-2 flex flex-row items-left bg-blue-pink2 rounded-lg p-6">
-              <div className="flex flex-row gap-3 items-start">
-                <FireIcon className="w-6 h-6 text-blue-dark mt-1 flex-none" />
-                <p className="flex-1 text-blue-dark text-left font-medium">
-                  The redesign supports our{" "}
-                  <span className="font-extrabold">Self-Serve initiative</span>,
-                  enabling new clients to onboard and publish independently.
-                </p>
+
+            <div className={s.stats}>
+              <div className={s.stat}>
+                <div className={s.statN}>64%</div>
+                <div>
+                  <div className={s.statL}>↓ Mean TTP</div>
+                  <div className={s.statD}>Average time-to-publish</div>
+                </div>
+              </div>
+              <div className={s.stat}>
+                <div className={s.statN}>25%</div>
+                <div>
+                  <div className={s.statL}>↓ Median TTP</div>
+                  <div className={s.statD}>Typical publishing session</div>
+                </div>
+              </div>
+              <div className={s.stat}>
+                <div className={s.statN}>7.1k</div>
+                <div>
+                  <div className={s.statL}>Hours saved</div>
+                  <div className={s.statD}>Across users, first month</div>
+                </div>
               </div>
             </div>
-            <div className="grid md:col-span-2 items-left bg-blue-dark rounded-lg p-6">
-              <div className="flex flex-row gap-3 items-start">
-                <FireIcon className="w-6 h-6 text-white mt-1 flex-none" />
-                <p className="flex-1 text-white text-left font-medium">
-                  <span className="font-extrabold">
-                    A simplified, single-page flow
-                  </span>
-                  , and streamlined logic reduced episode publishing time.
-                </p>
+
+            <div className={s.inkNote}>
+              <span className={s.inkNoteKey}>Why&nbsp;it&nbsp;matters</span>
+              <p className={s.inkNoteText}>
+                The redesign powers our <b>Self-Serve initiative</b> — letting
+                new clients onboard and publish independently. It now serves as
+                a <b>scalable UX pattern</b> reused across the product.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <hr className={s.divider} />
+
+        {/* ══════════════════════════════════════════
+            02 — EXISTING PROBLEMS
+        ══════════════════════════════════════════ */}
+        <section className={`${s.section} ${s.wrap}`}>
+          <div className={s.secGrid}>
+            <div>
+              <p className={s.eyebrow}>02 — The Problem</p>
+              <h2 className={s.sectionTitle}>Publishing had no path</h2>
+              <div className={s.probList}>
+                <div className={s.prob}>
+                  <span className={s.probN}>01</span>
+                  <div>
+                    <h3 className={s.probTitle}>Lack of a guided flow</h3>
+                    <p className={s.probText}>
+                      Users had no clear, linear path for creating and
+                      publishing episodes — leading to confusion and drop-off.
+                    </p>
+                  </div>
+                </div>
+                <div className={s.prob}>
+                  <span className={s.probN}>02</span>
+                  <div>
+                    <h3 className={s.probTitle}>Unclear episode actions</h3>
+                    <p className={s.probText}>
+                      Status-changing actions like scheduling or publishing were
+                      buried and not easily discoverable.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
-            <div className="grid md:col-span-2 md:col-start-2 items-left bg-blue-shade rounded-lg p-6">
-              <div className="flex flex-row gap-3 items-start">
-                <FireIcon className="w-6 h-6 text-blue-dark mt-1 flex-none" />
-                <p className="flex-1 text-blue-dark text-left font-medium">
-                  This one-page flow now serves as a{" "}
-                  <span className="font-extrabold">scalable UX pattern</span>,
-                  across the product.
-                </p>
+            <figure>
+              <div className={`${s.figframe} ${s.figframePlain}`}>
+                <Image
+                  src="/Epi-oldpage.png"
+                  alt="The original episode editor — dense, two-column, actions scattered"
+                  width={800}
+                  height={600}
+                  className="w-full h-auto rounded-md"
+                  style={{ filter: "blur(0.6px)" }}
+                />
               </div>
-            </div>
+            </figure>
           </div>
         </section>
 
-        {/* Existing Problems */}
-        <section className="max-w-5xl w-full mb-20 flex flex-col md:flex-row gap-8">
-          <div className="w-full md:w-1/2 flex-none md:flex-initial pr-6">
-            <h2 className="text-2xl font-bold mb-8 text-gray-900 text-left">
-              Existing Problems
-            </h2>
-            <div className="gap-4 border-l-6 border-blue-anchor bg-gray-0 py-1 px-6 mb-10">
-              <p className="font text-gray-900">
-                {" "}
-                <span className="font-bold text-gray-900">
-                  Lack of a Guided Flow:{" "}
-                </span>
-                Users didn’t have a clear, linear path for creating and
-                publishing episodes, leading to confusion and drop-off.
-              </p>
-            </div>
-            <div className="gap-4 border-l-6 border-blue-anchor bg-gray-0 py-1 px-6">
-              <p className="font text-gray-900">
-                {" "}
-                <span className="font-bold text-gray-900">
-                  Unclear Episode Actions:{" "}
-                </span>
-                Status-changing actions like scheduling or publishing were not
-                easily discoverable.
-              </p>
-            </div>
+        <hr className={s.divider} />
+
+        {/* ══════════════════════════════════════════
+            03 — VISION
+        ══════════════════════════════════════════ */}
+        <section className={`${s.section} ${s.wrap}`}>
+          <div className={s.secHead}>
+            <p className={s.eyebrow}>03 — Vision</p>
+            <h2 className={s.sectionTitle}>Three principles to design against</h2>
           </div>
-          <div className="flex flex-1 justify-center">
-            <Image
-              src="/Epi-oldpage.png"
-              alt="user research and analytics"
-              width={600}
-              height={300}
-              className="rounded-lg border border-gray-100 object-cover blur-[2px]"
-            />
-          </div>
-        </section>
-
-        {/* Project Vision */}
-        <section className="max-w-5xl w-full mb-32">
-          <h2 className="text-2xl font-bold mb-8 text-gray-900 text-left">
-            Project Vision{" "}
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
-            <div className="flex flex-col gap-2 border-2 border-blue-pink1 bg-blue-pink2 rounded-lg p-6">
-              <span className="text-xl font-extrabold text-blue-dark mb-2">
-                👏 Self-Serve Flow
-              </span>
-              <p className="text-sm text-gray-900 font-medium">
-                to publish & edit episodes
+          <div className={s.visionGrid}>
+            <div className={s.vcard}>
+              <span className={s.vcardN}>01</span>
+              <h3 className={s.vcardTitle}>Self-serve flow</h3>
+              <p className={s.vcardText}>
+                So creators can publish and edit episodes independently, without
+                support.
               </p>
             </div>
-            <div className="flex flex-col gap-2 border-2 border-blue-pink1 bg-blue-pink2 rounded-lg p-6">
-              <span className="text-xl font-extrabold text-blue-dark mb-2">
-                😊 Sufficient Instruction
-              </span>
-              <p className="text-sm text-gray-900 font-medium">
-                that explains configurations
+            <div className={s.vcard}>
+              <span className={s.vcardN}>02</span>
+              <h3 className={s.vcardTitle}>Sufficient instruction</h3>
+              <p className={s.vcardText}>
+                Explain configurations clearly, in context, at the moment of
+                decision.
               </p>
             </div>
-
-            <div className="flex flex-col gap-2 border-2 border-blue-pink1 bg-blue-pink2 rounded-lg p-6">
-              <span className="text-xl font-extrabold text-blue-dark mb-2">
-                🥰 Reduce CX load
-              </span>
-              <p className="text-sm text-gray-900 font-medium">
-                & decrease support tickets
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Product Shaping */}
-        <section className="max-w-5xl w-full mx-auto mb-20">
-          <h2 className="text-2xl font-bold mb-8 text-gray-900 text-left">
-            Product Shaping
-          </h2>
-          <p className="text-md text-gray-900 mb-8 text-left">
-            After conducting researches among competitors and similar products
-            like Squarespace, Mailchimp, …, it is pretty straightforward to have
-            a guided flow to create the episode, and edit the episodes if
-            needed. I drew various ideas from a one-page creation form, to a
-            step-by-step flow.
-          </p>
-          <div className="flex gap-4 max-w-3xl mx-auto">
-            <Image
-              src="/Epi-sketch-1.jpg"
-              alt="Episode Sketches"
-              width={600}
-              height={400}
-              className="w-1/2 h-auto rounded-lg object-cover"
-            />
-            <Image
-              src="/Epi-sketch-2.jpg"
-              alt="Episode Sketches"
-              width={600}
-              height={400}
-              className="w-1/2 h-auto rounded-lg object-cover"
-            />
-          </div>
-        </section>
-
-        {/* Exploration and Validation */}
-        <section className="max-w-5xl w-full mx-auto mb-20">
-          <h2 className="text-2xl font-bold mb-12 text-gray-900 text-left">
-            Exploration and Validation
-          </h2>
-          <div className="flex flex-col gap-16">
-            {/* Sub-section 1 */}
-            <div>
-              <h3 className="text-xl font-bold mb-4 text-gray-900 text-left">
-                Flow 1 – Inline Scheduling:
-              </h3>
-              <p className="text-md text-gray-900 mb-6 text-left">
-                This approach keeps everything — episode content and scheduling
-                options on a single page. Users have access to two primary
-                actions: “
-                <span className="italic font-bold text-blue-dark underline decoration-wavy underline-offset-4 decoration-blue-pink1">
-                  Save as Draft
-                </span>{" "}
-                ” and “
-                <span className="italic font-bold text-blue-dark underline decoration-wavy underline-offset-4 decoration-blue-pink1">
-                  Publish
-                </span>{" "}
-                ”. The ability to save at any time supports a flexible,
-                exploratory workflow, where users can leave things unfinished or
-                undecided until they’re ready to take a definitive step.
-              </p>
-
-              <Image
-                src="/Epi-flow-1.png"
-                alt="Flow 1 Inline Scheduling"
-                width={1600}
-                height={800}
-                className="w-full mx-auto rounded-lg object-cover"
-              />
-            </div>
-            {/* Sub-section 2 */}
-            <div>
-              <h3 className="text-xl font-bold mb-4 text-gray-900 text-left">
-                Flow 2 – Schedule via Modal:
-              </h3>
-              <p className="text-md text-gray-900 mb-6 text-left">
-                The main page focuses solely on episode content. Actions like “
-                <span className="italic font-bold text-blue-dark underline decoration-wavy underline-offset-4 decoration-blue-pink1">
-                  Save
-                </span>{" "}
-                ”, “
-                <span className="italic font-bold text-blue-dark underline decoration-wavy underline-offset-4 decoration-blue-pink1">
-                  Schedule
-                </span>{" "}
-                ", or "
-                <span className="italic font-bold text-blue-dark underline decoration-wavy underline-offset-4 decoration-blue-pink1">
-                  Publish Now
-                </span>{" "}
-                ” are triggered through a dedicated modal, providing a more
-                guided and intentional experience.
-              </p>
-
-              <Image
-                src="/Epi-flow-2.png"
-                alt="Flow 2 Modal Scheduling"
-                width={1600}
-                height={800}
-                className="w-full mx-auto rounded-lg object-cover"
-              />
-            </div>
-          </div>
-        </section>
-
-        {/* Manager Quote */}
-        <section className="max-w-5xl w-full mx-auto mb-20">
-          <h2 className="text-2xl font-bold mb-12 text-gray-900 text-left">
-            “Can We Simplify It Even Further?” — Manager’s Suggestion
-          </h2>
-          <div className="relative flex flex-col items-center justify-center">
-            {/* Quote and icon on top */}
-            <div className="flex items-center bg-blue-pink2 max-w-2xl mx-auto rounded-lg p-6 mb-8">
-              <svg
-                className="w-8 h-8 text-blue-pink1 flex-shrink-0"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M7 17h2v-6H5v8h4v-2H7v-2zm10-6h-4v8h4v-2h-2v-2h2v-4z" />
-              </svg>
-              <blockquote className="text-lg italic font text-blue-dark leading-normal text-center">
-                To reduce cognitive load, we want to avoid using contextual
-                buttons that change based on the episode’s status.
-              </blockquote>
-              <svg
-                className="w-8 h-8 text-blue-pink1 flex-shrink-0"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M7 17h2v-6H5v8h4v-2H7v-2zm10-6h-4v8h4v-2h-2v-2h2v-4z" />
-              </svg>
-            </div>
-            <div>
-              <p className="text-md font-bold text-gray-900 mb-2 text-left">
-                🤔 The question becomes: how can we streamline actions without
-                sacrificing clarity?{" "}
-              </p>
-              <p className="text-md text-gray-900 mb-8 text-left">
-                As a result, we explored simplifying Flow 1 by using a single
-                “Save” button, instead of dynamically showing different buttons
-                like “Save as Draft” or “Update as Published”. The challenge
-                lies in how users interpret this simplified action—something we
-                planned to validate through testing.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* User Testing */}
-        <section className="max-w-5xl w-full mx-auto mb-20">
-          <h2 className="text-2xl font-bold mb-8 text-gray-900 text-left">
-            Usability Testing: User Favored Flow 1
-          </h2>
-          <div className="text-md text-gray-900 mb-8 text-left">
-            We tested 2 flows. Users favored Flow 1 for its simplicity and ease
-            of use, especially when making quick changes or ongoing edits. This
-            feedback supports our direction toward a streamlined interaction
-            model for episode management.
-          </div>
-        </section>
-
-        {/* Design Episode Status Machine */}
-        <section className="max-w-5xl w-full mb-20 flex flex-col md:flex-row gap-8">
-          <div className="w-full md:w-2/5 flex-none md:flex-initial pr-8">
-            <h2 className="text-2xl font-bold mb-8 text-gray-900 text-left">
-              Design Episode Status Machine
-            </h2>
-            <div className="gap-4 mb-10">
-              <p className="text-md text-gray-900 mb-6 text-left">
-                Episodes can exist in one of four states:{" "}
-                <span className="inline-flex items-center justify-center px-2 rounded-full bg-gray-100 text-gray-900 font-bold text-sm">
-                  Draft
-                </span>{" "}
-                ,{" "}
-                <span className="inline-flex items-center justify-center px-2 rounded-full bg-sky-100 text-gray-900 font-bold text-sm">
-                  Scheduled
-                </span>{" "}
-                ,{" "}
-                <span className="inline-flex items-center justify-center px-2 rounded-full bg-emerald-100 text-gray-900 font-bold text-sm">
-                  Published
-                </span>{" "}
-                ,{" "}
-                <span className="inline-flex items-center justify-center px-2 rounded-full bg-rose-100 text-gray-900 font-bold text-sm">
-                  Unpublished
-                </span>{" "}
-                .
-              </p>
-              <p>
-                I defined the logic and criteria for transitioning between these
-                statuses. This structured status model also helps us handle edge
-                cases and error scenarios more effectively within the
+            <div className={s.vcard}>
+              <span className={s.vcardN}>03</span>
+              <h3 className={s.vcardTitle}>Reduce CX load</h3>
+              <p className={s.vcardText}>
+                Decrease support tickets by removing ambiguity from the
                 experience.
               </p>
             </div>
           </div>
-          <div className="flex flex-1 justify-center">
-            <Image
-              src="/Epi-statusmachine.png"
-              alt="user research and analytics"
-              width={800}
-              height={600}
-              className="rounded-lg border border-gray-100 object-cover"
-            />
-          </div>
         </section>
 
-        {/* High Fidelity */}
-        <section className="max-w-5xl w-full mx-auto mb-20">
-          <h2 className="text-2xl font-bold mb-8 text-gray-900 text-left">
-            Final Design: Clever System, Simple Choices
-          </h2>
-          <p className="text-md text-gray-900 mb-8 text-left">
-            Based on usability feedback, we moved forward with a single-page
-            design -- includes both episode content and scheduling options, and
-            display the main CTA be just "
-            <span className="text-blue-dark font-extrabold underline decoration-wavy underline-offset-4 decoration-blue-pink1">
-              Save
-            </span>
-            ".
-          </p>
-          {/* <Image
-            src="/Epi-final-0.png"
-            alt="Episode final product design"
-            width={800}
-            height={400}
-            className="h-auto mx-auto object-cover mb-8"
-          /> */}
+        <hr className={s.divider} />
 
-          <div className="flex flex-col gap-4 mb-8">
-            <div className="text-bold">
-              The system interprets the user's scheduling intention based on
-              input:
-              <ul className="list-disc pl-6 mb-8">
-                <li>
-                  If the user has not set a publish date, the episode is saved
-                  as a <span className="font-bold">draft</span>.
-                </li>
-                <li>
-                  If a publish date is set, the episode is{" "}
-                  <span className="font-bold">scheduled</span> for that date; or{" "}
-                  <span className="font-bold">published</span> if the date is
-                  right now.
-                </li>
-              </ul>
-              This logic enables a cleaner UI while preserving flexibility for
-              different publishing scenarios.
+        {/* ══════════════════════════════════════════
+            04 — PRODUCT SHAPING
+        ══════════════════════════════════════════ */}
+        <section className={`${s.section} ${s.wrap}`}>
+          <div className={`${s.secGrid} mb-12`} style={{ marginBottom: "clamp(36px,5vw,56px)" }}>
+            <div>
+              <p className={s.eyebrow}>04 — Shaping</p>
+              <h2 className={s.sectionTitle}>A guided flow, sketched fast</h2>
+            </div>
+            <div>
+              <p className={s.bodyText}>
+                After researching competitors and similar products — Squarespace,
+                Mailchimp — it became clear the straightforward move was a guided
+                flow to create and edit episodes.
+              </p>
+              <p className={s.bodyText}>
+                I drew variations of the idea, from a{" "}
+                <em style={{ fontFamily: "var(--font-fraunces, Georgia, serif)", fontStyle: "italic", color: "oklch(0.225 0.015 285)" }}>
+                  one-page creation form
+                </em>{" "}
+                to a{" "}
+                <em style={{ fontFamily: "var(--font-fraunces, Georgia, serif)", fontStyle: "italic", color: "oklch(0.225 0.015 285)" }}>
+                  step-by-step
+                </em>{" "}
+                flow, to pressure-test the structure before committing.
+              </p>
             </div>
           </div>
-          <video
-            ref={videoRef}
-            src="/Epi-screenrecord.mov"
-            className="h-auto mx-auto object-cover mb-8"
-            width={1000}
-            height={400}
-            autoPlay
-            loop
-            muted
-            playsInline
-          />
+          <figure>
+            <div className={s.figframe}>
+              <div className="flex gap-3">
+                <Image
+                  src="/Epi-sketch-1.jpg"
+                  alt="Episode sketches — page one"
+                  width={800}
+                  height={600}
+                  className="w-1/2 h-auto rounded-md object-cover"
+                />
+                <Image
+                  src="/Epi-sketch-2.jpg"
+                  alt="Episode sketches — page two"
+                  width={800}
+                  height={600}
+                  className="w-1/2 h-auto rounded-md object-cover"
+                />
+              </div>
+            </div>
+          </figure>
         </section>
 
-        {/* Bottom Nav and Footer */}
-        <BottomNav
-          previousProject="/projects/project-access?target=brand-approval"
-          previousProjectName="Brand Approval"
-          nextProject="/projects/risk-detection"
-          nextProjectName="Risk Detection"
-          textColor="text-blue-dark"
-          hoverColor="hover:text-blue-anchor"
-        />
-        <Footer customValue="max-w-5xl" dark />
+        <hr className={s.divider} />
+
+        {/* ══════════════════════════════════════════
+            05 — EXPLORATION & VALIDATION
+        ══════════════════════════════════════════ */}
+        <section className={s.section}>
+          {/* Section header + Flow 01 text */}
+          <div className={s.wrap}>
+            <div className={s.secHead}>
+              <p className={s.eyebrow}>05 — Exploration &amp; Validation</p>
+              <h2 className={s.sectionTitle}>Two flows, one decision</h2>
+            </div>
+            <div className={s.flowHead}>
+              <span className={s.flowTag}>Flow 01</span>
+              <div>
+                <h3 className={s.flowTitle}>Inline scheduling</h3>
+                <p className={s.flowText}>
+                  Everything on one page — episode content and scheduling
+                  together. Users get two primary actions,{" "}
+                  <em>Save as Draft</em> and <em>Publish</em>, supporting a
+                  flexible, exploratory workflow where they can leave things
+                  unfinished until ready for a definitive step.
+                </p>
+              </div>
+            </div>
+          </div>
+          {/* Flow 01 image — wide */}
+          <figure className={s.wrapWide} style={{ marginTop: "clamp(24px,3vw,40px)" }}>
+            <div className={s.figframe}>
+              <Image
+                src="/Epi-flow-1-updated.png"
+                alt="Flow 1 — inline scheduling with release options and date picker on page"
+                width={1600}
+                height={900}
+                className="w-full h-auto rounded-md"
+              />
+            </div>
+          </figure>
+
+          {/* Flow 02 text */}
+          <div className={s.wrap} style={{ marginTop: "clamp(48px,6vw,80px)" }}>
+            <div className={s.flowHead}>
+              <span className={s.flowTag}>Flow 02</span>
+              <div>
+                <h3 className={s.flowTitle}>Schedule via modal</h3>
+                <p className={s.flowText}>
+                  The main page focuses solely on episode content. Actions like{" "}
+                  <em>Save</em>, <em>Schedule</em>, or <em>Publish Now</em> are
+                  triggered through a dedicated modal — a more guided, intentional
+                  experience.
+                </p>
+              </div>
+            </div>
+          </div>
+          {/* Flow 02 image — wide */}
+          <figure className={s.wrapWide} style={{ marginTop: "clamp(24px,3vw,40px)" }}>
+            <div className={s.figframe}>
+              <Image
+                src="/Epi-flow-2-updated.png"
+                alt="Flow 2 — scheduling handled through a dedicated modal"
+                width={1600}
+                height={900}
+                className="w-full h-auto rounded-md"
+              />
+            </div>
+          </figure>
+        </section>
+
+        <hr className={s.divider} />
+
+        {/* ══════════════════════════════════════════
+            06 — A CURVEBALL / COMPARISON TABLE
+        ══════════════════════════════════════════ */}
+        <section className={`${s.section} ${s.wrapWide}`}>
+          <div className={s.secHeadCenter}>
+            <p className={s.eyebrowCenter}>06 — A Curveball</p>
+            <h2 className={s.sectionTitleCenter}>Explore extreme simplicity</h2>
+            <p className={s.compareIntro}>
+              A manager pushed a provocative constraint —{" "}
+              <em>avoid contextual buttons that change with an episode&rsquo;s status</em>.
+              So we lined up three directions and compared how far we could push
+              the interface toward a single, effortless action.
+            </p>
+          </div>
+
+          <div className={s.compare}>
+            <div className={s.compareTable}>
+              {/* Header row */}
+              <div className={s.ctCorner} />
+              <div className={s.ctHead}>
+                <h3>Flow 1</h3>
+                <span>Standard form</span>
+              </div>
+              <div className={s.ctHead}>
+                <h3>Flow 2</h3>
+                <span>Guided / modal</span>
+              </div>
+              <div className={`${s.ctHead} ${s.ctHeadHl}`}>
+                <h3>Simplified Flow 1</h3>
+                <span>One &ldquo;Save&rdquo; button</span>
+                <span className={s.ctTag}>exploring</span>
+              </div>
+
+              {/* Row: Feature */}
+              <div className={s.ctLabel}>Feature</div>
+              <div className={s.ctCell}>
+                A standard, complete form first-time users immediately understand
+                — all information and release dates on one page.
+              </div>
+              <div className={s.ctCell}>
+                A guided flow that trims the first glance to episode content,
+                surfacing scheduling only in a modal.
+              </div>
+              <div className={`${s.ctCell} ${s.ctCellHl}`}>
+                One button. The system infers status automatically, so users
+                focus on content and simply <strong>Save</strong> — the lowest
+                cognitive load.
+              </div>
+
+              {/* Row: Primary action */}
+              <div className={s.ctLabel}>Primary action</div>
+              <div className={s.ctCell}>
+                <ul className={s.ctActs}>
+                  <li>Save as Draft</li>
+                  <li>Publish</li>
+                </ul>
+              </div>
+              <div className={s.ctCell}>
+                <ul className={s.ctActs}>
+                  <li>Save</li>
+                  <li>Schedule</li>
+                  <li>Publish Now</li>
+                </ul>
+                <span className={s.ctSub}>In a dedicated modal</span>
+              </div>
+              <div className={`${s.ctCell} ${s.ctCellHl}`}>
+                <ul className={s.ctActs}>
+                  <li><strong>Save</strong></li>
+                </ul>
+                <span className={s.ctSub}>A single primary action</span>
+              </div>
+
+              {/* Row: Release dates */}
+              <div className={s.ctLabel}>Release dates</div>
+              <div className={s.ctCell}>
+                Always shown, inline with the content.
+              </div>
+              <div className={s.ctCell}>
+                Surfaced only when the user intends to schedule.
+              </div>
+              <div className={`${s.ctCell} ${s.ctCellHl}`}>
+                Set later — a scheduled episode stays a{" "}
+                <strong>Draft</strong> until its date arrives.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <hr className={s.divider} />
+
+        {/* ══════════════════════════════════════════
+            07 — USABILITY TESTING
+        ══════════════════════════════════════════ */}
+        <section className={`${s.section} ${s.wrap}`}>
+          <div className={`${s.secGrid} ${s.secGridNarrow}`}>
+            <div>
+              <p className={s.eyebrow}>07 — Validation</p>
+              <h2 className={s.sectionTitle}>Users favored Flow 1</h2>
+            </div>
+            <div>
+              <p className={s.bodyText}>
+                We tested both flows. Users favored{" "}
+                <strong>Flow 1</strong> for its simplicity and ease of use —
+                especially when making quick changes or ongoing edits.
+              </p>
+              <p className={s.bodyText}>
+                That feedback pointed us firmly toward a{" "}
+                <em style={{ fontFamily: "var(--font-fraunces, Georgia, serif)", fontStyle: "italic", color: "oklch(0.225 0.015 285)" }}>
+                  streamlined, single-page interaction model
+                </em>{" "}
+                for episode management.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <hr className={s.divider} />
+
+        {/* ══════════════════════════════════════════
+            08 — STATUS MACHINE
+        ══════════════════════════════════════════ */}
+        <section className={`${s.section} ${s.wrap}`}>
+          <div className={s.secGrid}>
+            <div>
+              <p className={s.eyebrow}>08 — System Design</p>
+              <h2 className={s.sectionTitle}>An episode status machine</h2>
+              <p className={s.bodyText}>Episodes can exist in one of four states:</p>
+              <div className={s.badgeRow}>
+                <span className={`${s.badge} ${s.badgeDraft}`}>Draft</span>
+                <span className={`${s.badge} ${s.badgeSched}`}>Scheduled</span>
+                <span className={`${s.badge} ${s.badgePub}`}>Published</span>
+                <span className={`${s.badge} ${s.badgeUnpub}`}>Unpublished</span>
+              </div>
+              <p className={s.bodyText}>
+                I defined the logic and criteria for transitioning between
+                statuses. This structured model helps handle edge cases and
+                error scenarios far more reliably within the experience.
+              </p>
+            </div>
+            <figure>
+              <div className={`${s.figframe} ${s.figframePlain}`}>
+                <Image
+                  src="/Epi-statusmachine.png"
+                  alt="Status machine diagram mapping transitions between episode states"
+                  width={800}
+                  height={600}
+                  className="w-full h-auto rounded-md"
+                />
+              </div>
+            </figure>
+          </div>
+        </section>
+
+        <hr className={s.divider} />
+
+        {/* ══════════════════════════════════════════
+            09 — FINAL DESIGN
+        ══════════════════════════════════════════ */}
+        <section className={`${s.section} ${s.wrap}`}>
+          <div
+            className={s.secGrid}
+            style={{ marginBottom: "clamp(36px,5vw,56px)" }}
+          >
+            <div>
+              <p className={s.eyebrow}>09 — Final Design</p>
+              <h2 className={s.sectionTitle}>A clever system, simple choices</h2>
+            </div>
+            <div>
+              <p className={s.bodyText}>
+                Based on usability feedback, we moved forward with a{" "}
+                <strong>single-page design</strong> holding both episode content
+                and scheduling — with the main CTA reduced to just{" "}
+                <em style={{ fontFamily: "var(--font-fraunces, Georgia, serif)", fontStyle: "italic", color: "oklch(0.225 0.015 285)" }}>
+                  Save
+                </em>
+                .
+              </p>
+              <p className={s.bodyText}>
+                The system interprets the user&rsquo;s scheduling intent from
+                their input:
+              </p>
+              <ul className={s.logic}>
+                <li className={s.logicItem}>
+                  <span className={s.logicDot} />
+                  <span>
+                    No publish date set → the episode is saved as a{" "}
+                    <b>Draft</b>.
+                  </span>
+                </li>
+                <li className={s.logicItem}>
+                  <span className={s.logicDot} />
+                  <span>
+                    A future publish date → the episode is{" "}
+                    <b>Scheduled</b> for that date.
+                  </span>
+                </li>
+                <li className={s.logicItem}>
+                  <span className={s.logicDot} />
+                  <span>
+                    A publish date of right now → the episode is{" "}
+                    <b>Published</b> immediately.
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <figure>
+            <div
+              className={s.window}
+              style={{
+                boxShadow:
+                  "0 40px 100px -55px oklch(0.3 0.04 285 / 0.5)",
+              }}
+            >
+              <div className={s.windowBar}>
+                <span className={s.windowDots}>
+                  <i /><i /><i />
+                </span>
+                <span className={s.windowTitle}>
+                  ART19 · Edit Episode — single CTA &ldquo;Save&rdquo;
+                </span>
+              </div>
+              <video
+                ref={videoRef}
+                src="/Epi-screenrecord.mov"
+                className="w-full h-auto block"
+                autoPlay
+                loop
+                muted
+                playsInline
+              />
+            </div>
+          </figure>
+        </section>
+
+        {/* ── Footer nav ── */}
+        <div className="w-full flex flex-col items-center">
+          <div className="max-w-5xl w-full px-4">
+            <BottomNav
+              previousProject="/projects/project-access?target=brand-approval"
+              previousProjectName="Brand Approval"
+              nextProject="/projects/risk-detection"
+              nextProjectName="Risk Detection"
+              textColor="text-blue-dark"
+              hoverColor="hover:text-blue-anchor"
+              className="max-w-5xl w-full mx-auto px-6"
+            />
+          </div>
+          <Footer customValue="max-w-5xl w-full" dark />
+        </div>
       </main>
     </>
   );
