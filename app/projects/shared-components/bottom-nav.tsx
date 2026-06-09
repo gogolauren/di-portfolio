@@ -40,7 +40,7 @@ export function BottomNav({
           onClick={() => go(previousProject)}
           className="text-left group cursor-pointer"
         >
-          <p className="flex items-center gap-1.5 text-[11px] font-semibold tracking-[0.16em] uppercase mb-2" style={{ color: "rgba(61,53,48,0.7)" }}>
+          <p className="flex items-center gap-1.5 text-[11px] font-normal tracking-[0.16em] uppercase mb-2" style={{ color: "rgba(61,53,48,0.7)" }}>
             👈&nbsp;Previous
           </p>
           <p className="text-[17px] font-bold group-hover:underline transition-all" style={{ color: "#3D3530" }}>
@@ -63,7 +63,7 @@ export function BottomNav({
           onClick={() => go(nextProject)}
           className="text-right group cursor-pointer"
         >
-          <p className="flex items-center justify-end gap-1.5 text-[11px] font-semibold tracking-[0.16em] uppercase mb-2" style={{ color: "rgba(61,53,48,0.7)" }}>
+          <p className="flex items-center justify-end gap-1.5 text-[11px] font-normal tracking-[0.16em] uppercase mb-2" style={{ color: "rgba(61,53,48,0.7)" }}>
             Next&nbsp;👉
           </p>
           <p className="text-[17px] font-bold group-hover:underline transition-all" style={{ color: "#3D3530" }}>
