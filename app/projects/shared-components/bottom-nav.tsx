@@ -34,16 +34,16 @@ export function BottomNav({
       {/* top rule */}
       <div className="border-t border-gray-200 mt-2" />
 
-      <div className="flex items-center justify-between py-8">
+      <div className="flex items-end justify-between py-8">
         {/* ← Previous */}
         <button
           onClick={() => go(previousProject)}
           className="text-left group cursor-pointer"
         >
-          <p className="flex items-center gap-1.5 text-[11px] font-semibold tracking-[0.16em] uppercase text-gray-400 mb-2">
+          <p className="flex items-center gap-1.5 text-[11px] font-semibold tracking-[0.16em] uppercase mb-2" style={{ color: "rgba(61,53,48,0.7)" }}>
             👈&nbsp;Previous
           </p>
-          <p className="text-xl font-medium group-hover:underline transition-all" style={{ color: "#3D3530" }}>
+          <p className="text-[17px] font-bold group-hover:underline transition-all" style={{ color: "#3D3530" }}>
             {previousProjectName}
           </p>
         </button>
@@ -52,7 +52,7 @@ export function BottomNav({
         <Link
           href="/"
           onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}
-          className="text-xl font-medium hover:underline transition-all"
+          className="text-[17px] font-bold hover:underline transition-all"
           style={{ color: "#3D3530" }}
         >
           🏠&nbsp;Home
@@ -63,10 +63,10 @@ export function BottomNav({
           onClick={() => go(nextProject)}
           className="text-right group cursor-pointer"
         >
-          <p className="flex items-center justify-end gap-1.5 text-[11px] font-semibold tracking-[0.16em] uppercase text-gray-400 mb-2">
+          <p className="flex items-center justify-end gap-1.5 text-[11px] font-semibold tracking-[0.16em] uppercase mb-2" style={{ color: "rgba(61,53,48,0.7)" }}>
             Next&nbsp;👉
           </p>
-          <p className="text-xl font-medium group-hover:underline transition-all" style={{ color: "#3D3530" }}>
+          <p className="text-[17px] font-bold group-hover:underline transition-all" style={{ color: "#3D3530" }}>
             {nextProjectName}
           </p>
         </button>
