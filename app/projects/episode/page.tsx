@@ -597,17 +597,12 @@ export default function EpisodeProject() {
 
         {/* ── Footer nav ── */}
         <div className="w-full flex flex-col items-center">
-          <div className="max-w-5xl w-full px-4">
-            <BottomNav
-              previousProject="/projects/project-access?target=brand-approval"
-              previousProjectName="Brand Approval"
-              nextProject="/projects/risk-detection"
-              nextProjectName="Risk Detection"
-              textColor="text-blue-dark"
-              hoverColor="hover:text-blue-anchor"
-              className="max-w-5xl w-full mx-auto px-6"
-            />
-          </div>
+          <BottomNav
+            previousProject="/projects/project-access?target=brand-approval"
+            previousProjectName="Brand Approval"
+            nextProject="/projects/risk-detection"
+            nextProjectName="Risk Detection"
+          />
           <Footer customValue="max-w-5xl w-full" dark />
         </div>
       </main>

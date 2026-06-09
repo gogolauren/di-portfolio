@@ -1124,8 +1124,6 @@ export default function ScalableArchitectureProject() {
           previousProjectName="Application Onboarding"
           nextProject="/projects/project-access?target=brand-approval"
           nextProjectName="Brand Approval Flow"
-          textColor="text-zinc-700"
-          hoverColor="hover:text-zinc-900"
           className="w-full"
         />
         <Footer customValue="w-full" dark style={{ paddingLeft: 0, paddingRight: 0 }} />
