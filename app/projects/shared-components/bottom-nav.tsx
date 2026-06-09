@@ -43,7 +43,7 @@ export function BottomNav({
           <p className="flex items-center gap-1.5 text-[11px] font-semibold tracking-[0.16em] uppercase text-gray-400 mb-2">
             👈&nbsp;Previous
           </p>
-          <p className="text-xl font-bold text-gray-900 group-hover:underline transition-all">
+          <p className="text-xl font-medium group-hover:underline transition-all" style={{ color: "#3D3530" }}>
             {previousProjectName}
           </p>
         </button>
@@ -52,7 +52,8 @@ export function BottomNav({
         <Link
           href="/"
           onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}
-          className="text-sm font-bold text-gray-700 hover:underline transition-all"
+          className="text-xl font-medium hover:underline transition-all"
+          style={{ color: "#3D3530" }}
         >
           🏠&nbsp;Home
         </Link>
@@ -65,7 +66,7 @@ export function BottomNav({
           <p className="flex items-center justify-end gap-1.5 text-[11px] font-semibold tracking-[0.16em] uppercase text-gray-400 mb-2">
             Next&nbsp;👉
           </p>
-          <p className="text-xl font-bold text-gray-900 group-hover:underline transition-all">
+          <p className="text-xl font-medium group-hover:underline transition-all" style={{ color: "#3D3530" }}>
             {nextProjectName}
           </p>
         </button>
