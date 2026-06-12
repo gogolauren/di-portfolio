@@ -8,6 +8,37 @@ import { BottomNav } from "../shared-components/bottom-nav";
 import Footer from "../shared-components/footer";
 import s from "./episode.module.css";
 
+function WaveSVG({ playheadPct = 0.13, height = 120 }: { playheadPct?: number; height?: number }) {
+  let seed = 1337;
+  const rnd = () => { seed = (seed * 1103515245 + 12345) & 0x7fffffff; return seed / 0x7fffffff; };
+  const n = 180;
+  const peaks: number[] = [];
+  for (let i = 0; i < n; i++) {
+    const x = i / n;
+    let env = 0.35 + 0.55 * Math.exp(-x * 2.6) + 0.25 * Math.exp(-Math.pow((x - 0.18) * 8, 2));
+    env += 0.18 * Math.sin(x * 38) * Math.exp(-x * 1.2);
+    const burst = Math.pow(rnd(), 1.7);
+    const base = 0.22 + 0.78 * burst;
+    let v = base * env * (0.55 + 0.45 * Math.sin(i * 0.5 + rnd() * 6));
+    v = Math.abs(v) * (1 - 0.45 * x);
+    peaks.push(Math.max(0.04, Math.min(1, v)));
+  }
+  const mid = height / 2;
+  const W = 800;
+  return (
+    <svg width="100%" height={height} viewBox={`0 0 ${W} ${height}`} preserveAspectRatio="none" style={{ display: "block" }}>
+      {peaks.map((p, i) => {
+        const bx = (i / n) * W;
+        const bw = Math.max(1, W / n - 0.5);
+        const bh = Math.max(1, p * (height * 0.44));
+        return (
+          <rect key={i} x={bx} y={mid - bh} width={bw} height={bh * 2} fill={(i / n) <= playheadPct ? "#9aa6c9" : "#b7bcc4"} />
+        );
+      })}
+    </svg>
+  );
+}
+
 export default function EpisodeProject() {
   const router = useRouter();
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -450,40 +481,12 @@ export default function EpisodeProject() {
         <hr className={s.divider} />
 
         {/* ══════════════════════════════════════════
-            07 — USABILITY TESTING
-        ══════════════════════════════════════════ */}
-        <section className={`${s.section} ${s.wrap}`}>
-          <div className={`${s.secGrid} ${s.secGridNarrow}`}>
-            <div>
-              <p className={s.eyebrow}>07 — Validation</p>
-              <h2 className={s.sectionTitle}>Users favored Flow 1</h2>
-            </div>
-            <div>
-              <p className={s.bodyText}>
-                We tested both flows. Users favored{" "}
-                <strong>Flow 1</strong> for its simplicity and ease of use —
-                especially when making quick changes or ongoing edits.
-              </p>
-              <p className={s.bodyText}>
-                That feedback pointed us firmly toward a{" "}
-                <em style={{ fontFamily: "var(--font-fraunces, Georgia, serif)", fontStyle: "italic", color: "oklch(0.225 0.015 285)" }}>
-                  streamlined, single-page interaction model
-                </em>{" "}
-                for episode management.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <hr className={s.divider} />
-
-        {/* ══════════════════════════════════════════
-            08 — STATUS MACHINE
+            09 — STATUS MACHINE (moved)
         ══════════════════════════════════════════ */}
         <section className={`${s.section} ${s.wrap}`}>
           <div className={s.secGrid}>
             <div>
-              <p className={s.eyebrow}>08 — System Design</p>
+              <p className={s.eyebrow}>09 — System Design</p>
               <h2 className={s.sectionTitle}>An episode status machine</h2>
               <p className={s.bodyText}>Episodes can exist in one of four states:</p>
               <div className={s.badgeRow}>
@@ -515,7 +518,358 @@ export default function EpisodeProject() {
         <hr className={s.divider} />
 
         {/* ══════════════════════════════════════════
-            09 — FINAL DESIGN
+            07 — VALIDATION (hidden — unhide when ready)
+        ══════════════════════════════════════════ */}
+        {false && <section className={`${s.section} ${s.wrap}`}>
+          <div className={`${s.secGrid} ${s.secGridNarrow}`}>
+            <div>
+              <p className={s.eyebrow}>07 — Validation</p>
+              <h2 className={s.sectionTitle}>Users favored Flow 1</h2>
+            </div>
+            <div>
+              <p className={s.bodyText}>
+                We tested both flows. Users favored{" "}
+                <strong>Flow 1</strong> for its simplicity and ease of use —
+                especially when making quick changes or ongoing edits.
+              </p>
+              <p className={s.bodyText}>
+                That feedback pointed us firmly toward a{" "}
+                <em style={{ fontFamily: "var(--font-fraunces, Georgia, serif)", fontStyle: "italic", color: "oklch(0.225 0.015 285)" }}>
+                  streamlined, single-page interaction model
+                </em>{" "}
+                for episode management.
+              </p>
+            </div>
+          </div>
+        </section>}
+
+        {/* ══════════════════════════════════════════
+            08 — AI AD INSERTION POINTS
+        ══════════════════════════════════════════ */}
+        <section className={`${s.section} ${s.wrapWide}`}>
+          <div className={s.secHeadCenter}>
+            <p className={s.eyebrowCenter}>08 — Ad Insertion</p>
+            <h2 className={s.sectionTitleCenter}>Edit Audio — Ad Insertion Point from AI-suggestions</h2>
+            <p className={s.compareIntro}>
+              Alongside the publishing redesign, we designed an <strong>AI-assisted ad insertion</strong> layer.
+              The system analyzes uploaded audio to detect natural pauses and identify host-read ads baked
+              into the recording — surfacing candidates before the creator opens the editor.
+              Creators can accept AI suggestions, adjust their timing, or add entirely custom
+              insertion points — all within the same waveform editor.
+            </p>
+          </div>
+
+          <div className={s.aiScreensRow}>
+          {/* Screen 01 — Before the editor */}
+          <div>
+            <div className={s.aiScreenLabel}>
+              <span className={s.aiScreenTag}>Screen 01</span>
+              <span className={s.aiScreenDesc}>The audio module — AI surfaces detected insertion points before the editor opens.</span>
+            </div>
+            <div className={s.aiScreenFrame}>
+              <div className={s.mockBrowserContent}>
+
+                <div className={s.mockPageContent}>
+                  <div className={s.mockEpHeading}>7th Hour — Pearlman Interview</div>
+                  <div className={s.mockEpSub}>Draft · Last saved 2 minutes ago</div>
+                  <div className={s.mockAudioCard}>
+                    <div className={s.mockAudioTop}>
+                      <div className={s.mockAudioLeft}>
+                        <div className={s.mockAudioIco}>
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><path d="M3 12h2l2-6 3 14 3-12 2 8 2-4h4"/></svg>
+                        </div>
+                        <div>
+                          <div className={s.mockAudioTitle}>Audio Upload &amp; Ad Insertion</div>
+                          <div className={s.mockAudioSub}>AMSC_6702_Pearlman_DYN.wav · 41:29</div>
+                          <div className={s.mockChips}>
+                            <span className={s.mockChip}><span />Pre-Roll ×2</span>
+                            <span className={s.mockChip}><span />Mid-Roll</span>
+                            <span className={s.mockChip}><span />Post-Roll</span>
+                          </div>
+                        </div>
+                      </div>
+                      <button className={s.mockOpenBtn}>Open editor</button>
+                    </div>
+                    <div className={s.aiSugArea}>
+                      <div className={s.aiSugHeader}>
+                        <svg className={s.aiSugHeaderIcon} width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 5a1.2 1.2 0 110 2.4A1.2 1.2 0 0112 7zm1.2 10h-2.4v-6h2.4z"/></svg>
+                        <span className={s.aiSugTitle}>AI-detected insertion points</span>
+                        <span className={s.aiSugBadge}>3 found</span>
+                      </div>
+                      <div className={s.aiSugRows}>
+                        <div className={s.aiSugRow}>
+                          <span className={s.aiSugDot} />
+                          <span className={s.aiSugTime}>00:05:21</span>
+                          <span className={s.aiSugDesc}>Natural pause — after intro segment</span>
+                          <span className={`${s.aiTypeTag} ${s.aiTypePause}`}>Natural pause</span>
+                          <span className={s.aiConfidence}>94%</span>
+                        </div>
+                        <div className={s.aiSugRow}>
+                          <span className={s.aiSugDot} />
+                          <span className={s.aiSugTime}>00:12:47</span>
+                          <span className={s.aiSugDesc}>Host-read ad detected (backed in)</span>
+                          <span className={`${s.aiTypeTag} ${s.aiTypeHostRead}`}>Host read</span>
+                          <span className={s.aiConfidence}>88%</span>
+                        </div>
+                        <div className={s.aiSugRow}>
+                          <span className={s.aiSugDot} />
+                          <span className={s.aiSugTime}>00:38:15</span>
+                          <span className={s.aiSugDesc}>Natural pause — before outro</span>
+                          <span className={`${s.aiTypeTag} ${s.aiTypePause}`}>Natural pause</span>
+                          <span className={s.aiConfidence}>91%</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Arrow connector */}
+          <div className={s.aiArrowCol}>
+            <span className={s.aiArrowLabel}>Open editor</span>
+            <div className={s.aiArrowSvgWrap}>
+              <svg width="24" height="52" viewBox="0 0 24 52" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 2v36" strokeWidth="1.5"/>
+                <path d="M7 38L12 50L17 38" strokeWidth="1.8" fill="none"/>
+                <circle cx="12" cy="2" r="2.5" fill="currentColor" opacity="0.45" stroke="none"/>
+              </svg>
+            </div>
+          </div>
+          {/* Screen 02 — Editor open */}
+          <div>
+            <div className={s.aiScreenLabel}>
+              <span className={s.aiScreenTag}>Screen 02</span>
+              <span className={s.aiScreenDesc}>Inside the editor — AI-suggested markers sit alongside custom points. Expand any to configure timing, positions, and brand priorities.</span>
+            </div>
+            <div className={s.aiScreen02Frame}>
+              <div className={s.aiScreen02Viewport}>
+                <div className={s.aiScreen02ScrollContent}>
+                  <div className={s.editorMockBackdrop}>
+                    <div className={s.editorMockModal}>
+                {/* Header */}
+                <div className={s.editorMockHead}>
+                  <span className={s.editorMockTitle}>Audio Upload &amp; Ad Insertion</span>
+                  <div className={s.editorMockHeadActions}>
+                    <span className={s.editorIconBtn}><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/><circle cx="19" cy="12" r="1.7"/></svg></span>
+                    <span className={s.editorIconBtn}><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 15l6-6 6 6"/></svg></span>
+                    <span className={s.editorIconBtn}><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+                  </div>
+                </div>
+                {/* File bar */}
+                <div className={s.editorMockFilebar}><b>File Name:</b> AMSC_6702_Pearlman_DYN</div>
+                {/* Waveform */}
+                <div className={s.editorMockWaveWrap}>
+                  <div className={s.editorMockZoomBar}>
+                    <div className={s.editorMockZoomGroup}>
+                      <span className={s.editorMockZoomBtn}>−</span>
+                      <span className={s.editorMockZoomBtn}>+</span>
+                      <span className={s.editorMockZoomVal}>150%</span>
+                    </div>
+                  </div>
+                  <div className={s.editorMockWaveMain}>
+                    <WaveSVG playheadPct={0.13} height={120} />
+                    <div className={s.editorMockPlayhead} style={{ left: "13%" }} />
+                    {/* Custom pre-roll SELECTED at 0% */}
+                    <div className={`${s.editorMockMarker} ${s.mkCustom} ${s.mkSel}`} style={{ left: "0.5%" }}>
+                      <div className={s.mkLine} /><div className={s.mkFlag}>PRE</div>
+                    </div>
+                    {/* AI pre-roll at 13% */}
+                    <div className={`${s.editorMockMarker} ${s.mkAI}`} style={{ left: "13%" }}>
+                      <div className={s.mkLine} /><div className={s.mkFlag}>PRE · AI</div>
+                    </div>
+                    {/* AI mid-roll at ~78% */}
+                    <div className={`${s.editorMockMarker} ${s.mkAI}`} style={{ left: "78.2%" }}>
+                      <div className={s.mkLine} /><div className={s.mkFlag}>MID · AI</div>
+                    </div>
+                    {/* Custom post-roll at ~94% */}
+                    <div className={`${s.editorMockMarker} ${s.mkCustom}`} style={{ left: "94%" }}>
+                      <div className={s.mkLine} /><div className={s.mkFlag}>POST</div>
+                    </div>
+                  </div>
+                  {/* Time axis */}
+                  <div className={s.editorMockTimeAxis}>
+                    {(["00:00","06:00","12:00","18:00","24:00","30:00","36:00"] as const).map((t, i) => (
+                      <span key={i} style={{ left: `${(i / 6) * 100}%` }}>{t}</span>
+                    ))}
+                  </div>
+                  {/* Minimap */}
+                  <div className={s.editorMockMinimap}>
+                    <WaveSVG playheadPct={0.13} height={34} />
+                    <div className={s.editorMockMinimapWin} style={{ left: "4%", width: "52%" }} />
+                    {([0.5, 13, 78.2, 94] as const).map((pct, i) => (
+                      <div key={i} className={`${s.editorMockMiniMk} ${i === 1 || i === 2 ? s.mkAIMini : ""}`} style={{ left: `${pct}%` }} />
+                    ))}
+                  </div>
+                  <div className={s.editorMockTimeRange}>
+                    <span>00:00:00.00</span>
+                    <span>00:41:29.00</span>
+                  </div>
+                  {/* Legend */}
+                  <div className={s.editorMockLegend}>
+                    <div className={s.legendItem}><span className={`${s.legendDot} ${s.legendDotCustom}`} />Custom insertion point</div>
+                    <div className={s.legendItem}><span className={`${s.legendDot} ${s.legendDotAI}`} />AI-suggested point</div>
+                    <div className={s.legendItem}><span className={`${s.legendDot} ${s.legendDotSel}`} />Selected / open (any type)</div>
+                  </div>
+                </div>
+                {/* Transport */}
+                <div className={s.editorMockTransport}>
+                  <span className={s.editorMockSpeedBtn}>1x</span>
+                  <div className={s.editorMockTCenter}>
+                    <span className={s.editorMockTbtn}><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 6l-8.5 6L18 18zM7 6H5v12h2z"/></svg></span>
+                    <span className={s.editorMockTbtn}><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 6l-7 6 7 6zM8 6H6.5v12H8z"/></svg></span>
+                    <span className={s.editorMockPlayBtn}><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+                    <span className={s.editorMockTbtn}><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 6l7 6-7 6zM16 6h1.5v12H16z"/></svg></span>
+                    <span className={s.editorMockTbtn}><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6l8.5 6L6 18zM17 6h2v12h-2z"/></svg></span>
+                  </div>
+                  <span className={s.editorMockVolBtn}><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M5 9v6h4l5 4V5L9 9H5zm11.5 3a3.5 3.5 0 00-2-3.15v6.3A3.5 3.5 0 0016.5 12z"/></svg></span>
+                </div>
+                {/* Selection row */}
+                <div className={s.editorMockSelrow}>
+                  <div style={{ display:"flex", alignItems:"center" }}>
+                    <span className={s.editorMockSelLabel}>Selection:</span>
+                    <div className={s.editorMockStepper}><span className={s.editorMockStepperVal}>00:05:21.00</span></div>
+                  </div>
+                  <span className={s.editorMockNewMkBtn}>
+                    New Marker
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
+                  </span>
+                </div>
+                {/* AIP list */}
+                <div className={s.editorMockAipList}>
+                  {/* Pre-Roll 1 — custom, EXPANDED */}
+                  <div className={`${s.editorMockAip} ${s.editorMockAipOpen}`}>
+                    <div className={s.editorMockAipRow}>
+                      <span className={s.editorMockAipSq} />
+                      <div className={s.editorMockAipMain}>
+                        <div className={s.editorMockAipName}>Pre-Roll 1</div>
+                        <div className={s.editorMockAipMeta}>00:00:00.00</div>
+                      </div>
+                      <div style={{ display:"flex", gap:"2px" }}>
+                        <span className={s.editorMockIconBtn}><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4z"/></svg></span>
+                        <span className={s.editorMockIconBtn}><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg></span>
+                      </div>
+                    </div>
+                    <div className={s.editorMockAipBody}>
+                      <div className={s.editorMockCfgSec}>
+                        <span className={s.editorMockCfgLabel}>AIP Type <span style={{ color:"#e2574c" }}>*</span></span>
+                        <div className={s.editorMockRadios}>
+                          <label className={s.editorMockRadio}>
+                            <span className={`${s.editorMockRadioDot} ${s.editorMockRadioDotChecked}`} />
+                            <span style={{ color:"#2c2f36", fontWeight:600, fontSize:"13px" }}>Pre-Roll</span>
+                          </label>
+                          <label className={s.editorMockRadio}>
+                            <span className={s.editorMockRadioDot} /><span>Mid-Roll</span>
+                          </label>
+                          <label className={s.editorMockRadio}>
+                            <span className={s.editorMockRadioDot} /><span>Post-Roll</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div className={s.editorMockCfgSec}>
+                        <div className={s.editorMockCfgGrid}>
+                          <div>
+                            <span className={s.editorMockCfgLabel}>Maximum Total Time</span>
+                            <div style={{ display:"flex", alignItems:"center", gap:"8px" }}>
+                              <div className={s.editorMockSelectWrap}>
+                                <select className={s.editorMockSelect}><option>120</option></select>
+                                <span className={s.editorMockSelectArrow} />
+                              </div>
+                              <span className={s.editorMockInlineNote}>Seconds</span>
+                            </div>
+                          </div>
+                          <div>
+                            <span className={s.editorMockCfgLabel}>Maximum Ad Positions</span>
+                            <div style={{ display:"flex", alignItems:"center", gap:"8px" }}>
+                              <div className={s.editorMockSelectWrap}>
+                                <select className={s.editorMockSelect}><option>2</option></select>
+                                <span className={s.editorMockSelectArrow} />
+                              </div>
+                              <span className={s.editorMockInlineNote} style={{ fontStyle:"italic", color:"#868d99" }}>(A and B)</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className={s.editorMockCfgSec}>
+                        <span className={s.editorMockCfgLabel}>Priorities</span>
+                        <div className={s.editorMockProw}>
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style={{ color:"#868d99", flexShrink:0 }}><circle cx="9" cy="6" r="1.5"/><circle cx="15" cy="6" r="1.5"/><circle cx="9" cy="12" r="1.5"/><circle cx="15" cy="12" r="1.5"/><circle cx="9" cy="18" r="1.5"/><circle cx="15" cy="18" r="1.5"/></svg>
+                          <span style={{ fontSize:"11.5px", color:"#868d99", width:"12px", textAlign:"center" }}>1</span>
+                          <select className={s.editorMockProwSelect}><option>All Live Reads and Spots</option></select>
+                          <span className={s.editorMockLinkBtn}>
+                            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4z"/></svg>
+                            Define Start
+                          </span>
+                          <span className={s.editorMockLinkBtn}>
+                            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4z"/></svg>
+                            Define End
+                          </span>
+                        </div>
+                      </div>
+                      <div className={s.editorMockCfgFoot}>
+                        <span className={s.editorMockGhostBtn}>Cancel</span>
+                        <span className={s.editorMockPrimaryBtn}>Save &amp; Close</span>
+                      </div>
+                    </div>
+                  </div>
+                  {/* Pre-Roll 2 — AI-suggested, collapsed */}
+                  <div className={s.editorMockAip}>
+                    <div className={s.editorMockAipRow}>
+                      <span className={`${s.editorMockAipSq} ${s.editorMockAipSqAI}`} />
+                      <div className={s.editorMockAipMain}>
+                        <div className={s.editorMockAipName}>Pre-Roll 2 <span className={s.aiBadge}>AI</span></div>
+                        <div className={s.editorMockAipMeta}>00:05:21.00 &nbsp;|&nbsp; Max 180 Secs &amp; 3 Positions &nbsp;|&nbsp; Brand 1 : Demo Campaign</div>
+                      </div>
+                      <div style={{ display:"flex", gap:"2px", opacity:0.4 }}>
+                        <span className={s.editorMockIconBtn}><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4z"/></svg></span>
+                        <span className={s.editorMockIconBtn}><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg></span>
+                      </div>
+                    </div>
+                  </div>
+                  {/* Mid-Roll — AI, collapsed */}
+                  <div className={s.editorMockAip}>
+                    <div className={s.editorMockAipRow}>
+                      <span className={`${s.editorMockAipSq} ${s.editorMockAipSqAI}`} />
+                      <div className={s.editorMockAipMain}>
+                        <div className={s.editorMockAipName}>Mid-Roll <span className={s.aiBadge}>AI</span></div>
+                        <div className={s.editorMockAipMeta}>00:32:27.00 &nbsp;|&nbsp; Max 180 Secs &amp; 2 Positions &nbsp;|&nbsp; All Live Reads and Spots</div>
+                      </div>
+                      <div style={{ display:"flex", gap:"2px", opacity:0.4 }}>
+                        <span className={s.editorMockIconBtn}><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4z"/></svg></span>
+                        <span className={s.editorMockIconBtn}><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg></span>
+                      </div>
+                    </div>
+                  </div>
+                  {/* Post-Roll — custom, collapsed */}
+                  <div className={s.editorMockAip}>
+                    <div className={s.editorMockAipRow}>
+                      <span className={s.editorMockAipSq} />
+                      <div className={s.editorMockAipMain}>
+                        <div className={s.editorMockAipName}>Post-Roll</div>
+                        <div className={s.editorMockAipMeta}>00:39:00.00 &nbsp;|&nbsp; Max 60 Secs &amp; 1 Position &nbsp;|&nbsp; OUTRO CTA - AMSC - POST - WIDE</div>
+                      </div>
+                      <div style={{ display:"flex", gap:"2px", opacity:0.4 }}>
+                        <span className={s.editorMockIconBtn}><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4z"/></svg></span>
+                        <span className={s.editorMockIconBtn}><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>{/* editorMockAipList */}
+                    </div>{/* editorMockModal */}
+                  </div>{/* editorMockBackdrop */}
+                </div>{/* aiScreen02ScrollContent */}
+                <div className={s.aiScreen02Scrollbar}><div className={s.aiScreen02ScrollThumb} /></div>
+              </div>{/* aiScreen02Viewport */}
+            </div>{/* aiScreen02Frame */}
+          </div>
+          </div>{/* end aiScreensRow */}
+        </section>
+
+        <hr className={s.divider} />
+
+        {/* ══════════════════════════════════════════
+            10 — FINAL DESIGN
         ══════════════════════════════════════════ */}
         <section className={`${s.section} ${s.wrap}`}>
           <div
@@ -523,7 +877,7 @@ export default function EpisodeProject() {
             style={{ marginBottom: "clamp(36px,5vw,56px)" }}
           >
             <div>
-              <p className={s.eyebrow}>09 — Final Design</p>
+              <p className={s.eyebrow}>10 — Final Design</p>
               <h2 className={s.sectionTitle}>A clever system, simple choices</h2>
             </div>
             <div>
