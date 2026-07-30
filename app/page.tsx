@@ -8,6 +8,7 @@ import {
   LockClosedIcon,
 } from "@heroicons/react/24/solid";
 import Footer from "./projects/shared-components/footer";
+import { ScalableHeroMontage } from "./projects/shared-components/scalable-hero-montage";
 
 function useTyping(suffix: string, startDelay = 900) {
   const ref = useRef<HTMLParagraphElement>(null);
@@ -333,13 +334,7 @@ export default function Home() {
                     <LockClosedIcon className="w-4 h-4 text-gray-400" />
                   </div>
                   <div className="flex-1 min-w-0 max-w-[600px] basis-[55%] mb-4 md:mb-0 md:mr-16 overflow-hidden rounded-lg">
-                    <Image
-                      src="/cover-scalable-architecture.png"
-                      alt="Scalable Architecture — from profile-centric to task-centric"
-                      width={600}
-                      height={400}
-                      className="rounded-lg w-full h-48 md:h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
-                    />
+                    <ScalableHeroMontage className="rounded-lg w-full h-48 md:h-full group-hover:scale-[1.02] transition-transform duration-500" />
                   </div>
                   <div className="flex-1 min-w-0 basis-[45%] flex flex-col justify-center">
                     <h2 className="text-2xl font-semibold mb-4">

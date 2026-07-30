@@ -7,6 +7,7 @@ import Link from "next/link";
 import Footer from "../shared-components/footer";
 import { BottomNav } from "../shared-components/bottom-nav";
 import { WorkspacePrototype } from "./WorkspacePrototype";
+import { ScalableHeroMontage } from "../shared-components/scalable-hero-montage";
 
 
 const tk = {
@@ -229,17 +230,11 @@ export default function ScalableArchitectureProject() {
         }
       `}</style>
 
-      {/* HERO IMAGE */}
-      <div className="w-full flex justify-center mb-2">
-        <Image
-          src="/cover-scalable-architecture.png"
-          alt="From profile-centric to task-centric — IA case study"
-          width={1920}
-          height={400}
-          className="w-screen max-w-none h-[300px] md:h-[500px] object-contain"
-          style={{ backgroundColor: "#f5f2e5" }}
-          priority
-        />
+      {/* HERO MONTAGE — full-bleed beige band, montage inset with side margins */}
+      <div className="w-full mb-2" style={{ backgroundColor: "#f5f2e5" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 32px" }}>
+          <ScalableHeroMontage className="w-full h-[300px] md:h-[500px]" />
+        </div>
       </div>
 
       {/* TITLE SECTION */}
