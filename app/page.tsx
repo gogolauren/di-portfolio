@@ -503,12 +503,14 @@ export default function Home() {
                   </div>
                   <div className="flex-1 min-w-0 basis-[45%] flex flex-col justify-center">
                     <h2 className="text-2xl font-semibold mb-4">
-                      Enhancing Access Requests with Risk Detection
+                      Discovering the Escalation Use Case in Risk-Enabled Access
+                      Requests
                     </h2>
                     <p className="text-gray-600 text-left">
-                      A key outcome was the discovery of two core personas:
-                      People Managers and Risk Owners. Created a tailored
-                      workflow that serves both use cases.
+                      Risk detection surfaced a second persona — Risk Owners —
+                      and an escalation use case covering 20–30% of reviews.
+                      Designed one review flow that deepens on demand, with a
+                      temporary hand-off that always comes back.
                     </p>
                     <div className="flex items-center gap-2 flex-wrap mt-4">
                       <span className="border border-purple-base text-purple-anchor px-3 py-1 rounded-full text-sm">
