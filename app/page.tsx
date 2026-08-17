@@ -9,6 +9,66 @@ import {
 } from "@heroicons/react/24/solid";
 import Footer from "./projects/shared-components/footer";
 import { ScalableHeroMontage } from "./projects/shared-components/scalable-hero-montage";
+import { IconB2B, IconCreator, IconAdTech } from "./components/skill-icons";
+
+const HERO_ORANGE = "#D2740E";
+
+type SkillPoint = { text: string; note?: string };
+type Skill = {
+  id: string;
+  label: string;
+  accent: string;
+  color: string;
+  spin: string;
+  Icon: (props: { className?: string; style?: React.CSSProperties }) => React.JSX.Element;
+  points: SkillPoint[];
+};
+
+const SKILLS: Skill[] = [
+  {
+    id: "b2b",
+    label: "B2B SaaS",
+    accent: "Application",
+    color: "#E29D62",
+    spin: "spin-slow 8s linear infinite",
+    Icon: IconB2B,
+    points: [
+      { text: "Identity & Access Management" },
+      { text: "Media & Advertising Platform" },
+      { text: "Data-Rich Workflow" },
+      { text: "Technical Administration" },
+      { text: "AI & Cloud Application" },
+    ],
+  },
+  {
+    id: "creator",
+    label: "Creator Tools",
+    accent: "",
+    color: "#8EB1C7",
+    spin: "spin-ccw 10s linear infinite",
+    Icon: IconCreator,
+    points: [
+      { text: "Amazon Music & Podcast" },
+      { text: "Podcast Publishing", note: "saved user 7000+ hours in the 1st month" },
+      { text: "Ad Insertion In Audio" },
+      { text: "Advanced Media Management" },
+    ],
+  },
+  {
+    id: "adtech",
+    label: "AdTech",
+    accent: "Advertising",
+    color: "#9CB993",
+    spin: "spin-slow 11s linear infinite",
+    Icon: IconAdTech,
+    points: [
+      { text: "Amazon Ads" },
+      { text: "Monetization Acceleration", note: "reduced ad review time by 92%" },
+      { text: "Precise Ad Targeting" },
+      { text: "AdTech Optimization" },
+    ],
+  },
+];
 
 function useTyping(suffix: string, startDelay = 900) {
   const ref = useRef<HTMLParagraphElement>(null);
@@ -103,6 +163,68 @@ export default function Home() {
   const [heroRadius, setHeroRadius] = useState(0);
   const [navFaded, setNavFaded] = useState(false);
   const [navOnDark, setNavOnDark] = useState(false);
+  const [activeSkill, setActiveSkill] = useState<string | null>(null);
+  // hero colour flip works at any scroll position; the nav only follows it
+  // while it is still sitting on the hero background
+  const skillMode = activeSkill !== null;
+  const navSkillMode = skillMode && !navFaded;
+  const heroRef = useRef<HTMLElement>(null);
+  const chipRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  // Circle of color that grows out of the hovered chip until it fills the hero
+  const [ripple, setRipple] = useState({ x: 0, y: 0, r: 0 });
+  const [rippleOn, setRippleOn] = useState(false);
+  // true when one chip hands over to another: the page is already orange, so
+  // the labels can swap colour immediately instead of waiting for a wave
+  const [chipHandover, setChipHandover] = useState(false);
+
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const openSkill = (id: string) => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setChipHandover(activeSkill !== null);
+    const hero = heroRef.current;
+    const chip = chipRefs.current[id];
+    if (hero && chip) {
+      const heroRect = hero.getBoundingClientRect();
+      const chipRect = chip.getBoundingClientRect();
+      const scale = heroRect.width / hero.offsetWidth || 1;
+      const w = hero.offsetWidth;
+      const h = hero.offsetHeight;
+      const x = (chipRect.left + chipRect.width / 2 - heroRect.left) / scale;
+      const y = (chipRect.top + chipRect.height / 2 - heroRect.top) / scale;
+      const r = Math.hypot(Math.max(x, w - x), Math.max(y, h - y)) * 1.05;
+      setRipple({ x, y, r });
+    }
+    setActiveSkill(id);
+  };
+
+  // short grace period so moving between two chips doesn't flash back to default
+  const closeSkill = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => {
+      setActiveSkill(null);
+      setChipHandover(false);
+    }, 160);
+  };
+
+  useEffect(() => () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+  }, []);
+
+  useEffect(() => {
+    if (!skillMode) {
+      setRippleOn(false);
+      return;
+    }
+    // rAF gives the browser one frame at scale(0) so the transition runs;
+    // the timer is a fallback for when rAF is paused (backgrounded tab)
+    const raf = requestAnimationFrame(() => setRippleOn(true));
+    const timer = setTimeout(() => setRippleOn(true), 80);
+    return () => {
+      cancelAnimationFrame(raf);
+      clearTimeout(timer);
+    };
+  }, [skillMode]);
 
   useEffect(() => {
     const move = (e: MouseEvent) => setCursorPos({ x: e.clientX, y: e.clientY });
@@ -116,6 +238,8 @@ export default function Home() {
       setHeroScale(0.95 - progress * 0.18);
       setHeroRadius(progress * 28);
       setNavFaded(window.scrollY > 10);
+      // only drop the skill state once the hero is basically off screen
+      if (window.scrollY > window.innerHeight * 0.8) setActiveSkill(null);
       const projEl = document.querySelector('main#projects') as HTMLElement;
       if (projEl) setNavOnDark(window.scrollY + 80 > projEl.offsetTop);
     };
@@ -123,12 +247,32 @@ export default function Home() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // text flips only once the colour wave has swept past it, and flips back
+  // just after it starts retreating
+  const textTransition = skillMode
+    ? "color 450ms ease 650ms"
+    : "color 350ms ease 150ms";
+
+  // chip labels sit at the wave's origin, so they only need a short lead —
+  // and none at all when swapping between chips on an already-orange page
+  const labelTransition = skillMode
+    ? chipHandover
+      ? "color 160ms ease"
+      : "color 220ms ease 220ms"
+    : "color 220ms ease 100ms";
+
   const handleScrollToProjects = () => {
     projectsRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <div className={`transition-colors duration-500 ${navFaded ? 'bg-white' : 'bg-[#F3E7C4]'}`}>
+    <div
+      className="transition-colors duration-500"
+      style={{
+        backgroundColor: navFaded ? "#ffffff" : navSkillMode ? HERO_ORANGE : "#F3E7C4",
+        transitionDelay: navSkillMode ? "900ms" : "0ms",
+      }}
+    >
       {/* Custom project hover cursor */}
       <div
         className={`fixed pointer-events-none z-[9999] transition-opacity duration-200 ${showCursor ? "opacity-100" : "opacity-0"}`}
@@ -139,29 +283,39 @@ export default function Home() {
         </div>
       </div>
       <header className={`sticky top-0 z-50 w-full transition-all duration-300 ${navFaded ? 'px-4 md:px-20 pt-4 pb-1' : 'px-4 md:px-20 pt-2 pb-0'}`}>
-        <div className={`flex items-center justify-between px-4 md:px-8 py-3 transition-all duration-300 ${navFaded ? 'rounded-2xl bg-white/50 backdrop-blur-md' : 'rounded-none bg-[#F3E7C4]'}`}>
+        <div
+          className={`flex items-center justify-between px-4 md:px-8 py-3 transition-all duration-500 ${navFaded ? 'rounded-2xl bg-white/50 backdrop-blur-md' : 'rounded-none'}`}
+          style={
+            navFaded
+              ? undefined
+              : {
+                  backgroundColor: navSkillMode ? HERO_ORANGE : "#F3E7C4",
+                  transitionDelay: navSkillMode ? "900ms" : "0ms",
+                }
+          }
+        >
           <Link
             href="/"
-            className="text-4xl font-clash-grotesk text-golden-anchor font-bold hover:text-beige-anchor"
+            className={`text-4xl font-clash-grotesk font-bold transition-colors duration-500 ${navSkillMode ? 'text-white hover:text-white/70 delay-[400ms]' : 'text-golden-anchor hover:text-beige-anchor'}`}
           >
             Di.X
           </Link>
           <div className="flex items-center justify-center gap-6 md:gap-16">
             <a
-              className="text-md font-medium text-black hover:text-golden-anchor transition cursor-pointer"
+              className={`text-md font-medium transition-colors duration-500 cursor-pointer ${skillMode ? 'text-white hover:text-white/70' : 'text-black hover:text-golden-anchor'}`}
               onClick={handleScrollToProjects}
             >
               Projects
             </a>
             <Link
               href="/gallery"
-              className="text-md font-medium text-black hover:text-golden-anchor transition"
+              className={`text-md font-medium transition-colors duration-500 ${navSkillMode ? 'text-white hover:text-white/70 delay-[400ms]' : 'text-black hover:text-golden-anchor'}`}
             >
               Photos
             </Link>
             <Link
               href="mailto:xiaodishaw@gmail.com"
-              className="text-md font-medium text-black hover:text-golden-anchor transition"
+              className={`text-md font-medium transition-colors duration-500 ${navSkillMode ? 'text-white hover:text-white/70 delay-[400ms]' : 'text-black hover:text-golden-anchor'}`}
             >
               Contact
             </Link>
@@ -171,21 +325,43 @@ export default function Home() {
 
       {/* Hero Section */}
       <section
-        className="sticky top-0 z-[1] min-h-screen w-full bg-[#F3E7C4] flex flex-col justify-center items-center px-6 text-gray-900 overflow-hidden"
+        ref={heroRef}
+        className="sticky top-0 z-[1] min-h-screen w-full flex flex-col justify-center items-center px-6 overflow-hidden"
         style={{
           transform: `scale(${heroScale})`,
           borderRadius: `${heroRadius}px`,
           transformOrigin: "top center",
+          backgroundColor: "#F3E7C4",
+          color: skillMode ? "#ffffff" : "#000000",
+          transition: textTransition,
         }}
       >
+        {/* Color wave that expands from the hovered chip */}
+        <div
+          aria-hidden
+          className="absolute rounded-full pointer-events-none z-0"
+          style={{
+            left: ripple.x - ripple.r,
+            top: ripple.y - ripple.r,
+            width: ripple.r * 2,
+            height: ripple.r * 2,
+            backgroundColor: HERO_ORANGE,
+            transform: `scale(${rippleOn ? 1 : 0})`,
+            transition: rippleOn
+              ? "transform 1200ms cubic-bezier(0.45, 0.05, 0.2, 1)"
+              : "transform 700ms cubic-bezier(0.5, 0, 0.9, 0.6)",
+          }}
+        />
 
-        <div className="relative z-10 w-full flex flex-col items-center">
+        {/* the lift is permanent, not hover-driven: moving the chips under a
+            resting cursor would fire pointerleave and flicker the hover state */}
+        <div className="relative z-10 w-full flex flex-col items-center md:-translate-y-10 [@media(min-width:768px)_and_(max-height:820px)]:-translate-y-[4.5rem]">
         <div className="text-center w-full">
-          <h1 className="text-6xl md:text-8xl font-semibold leading-tight tracking-tighter">
+          <h1 className="text-5xl md:text-8xl font-semibold leading-tight tracking-tighter">
             Hello,{" "}
             <span
-              className="animate-float inline-block align-middle mx-3 relative"
-              style={{ width: 170, height: 170, verticalAlign: "middle" }}
+              className="animate-float inline-block align-middle mx-1 md:mx-3 relative w-[104px] h-[104px] md:w-[170px] md:h-[170px]"
+              style={{ verticalAlign: "middle" }}
             >
               {/* Spinning circular text */}
               <svg
@@ -195,12 +371,18 @@ export default function Home() {
                 <defs>
                   <path id="atp" d="M85,85 m-77,0 a77,77 0 1,1 154,0 a77,77 0 1,1 -154,0" />
                 </defs>
-                <text fontSize="8.5" letterSpacing="3.5" fill="#d9730b" fontWeight="500">
+                <text
+                  fontSize="8.5"
+                  letterSpacing="3.5"
+                  fill={skillMode ? "#ffffff" : "#d9730b"}
+                  fontWeight="500"
+                  style={{ transition: textTransition.replace("color", "fill") }}
+                >
                   <textPath href="#atp">SENIOR UX DESIGNER ✦ SENIOR UX DESIGNER ✦ </textPath>
                 </text>
               </svg>
               {/* Avatar image */}
-              <span className="absolute rounded-full overflow-hidden" style={{ inset: 20 }}>
+              <span className="absolute rounded-full overflow-hidden inset-3 md:inset-5">
                 <Image src="/DiHead.png" alt="Di's Headshot" fill className="object-cover" />
                 <span className="absolute inset-0 rounded-full bg-orange-400 opacity-60 z-[-1]" />
               </span>
@@ -208,7 +390,7 @@ export default function Home() {
             I'm Diii
           </h1>
 
-          <h2 className="text-6xl md:text-8xl font-semibold mt-6 tracking-tighter">
+          <h2 className="text-5xl md:text-8xl font-semibold mt-4 md:mt-6 tracking-tighter">
             I untangle{" "}
             <span className="inline-block align-middle relative w-32 h-16 md:w-60 md:h-20 mx-2 rounded-full overflow-hidden">
               <Image
@@ -222,20 +404,103 @@ export default function Home() {
           </h2>
         </div>
 
-        <div className="mt-8 max-w-2xl text-lg text-center text-gray-800 leading-relaxed space-y-4">
-          <p>
-            I transform complex data and enterprise workflows into seamless product experiences across{" "}
-            <span className="font-semibold text-golden-anchor">B2B SaaS</span>,{" "}
-            <span className="font-semibold text-golden-anchor">AI</span>,{" "}
-            <span className="font-semibold text-golden-anchor">Creator Tools</span>, and{" "}
-            <span className="font-semibold text-golden-anchor">Ad Tech</span>.
-            {" "}Combining Information Engineering logic with HCI empathy, I design with a systems-level perspective.
+        {/* Skills: three chips that open one detail list at a time on hover */}
+        <div className="mt-10 md:mt-28 [@media(min-width:768px)_and_(max-height:820px)]:mt-12 w-full flex flex-col items-center">
+          <p
+            className={`text-base md:text-lg text-center transition-opacity duration-300 ${
+              skillMode ? "opacity-0" : "opacity-100"
+            }`}
+          >
+            With background in Engineering and HCI, I design at the systems level across:
           </p>
+
+          <div className="mt-5 w-full flex flex-col md:flex-row md:flex-wrap items-center md:items-start justify-center gap-y-2 md:gap-x-8">
+            {SKILLS.map(({ id, label, accent, color, spin, Icon, points }) => {
+              const isActive = activeSkill === id;
+              return (
+                <div
+                  key={id}
+                  ref={(el) => {
+                    chipRefs.current[id] = el;
+                  }}
+                  // hover only for real pointers — on touch a tap would fire
+                  // enter and click together and cancel itself out
+                  onPointerEnter={(e) => {
+                    if (e.pointerType === "mouse") openSkill(id);
+                  }}
+                  onPointerLeave={(e) => {
+                    if (e.pointerType === "mouse") closeSkill();
+                  }}
+                  onClick={() => (isActive ? closeSkill() : openSkill(id))}
+                  className="relative w-fit select-none cursor-pointer"
+                >
+                  <div
+                    className={`flex items-center gap-3 rounded-full px-5 py-3 transition-all duration-300 ${
+                      isActive ? "bg-white scale-[1.03]" : "bg-transparent"
+                    }`}
+                  >
+                    <Icon className="w-9 h-9 shrink-0" style={{ color, animation: spin }} />
+                    <span
+                      className="text-xl whitespace-nowrap"
+                      style={{
+                        fontFamily: "var(--font-fraunces)",
+                        color: skillMode && !isActive ? "#ffffff" : "#000000",
+                        transition: labelTransition,
+                      }}
+                    >
+                      {label}
+                      {accent && (
+                        <em className="ml-1.5 font-normal italic">{accent}</em>
+                      )}
+                    </span>
+                  </div>
+
+                  {/* Detail list — only one open at a time */}
+                  <div
+                    className={`w-max pt-4 md:absolute md:left-0 md:top-full transition-opacity duration-300 ${
+                      isActive
+                        ? "block opacity-100"
+                        : "hidden md:block opacity-0 pointer-events-none"
+                    }`}
+                  >
+                    {/* pl matches the chip's icon centre (px-5 + half of the 36px icon) */}
+                    <ul className="pl-[30px] pr-4 space-y-2 text-left">
+                      {points.map(({ text, note }, i) => (
+                        <li
+                          key={text}
+                          className={`flex items-start gap-3 text-white transition-all duration-500 ease-out ${
+                            isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+                          }`}
+                          style={{ transitionDelay: isActive ? `${260 + i * 70}ms` : "0ms" }}
+                        >
+                          {/* icon box matches the first line's height so the
+                              two sit on the same centre line */}
+                          <span className="flex h-[22px] items-center shrink-0">
+                            <Icon className="w-4 h-4" />
+                          </span>
+                          <span className="text-base leading-snug whitespace-nowrap">
+                            {text}
+                            {note && (
+                              <em className="block text-sm text-white/90 whitespace-normal">
+                                {note}
+                              </em>
+                            )}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
 
         <button
           onClick={handleScrollToProjects}
-          className="mt-24 px-8 py-4 rounded-full border-2 border-golden-anchor text-golden-anchor text-md font-bold hover:bg-golden-anchor hover:text-white transition cursor-pointer flex items-center gap-2"
+          className={`mt-8 md:mt-20 px-8 py-4 rounded-full border-2 border-golden-anchor text-golden-anchor text-md font-bold hover:bg-golden-anchor hover:text-white transition-opacity duration-300 cursor-pointer flex items-center gap-2 ${
+            skillMode ? "opacity-0 pointer-events-none" : "opacity-100"
+          }`}
         >
           See My Work
           <ArrowDownCircleIcon className="w-6 h-6 ml-2" />
@@ -267,14 +532,11 @@ export default function Home() {
             >
               <Image src="/logo-amazon.png" alt="Amazon Logo" width={100} height={40} className="object-cover mb-4" />
               <p>
-                Currently work at Amazon in the podcast industry —{" "}
-                <a href="https://art19.com" target="_blank" rel="noopener noreferrer" className="underline hover:text-golden-anchor transition">
-                  ART19.com
-                </a>{" "}
-                who offers a comprehensive suite of enterprise-level hosting,
-                distribution, and monetization tools. I optimized the publisher
-                experience and streamlined campaign workflows to enable precise
-                and dynamic audience targeting.
+                I currently work at Amazon Ads for the podcast industry, which
+                offers a comprehensive suite of enterprise-level podcast
+                publishing, distribution, and monetization tools. I've optimized
+                the publisher experience and streamlined campaign workflows to
+                enable precise and dynamic ad targeting.
               </p>
             </div>
             <div

@@ -97,6 +97,13 @@ body {
 }
 .animate-spin-slow { animation: spin-slow 14s linear infinite; }
 
+@keyframes spin-ccw {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
+}
+/* spin-slow / spin-ccw are used by the skill chip icons, which set their own
+   durations inline */
+
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50%       { opacity: 0; }
