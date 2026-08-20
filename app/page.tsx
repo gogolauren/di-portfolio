@@ -56,8 +56,8 @@ const SKILLS: Skill[] = [
   },
   {
     id: "adtech",
-    label: "AdTech",
-    accent: "Advertising",
+    label: "Advertising Tech",
+    accent: "",
     color: "#9CB993",
     spin: "spin-slow 11s linear infinite",
     Icon: IconAdTech,
@@ -646,10 +646,11 @@ export default function Home() {
                   </div>
                   <div className="flex-1 min-w-0 max-w-[600px] basis-[55%] mb-4 md:mb-0 md:mr-16 overflow-hidden rounded-lg">
                     <Image
-                      src="/cover-BrandApproval.png"
+                      src="/cover-BrandApproval-2.png"
                       alt="Project Brand Approval"
-                      width={600}
-                      height={400}
+                      width={1400}
+                      height={800}
+                      quality={90}
                       className="rounded-lg w-full h-48 md:h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
                     />
                   </div>

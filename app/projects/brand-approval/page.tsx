@@ -111,10 +111,11 @@ export default function BrandApprovalProject() {
       {/* Header image on top */}
       <div className="w-full flex justify-center mb-2">
         <Image
-          src="/cover-BrandApproval.png"
+          src="/cover-BrandApproval-2.png"
           alt="Brand Approval Project"
-          width={1920}
-          height={400}
+          width={2800}
+          height={1600}
+          quality={90}
           className="w-screen max-w-none h-[300px] md:h-[500px] object-contain"
           style={{ backgroundColor: "#F0EACA" }}
           priority
