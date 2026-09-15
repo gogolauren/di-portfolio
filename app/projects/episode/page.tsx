@@ -35,7 +35,7 @@ function WaveSVG({ playheadPct = 0.13, height = 120 }: { playheadPct?: number; h
     <svg width="100%" height={height} viewBox={`0 0 ${W} ${height}`} preserveAspectRatio="none" style={{ display: "block" }}>
       {peaks.map((p, i) => {
         const bx = (i / n) * W;
-        const bh = Math.max(2, p * (height * 0.44));
+        const bh = Math.round(Math.max(2, p * (height * 0.44)) * 10000) / 10000;
         return (
           <rect key={i} x={bx} y={mid - bh} width={bw} height={bh * 2} rx={1} fill={(i / n) <= playheadPct ? "#8f9fc0" : "#b8bcc4"} />
         );
@@ -60,7 +60,7 @@ export default function EpisodeProject() {
   useEffect(() => {
     const hasAccess = sessionStorage.getItem("hasAccess");
     if (!hasAccess) {
-      router.replace("/projects/project-access");
+      router.replace("/projects/project-access?target=episode");
     }
   }, [router]);
 
@@ -352,6 +352,13 @@ export default function EpisodeProject() {
                   className="w-1/2 h-auto rounded-md object-cover"
                 />
               </div>
+              <Image
+                src="/Epi-sketch-3.jpg"
+                alt="Episode sketches — page three: the episode details display page, its main CTAs, publish and schedule states, and an ad insertion preview"
+                width={2600}
+                height={1142}
+                className="mt-3 w-full h-auto rounded-md"
+              />
             </div>
           </figure>
         </section>
@@ -434,10 +441,10 @@ export default function EpisodeProject() {
             <p className={s.eyebrowCenter}>06 — A Curveball</p>
             <h2 className={s.sectionTitleCenter}>Explore extreme simplicity</h2>
             <p className={s.compareIntro}>
-              A manager pushed a provocative constraint —{" "}
-              <em>avoid contextual buttons that change with an episode&rsquo;s status</em>.
-              So we lined up three directions and compared how far we could push
-              the interface toward a single, effortless action.
+              I pressure-tested the flow to see if it could be simpler still —
+              and found a performance issue. On the episode table, where users
+              bulk-edit many episodes at once, piled-up <em>drafts</em> slowed
+              the page down.
             </p>
           </div>
 
@@ -517,12 +524,55 @@ export default function EpisodeProject() {
         <hr className={s.divider} />
 
         {/* ══════════════════════════════════════════
-            07 — STATUS MACHINE (moved)
+            07 — USABILITY TEST
         ══════════════════════════════════════════ */}
         <section className={`${s.section} ${s.wrap}`}>
           <div className={s.secGrid}>
             <div>
-              <p className={s.eyebrow}>07 — System Design</p>
+              <p className={s.eyebrow}>07 — Usability Test</p>
+              <h2 className={s.sectionTitle}>
+                Test out Simplified Flow 1 vs. Flow 2
+              </h2>
+              <p className={s.bodyText}>
+                I prepared four tasks covering publishing a new episode and
+                modifying it — both before and after it went live.
+              </p>
+              <p className={s.bodyText}>
+                Watching where users hesitated across the two flows gave me the
+                data to commit to{" "}
+                <em style={{ fontFamily: "var(--font-fraunces, Georgia, serif)", fontStyle: "italic", color: "oklch(0.225 0.015 285)" }}>
+                  Simplified Flow 1
+                </em>
+                .
+              </p>
+            </div>
+            <figure>
+              <div className={s.figframe}>
+                <Image
+                  src="/Epi-usabilitytest.png"
+                  alt="Usability test board: four task flows comparing Simplified Flow 1 and Flow 2, each annotated with the screens users moved through"
+                  width={1784}
+                  height={1392}
+                  className="w-full h-auto rounded-md"
+                />
+              </div>
+              <figcaption className={s.figcaption}>
+                <span>Test board</span>
+                <span>Four tasks, both flows</span>
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <hr className={s.divider} />
+
+        {/* ══════════════════════════════════════════
+            08 — STATUS MACHINE (moved)
+        ══════════════════════════════════════════ */}
+        <section className={`${s.section} ${s.wrap}`}>
+          <div className={s.secGrid}>
+            <div>
+              <p className={s.eyebrow}>08 — System Design</p>
               <h2 className={s.sectionTitle}>An episode status machine</h2>
               <p className={s.bodyText}>Episodes can exist in one of four states:</p>
               <div className={s.badgeRow}>
@@ -554,40 +604,14 @@ export default function EpisodeProject() {
         <hr className={s.divider} />
 
         {/* ══════════════════════════════════════════
-            07 — VALIDATION (hidden — unhide when ready)
-        ══════════════════════════════════════════ */}
-        {false && <section className={`${s.section} ${s.wrap}`}>
-          <div className={`${s.secGrid} ${s.secGridNarrow}`}>
-            <div>
-              <p className={s.eyebrow}>07 — Validation</p>
-              <h2 className={s.sectionTitle}>Users favored Flow 1</h2>
-            </div>
-            <div>
-              <p className={s.bodyText}>
-                We tested both flows. Users favored{" "}
-                <strong>Flow 1</strong> for its simplicity and ease of use —
-                especially when making quick changes or ongoing edits.
-              </p>
-              <p className={s.bodyText}>
-                That feedback pointed us firmly toward a{" "}
-                <em style={{ fontFamily: "var(--font-fraunces, Georgia, serif)", fontStyle: "italic", color: "oklch(0.225 0.015 285)" }}>
-                  streamlined, single-page interaction model
-                </em>{" "}
-                for episode management.
-              </p>
-            </div>
-          </div>
-        </section>}
-
-        {/* ══════════════════════════════════════════
-            08 — AI AD INSERTION POINTS
+            09 — AI AD INSERTION POINTS
         ══════════════════════════════════════════ */}
         <section className={`${s.section} ${s.wrapWide}`}>
           <div className={s.secHeadCenter}>
-            <p className={s.eyebrowCenter}>08 — Ad Insertion</p>
+            <p className={s.eyebrowCenter}>09 — Ad Insertion</p>
             <h2 className={s.sectionTitleCenter}>Edit Audio: AI Suggests Ad Points — Creators Customize</h2>
             <p className={s.compareIntro}>
-              Alongside the publishing redesign, we designed an <strong>AI-assisted ad insertion</strong> layer.
+              Alongside the publishing redesign, I designed an <strong>AI-assisted ad insertion</strong> layer.
               The system analyzes uploaded audio to detect natural pauses and identify host-read ads baked
               into the recording — surfacing candidates before the creator opens the editor.
               Creators can accept AI suggestions, adjust their timing, or add entirely custom
@@ -939,12 +963,12 @@ export default function EpisodeProject() {
             style={{ marginBottom: "clamp(36px,5vw,56px)" }}
           >
             <div>
-              <p className={s.eyebrow}>09 — Final Design</p>
+              <p className={s.eyebrow}>10 — Final Design</p>
               <h2 className={s.sectionTitle}>A clever system, simple choices</h2>
             </div>
             <div>
               <p className={s.bodyText}>
-                Based on usability feedback, we moved forward with a{" "}
+                Based on usability feedback, I moved forward with a{" "}
                 <strong>single-page design</strong> holding both episode content
                 and scheduling — with the main CTA reduced to just{" "}
                 <em style={{ fontFamily: "var(--font-fraunces, Georgia, serif)", fontStyle: "italic", color: "oklch(0.225 0.015 285)" }}>

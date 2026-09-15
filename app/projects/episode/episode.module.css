@@ -164,7 +164,7 @@
 
 .inkNote {
   background: var(--ink);
-  color: oklch(0.92 0.01 285);
+  color: #fff;
   border-radius: 14px;
   padding: clamp(16px, 2vw, 28px) clamp(20px, 3vw, 40px);
   display: grid;
@@ -178,11 +178,12 @@
   font-weight: 400;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--accent);
+  /* lighter than --accent: this label sits on the dark ink card */
+  color: oklch(0.78 0.14 295);
   white-space: nowrap;
 }
 .inkNoteText {
-  color: oklch(0.88 0.012 285);
+  color: #fff;
   font-size: clamp(14px, 1.4vw, 16px);
   max-width: 52ch;
   margin: 0;
@@ -749,7 +750,7 @@
   white-space: nowrap;
 }
 .mockBrowserContent {
-  background: #eef0f3;
+  background: #fff;
   padding: 18px 0 22px;
 }
 
@@ -822,11 +823,18 @@
   transition: background 0.15s;
 }
 .adNavItem:hover {
-  background: var(--surface-2, #f5f6f8);
+  background: var(--accent-tint);
 }
 .adNavItemActive {
-  border-left-color: var(--accent, #2c5de5);
-  background: rgba(44,93,229,0.07);
+  border-left-color: var(--accent);
+  background: var(--accent-tint);
+}
+/* Right panel shares the same tint — visually connects to the active/hovered nav item */
+.adNavLayout:has(.adNavItem:hover) .adNavRight,
+.adNavLayout:has(.adNavItemActive) .adNavRight {
+  background: var(--accent-tint);
+  border-radius: 14px;
+  transition: background 0.15s;
 }
 .adNavTag {
   font-size: 18px;
@@ -895,7 +903,7 @@
 
 /* Screen 02 — constrained browser frame with auto-scroll */
 .aiScreenFrame {
-  border: 1px solid var(--line-2);
+  border: 1.5px solid oklch(0.83 0.07 295);
   border-radius: 12px;
   overflow: hidden;
   position: relative;
@@ -1170,7 +1178,7 @@
 .editorMockModal {
   width: 100%;
   max-width: 660px;
-  background: #f4f5f7;
+  background: #fafbfc;
   border-radius: 14px;
   box-shadow: 0 8px 32px rgba(0,0,0,.12), 0 1px 4px rgba(0,0,0,.08);
   overflow: hidden;
@@ -1267,7 +1275,7 @@
 .editorMockHead {
   display: flex; align-items: center; justify-content: space-between;
   padding: 15px 22px; border-bottom: 1px solid #d8dbe1;
-  background: #f4f5f7;
+  background: #fafbfc;
   flex-shrink: 0;
 }
 .editorMockTitle { font-size: 16px; font-weight: 700; color: #2c2f36; letter-spacing: -0.01em; }
@@ -1621,6 +1629,38 @@
   .flowHead {
     grid-template-columns: 1fr;
     gap: 8px;
+  }
+
+  /* Ad insertion nav — stack vertically, tabs on top */
+  .adNavLayout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .adNavLeft {
+    position: static;
+    flex-direction: row;
+    gap: 0;
+    border-bottom: 1px solid var(--line, #e3e6ea);
+  }
+  .adNavItem {
+    flex: 1;
+    border-left: none;
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
+    padding: 12px 16px;
+    margin-bottom: -1px;
+  }
+  .adNavItemActive {
+    border-left: none;
+    border-bottom-color: var(--accent, #2c5de5);
+    background: none;
+  }
+  .adNavTag {
+    font-size: 14px;
+    margin-bottom: 0;
+  }
+  .adNavDesc {
+    display: none;
   }
 
 }

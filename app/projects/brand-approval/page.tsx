@@ -6,6 +6,12 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Footer from "../shared-components/footer";
 import { BottomNav } from "../shared-components/bottom-nav";
+import { IconAdTech } from "../../components/skill-icons";
+
+/* Bites a circular notch out of the card's top-right corner so the icon
+   badge drops into it — badge + card together read as one full rectangle. */
+const NOTCH =
+  "radial-gradient(circle 40px at calc(100% - 32px) 32px, transparent 39px, #000 40px)";
 
 function BrowserFrame({ children, url = "art19.com" }: { children: React.ReactNode; url?: string }) {
   return (
@@ -198,30 +204,52 @@ export default function BrandApprovalProject() {
           <h2 className="text-2xl font-bold mb-8 text-gray-900 text-left">
             Project Outcomes
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
-            <div className="flex flex-col items-left bg-beige-tint1 rounded-lg p-6">
-              <span className="w-3 h-3 bg-golden-dark rounded-full mb-4"></span>
-              <p className="text-golden-dark text-left font-medium">
-                Developed a streamlined Brand Approval process that accelerates
-                campaign delivery while maintaining brand safety.
-              </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+            {/* Outcome — efficiency */}
+            <div className="relative">
+              <div className="absolute right-0 top-0 flex h-16 w-16 items-center justify-center rounded-full bg-beige-base">
+                <IconAdTech className="h-7 w-7 text-golden-dark" />
+              </div>
+              <div
+                className="h-full rounded-xl rounded-tr-[40px] bg-golden-dark p-8"
+                style={{ maskImage: NOTCH, WebkitMaskImage: NOTCH }}
+              >
+                {/* invisible spacer so the copy flows around the badge */}
+                <div
+                  className="float-right h-16 w-16"
+                  style={{ shapeOutside: "circle(50%)", shapeMargin: "14px" }}
+                  aria-hidden="true"
+                />
+                <p className="text-beige-tint2 text-left font-medium">
+                  Reduced approval time from{" "}
+                  <span className="text-2xl font-extrabold">25+ </span> hours to{" "}
+                  <span className="text-2xl font-extrabold"> less than 2 </span>{" "}
+                  hours per month, and minimized human errors, significantly
+                  increasing efficiency.
+                </p>
+              </div>
             </div>
-            <div className="flex flex-col items-left bg-golden-dark rounded-lg p-6">
-              <span className="w-3 h-3 bg-gray-50 rounded-full mb-2"></span>
-              <p className="text-gray-50 text-left font-medium">
-                Reduced approval time from{" "}
-                <span className="text-2xl font-extrabold">25+ </span> hours to{" "}
-                <span className="text-2xl font-extrabold"> less than 2 </span>{" "}
-                hours per month, and minimized human errors, significantly
-                increasing efficiency.
-              </p>
-            </div>
-            <div className="flex flex-col items-left bg-beige-base  rounded-lg p-6">
-              <span className="w-3 h-3 bg-golden-dark rounded-full mb-4"></span>
-              <p className="text-golden-dark text-left font-medium">
-                <span className="text-2xl font-extrabold">1st app</span> in the
-                industry to enable publishers to control their shows' branding.
-              </p>
+
+            {/* Outcome — industry first */}
+            <div className="relative">
+              <div className="absolute right-0 top-0 flex h-16 w-16 items-center justify-center rounded-full bg-golden-dark">
+                <IconAdTech className="h-7 w-7 text-beige-base" />
+              </div>
+              <div
+                className="h-full rounded-xl rounded-tr-[40px] bg-beige-base p-8"
+                style={{ maskImage: NOTCH, WebkitMaskImage: NOTCH }}
+              >
+                <div
+                  className="float-right h-16 w-16"
+                  style={{ shapeOutside: "circle(50%)", shapeMargin: "14px" }}
+                  aria-hidden="true"
+                />
+                <p className="text-golden-dark text-left font-medium">
+                  <span className="text-2xl font-extrabold">1st app</span> in the
+                  industry to enable publishers to control their shows&rsquo;
+                  branding and maintain brand safety.
+                </p>
+              </div>
             </div>
           </div>
         </section>
@@ -309,7 +337,7 @@ export default function BrandApprovalProject() {
           <div className="flex flex-col md:flex-row justify-center bg-transparent">
             <div className="flex-1 flex flex-col items-center justify-center px-4 mb-8 md:mb-0">
               <span className="text-2xl font-extrabold text-golden-dark mb-2 text-center">
-                1000+
+                2000+
               </span>
               <span className="text-lg text-gray-900 font-medium text-center">
                 brands to review initially
@@ -617,13 +645,27 @@ export default function BrandApprovalProject() {
               </p>
             </div>
             <div className="flex-1 flex justify-center">
-              <Image
-                src={tabContent[activeTab].img.src}
-                alt={tabContent[activeTab].img.alt}
-                width={tabContent[activeTab].img.width}
-                height={tabContent[activeTab].img.height}
-                className="w-full rounded-lg object-cover"
-              />
+              {/* All three stay mounted and stacked in one grid cell, so they
+                  load together when the section scrolls into view. Switching
+                  tabs is then a pure opacity toggle — no refetch, no delay. */}
+              <div className="relative w-full">
+                {tabKeys.map((tab) => (
+                  <Image
+                    key={tab}
+                    src={tabContent[tab].img.src}
+                    alt={tabContent[tab].img.alt}
+                    width={tabContent[tab].img.width}
+                    height={tabContent[tab].img.height}
+                    sizes="(max-width: 768px) 100vw, 640px"
+                    aria-hidden={activeTab !== tab}
+                    className={`w-full rounded-lg object-cover transition-opacity duration-150 ${
+                      activeTab === tab
+                        ? "relative opacity-100"
+                        : "absolute inset-0 h-full opacity-0 pointer-events-none"
+                    }`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </section>
