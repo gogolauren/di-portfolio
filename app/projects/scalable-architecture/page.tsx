@@ -1117,7 +1117,7 @@ export default function ScalableArchitectureProject() {
         <BottomNav
           previousProject="/projects/app-onboard"
           previousProjectName="Application Onboarding"
-          nextProject="/projects/project-access?target=brand-approval"
+          nextProject="/projects/project-access?target=ads-control"
           nextProjectName="Brand Approval Flow"
           className="w-full"
         />

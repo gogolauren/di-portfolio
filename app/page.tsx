@@ -152,6 +152,7 @@ export default function Home() {
   const r3 = useReveal();
   const r4 = useReveal();
   const r5 = useReveal();
+  const rAds = useReveal();
   const rExp1 = useReveal();
   const rExp2 = useReveal();
   const rSlogan = useReveal();
@@ -617,6 +618,64 @@ export default function Home() {
                       </span>
                     </div>
                     <div className="mt-6 flex items-center gap-1 text-golden-anchor font-semibold text-sm opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                      View Case Study <ArrowRightIcon className="w-4 h-4 ml-1" />
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </div>
+
+            {/* Ad-Level Targeting and Flights */}
+            <div
+              ref={rAds.ref}
+              style={{ transitionDelay: "40ms" }}
+              className={`transition-all duration-700 ease-out ${
+                rAds.visible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-10"
+              }`}
+            >
+              <Link
+                href="/projects/project-access?target=ads-control"
+                className="group block cursor-none"
+                onMouseEnter={() => setShowCursor(true)}
+                onMouseLeave={() => setShowCursor(false)}
+              >
+                <div className="relative bg-white rounded-2xl p-8 pr-14 flex flex-col md:flex-row items-stretch md:h-[460px] w-full group-hover:-translate-y-1 group-hover:shadow-xl transition-all duration-300">
+                  <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">
+                    <LockClosedIcon className="w-4 h-4 text-gray-400" />
+                  </div>
+                  <div className="flex-1 min-w-0 max-w-[600px] basis-[55%] mb-4 md:mb-0 md:mr-16 overflow-hidden rounded-lg">
+                    <Image
+                      src="/cover-adcontrols.png"
+                      alt="Project Ad-Level Targeting and Flights"
+                      width={1600}
+                      height={1000}
+                      quality={90}
+                      className="rounded-lg w-full h-48 md:h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                    />
+                  </div>
+                  <div className="flex-1 min-w-0 basis-[45%] flex flex-col justify-center">
+                    <h2 className="text-2xl font-semibold mb-4">
+                      Ad-Level Targeting and Flights: Ending Line Item Sprawl
+                    </h2>
+                    <p className="text-gray-600 text-left">
+                      Ads get their own flights and targeting under the line
+                      item, with clear sync rules and limits that protect
+                      delivery.
+                    </p>
+                    <div className="flex items-center gap-2 flex-wrap mt-4">
+                      <span className="border border-blue-200 text-blue-600 px-3 py-1 rounded-full text-sm">
+                        Amazon
+                      </span>
+                      <span className="border border-blue-200 text-blue-600 px-3 py-1 rounded-full text-sm">
+                        AdTech
+                      </span>
+                      <span className="border border-blue-200 text-blue-600 px-3 py-1 rounded-full text-sm">
+                        Line Item/Campaign
+                      </span>
+                    </div>
+                    <div className="mt-6 flex items-center gap-1 text-blue-600 font-semibold text-sm opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
                       View Case Study <ArrowRightIcon className="w-4 h-4 ml-1" />
                     </div>
                   </div>

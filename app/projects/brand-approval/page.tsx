@@ -854,8 +854,8 @@ export default function BrandApprovalProject() {
 
         {/* Bottom Nav and Footer */}
         <BottomNav
-          previousProject="/projects/project-access?target=scalable-architecture"
-          previousProjectName="Scalable Architecture"
+          previousProject="/projects/project-access?target=ads-control"
+          previousProjectName="Ads Control"
           nextProject="/projects/project-access?target=episode"
           nextProjectName="Episode Publishing"
           textColor="text-golden-dark"
