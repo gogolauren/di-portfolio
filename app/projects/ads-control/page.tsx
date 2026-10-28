@@ -342,8 +342,6 @@ const OUTCOMES = [
   { value: "PodcastOne", label: "onboarded with this feature's launch" },
 ];
 
-const TEST_TASKS = ["Create a line item", "Create ad creatives"];
-
 const TREE_TAGS = {
   io: { label: "Insertion order", bg: "oklch(0.92 0.04 255)", fg: "oklch(0.4 0.14 258)" },
   li: { label: "Line item", bg: "oklch(0.9 0.06 270)", fg: "oklch(0.42 0.18 272)" },
@@ -473,7 +471,7 @@ export default function AdsControlCaseStudy() {
           <aside className="flex flex-col gap-4 rounded-lg border border-gray-200 p-6">
             <div className="flex flex-wrap items-center gap-2">
               <span className="text-sm font-semibold text-gray-900">Tags:</span>
-              {["Amazon", "AdTech", "Line Item/Campaign"].map((t) => (
+              {["Amazon", "AdTech", "Line Item / Campaign Management"].map((t) => (
                 <span key={t} className="rounded-full border border-gray-200 px-3 py-1 text-sm text-gray-800">
                   {t}
                 </span>
@@ -538,7 +536,7 @@ export default function AdsControlCaseStudy() {
         </section>
 
         {/* 2. Research */}
-        <section className="mb-20 flex w-full max-w-5xl flex-col gap-8">
+        <section className="mb-32 flex w-full max-w-5xl flex-col gap-8">
           <DesignEyebrow number="02" label="Research" />
           <div
             className="grid items-end gap-x-14 gap-y-4"
@@ -569,7 +567,7 @@ export default function AdsControlCaseStudy() {
           href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
         />
         {/* 3. Shaping */}
-        <section className="mb-20 grid w-full max-w-5xl items-center gap-16 md:grid-cols-2">
+        <section className="mb-32 grid w-full max-w-5xl items-center gap-16 md:grid-cols-2">
           <div className="flex flex-col gap-7">
             <DesignEyebrow number="03" label="Shaping" />
             <div className="relative pt-8">
@@ -656,9 +654,50 @@ export default function AdsControlCaseStudy() {
           </div>
         </section>
 
-        {/* 4. Separating ad from line item */}
+        {/* 4. Wireframes */}
+        <section className="mb-32 flex w-full max-w-5xl flex-col gap-8">
+          <DesignEyebrow number="04" label="Wireframes" />
+          <div className="grid items-center gap-12 md:grid-cols-3">
+            <figure className="m-0 md:col-span-2">
+              <div className="relative rounded-md bg-white p-5 shadow-[0_1px_2px_rgba(30,20,80,.06),0_24px_60px_-20px_rgba(60,40,160,.25)]">
+                <span
+                  aria-hidden
+                  className="absolute -top-3 left-1/2 z-10 h-6 w-24 -translate-x-1/2 bg-[oklch(0.86_0.07_280/0.7)]"
+                />
+                <Image
+                  src="/AdLevel-wires.png"
+                  alt="Ad-level wireframes for ad flights, ad targeting and rotational weights"
+                  width={3954}
+                  height={1097}
+                  quality={90}
+                  className="h-auto w-full"
+                />
+              </div>
+            </figure>
+
+            <div className="flex flex-col gap-4">
+              <h3 className={`${SANS} text-base font-semibold leading-snug text-[#1a1a2e]`}>
+                Ad creatives-level controls includes
+              </h3>
+              <ul className="flex flex-col gap-3">
+                <li className="rounded-lg border border-[#d9d7e8] bg-white px-4 py-3 text-sm font-medium text-[#1a1a2e]">
+                  Ad Flights
+                </li>
+                <li className="rounded-lg border border-[#d9d7e8] bg-white px-4 py-3 text-sm font-medium text-[#1a1a2e]">
+                  Ad Targeting
+                  <span className="mt-0.5 block text-xs font-normal text-[#4a4a60]">Audience, geo-location, rolls</span>
+                </li>
+                <li className="rounded-lg border border-[#d9d7e8] bg-white px-4 py-3 text-sm font-medium text-[#1a1a2e]">
+                  Rotational Weights
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* 5. Separating ad from line item */}
         <section className="mb-20 flex w-full max-w-5xl flex-col gap-8">
-          <DesignEyebrow number="04" label="Separating ad from line item" />
+          <DesignEyebrow number="05" label="Most complex use cases" />
           <div
             className="grid items-end gap-x-16 gap-y-6"
             style={{ gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 380px), 1fr))" }}
@@ -674,11 +713,11 @@ export default function AdsControlCaseStudy() {
           <RotatingShowcase />
         </section>
 
-        {/* 5. Flexibility vs limits */}
+        {/* 6. Flexibility vs limits */}
         <section className={`${SANS} mb-20 w-screen bg-[oklch(0.965_0.018_285)] px-10 py-[100px] text-[#1a1a2e]`}>
           <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-[72px]">
             <div className="flex flex-col gap-7">
-              <DesignEyebrow number="05" label="Decisions" />
+              <DesignEyebrow number="06" label="Decisions" />
               <h2 className="text-[clamp(30px,3.6vw,44px)] font-semibold leading-[1.1] tracking-[-0.03em]">
                 <span className="text-[oklch(0.5_0.2_262)]">Allow flexibility</span>
                 <span className="text-[#9a98b0]"> vs. </span>
@@ -807,24 +846,19 @@ export default function AdsControlCaseStudy() {
           </div>
         </section>
 
-        {/* 6. User testing */}
+        {/* 7. User testing */}
         <section className="mb-20 flex w-full max-w-5xl flex-col gap-8">
-          <DesignEyebrow number="06" label="Testing" />
-          <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 360px), 1fr))" }}>
-            <div className={`${SANS} flex flex-col gap-6 rounded-2xl border border-[#e6e5ef] bg-white p-7 text-[#1a1a2e]`}>
-              <span className="text-[15px] font-semibold">Task success in usability testing</span>
-              {TEST_TASKS.map((t) => (
-                <div key={t} className="flex flex-col gap-2">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-semibold">{t}</span>
-                    <span className={`${MONO} text-xs text-[#5000FA]`}>100%</span>
-                  </div>
-                  <div
-                    className="h-1.5 rounded-full"
-                    style={{ background: "linear-gradient(90deg, oklch(0.55 0.2 262), oklch(0.5 0.24 295))" }}
-                  />
-                </div>
-              ))}
+          <DesignEyebrow number="07" label="Testing" />
+          <div className="grid gap-4 md:grid-cols-3">
+            <div className={`${SANS} flex flex-col rounded-2xl border border-[#e6e5ef] bg-white p-7 text-[#1a1a2e] md:col-span-2`}>
+              <Image
+                src="/AdLevel-testing.png"
+                alt="Usability testing results: task success for creating a line item and creating ad creatives"
+                width={1180}
+                height={648}
+                quality={90}
+                className="h-auto w-full"
+              />
             </div>
             <div
               className={`${SANS} flex flex-col justify-center gap-4 rounded-2xl px-8 py-7`}
@@ -839,9 +873,9 @@ export default function AdsControlCaseStudy() {
           </div>
         </section>
 
-        {/* 7. Dynamic prototype */}
+        {/* 8. Dynamic prototype */}
         <section className="mb-20 flex w-full max-w-5xl flex-col gap-8">
-          <DesignEyebrow number="07" label="Prototype" />
+          <DesignEyebrow number="08" label="Prototype" />
           <div
             className="grid items-start gap-x-14 gap-y-4"
             style={{ gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 380px), 1fr))" }}

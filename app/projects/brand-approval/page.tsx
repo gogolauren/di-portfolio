@@ -176,10 +176,10 @@ export default function BrandApprovalProject() {
                 Amazon
               </span>
               <span className="border border-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm">
-                Advertising
+                Monetization
               </span>
               <span className="border border-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm">
-                Monetization
+                AdTech
               </span>
             </div>
             <div>

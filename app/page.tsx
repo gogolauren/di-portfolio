@@ -672,7 +672,7 @@ export default function Home() {
                         AdTech
                       </span>
                       <span className="border border-blue-200 text-blue-600 px-3 py-1 rounded-full text-sm">
-                        Line Item/Campaign
+                        Line Item / Campaign Management
                       </span>
                     </div>
                     <div className="mt-6 flex items-center gap-1 text-blue-600 font-semibold text-sm opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
@@ -730,7 +730,7 @@ export default function Home() {
                         Monetization
                       </span>
                       <span className="border border-beige-shade text-golden-anchor px-3 py-1 rounded-full text-sm">
-                        Advertising
+                        AdTech
                       </span>
                     </div>
                     <div className="mt-6 flex items-center gap-1 text-golden-anchor font-semibold text-sm opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">

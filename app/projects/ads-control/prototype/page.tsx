@@ -35,7 +35,7 @@ type Ad = {
 
 const LINE_ITEM = {
   name: 'Demo Campaign 2025',
-  draft: true,
+  status: 'Active' as Status,
   order: 'Demo Insertion Order 2025',
   brand: 'Soda',
   agency: 'Best Media Company',
@@ -64,6 +64,7 @@ const WEIGHTS = Array.from({ length: 10 }, (_, i) => i + 1);
 
 const ICON = {
   arrowBack: 'M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z',
+  pause: 'M6 19h4V5H6v14zm8-14v14h4V5h-4z',
   add: 'M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z',
   search: 'M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z',
   expand: 'M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z',
@@ -378,7 +379,7 @@ export default function AdsControlPrototype() {
                   <h1 className="text-xl text-neutral-900">
                     Line Item: <span className="font-semibold">{LINE_ITEM.name}</span>
                   </h1>
-                  {LINE_ITEM.draft && <span className="inline-flex h-6 items-center rounded border border-neutral-400 px-2 text-xs text-neutral-700">Draft</span>}
+                  <StatusTag status={LINE_ITEM.status} />
                 </div>
                 <p className="pl-9 text-xs text-neutral-600">
                   <span className="font-semibold">Order:</span> {LINE_ITEM.order}
@@ -388,7 +389,7 @@ export default function AdsControlPrototype() {
                   <span className="font-semibold">Agency:</span> {LINE_ITEM.agency}
                 </p>
               </div>
-              <Btn variant="primary">Schedule</Btn>
+              <Btn variant="secondary" icon={ICON.pause}>Pause</Btn>
             </div>
             <div className="flex gap-1">
               {(['details', 'targeting', 'ads'] as LineItemTab[]).map((t) => (
@@ -619,6 +620,8 @@ export default function AdsControlPrototype() {
             title={`Edit Ad: ${editing.name}`}
             status={editing.status}
             initial={editing}
+            ads={ads}
+            currentId={editing.id}
             onCancel={backToAds}
             onSave={(next) => {
               setAds((prev) => prev.map((a) => (a.id === next.id ? next : a)));
@@ -642,6 +645,7 @@ export default function AdsControlPrototype() {
         {screen === 'new-ad' && (
           <AdForm
             title="New Ad"
+            ads={ads}
             onCancel={backToAds}
             onSave={(next) => {
               setAds((prev) => [...prev, next]);
@@ -700,6 +704,8 @@ function AdForm({
   onSave,
   onDeactivate,
   onDelete,
+  ads,
+  currentId,
 }: {
   title: string;
   status?: Status;
@@ -708,6 +714,8 @@ function AdForm({
   onSave: (ad: Ad) => void;
   onDeactivate?: () => void; // present only when editing an existing ad
   onDelete?: () => void;
+  ads: Ad[];
+  currentId?: string;
 }) {
   const [name, setName] = useState(initial.name);
   const [weight, setWeight] = useState(initial.weight);
@@ -743,13 +751,13 @@ function AdForm({
   );
 
   return (
-    <div className="mx-auto max-w-3xl">
+    <div className="mx-auto max-w-5xl">
       {/* Action bar: same height and padding in both modes */}
       <div
-        className="sticky top-0 z-10 mb-4 h-14 border-y border-neutral-300 bg-white shadow-[0_1px_0_rgba(0,0,0,.04)]"
+        className="sticky top-0 z-10 mb-4 h-14 border-b border-neutral-300 bg-white shadow-[0_1px_0_rgba(0,0,0,.04)]"
         style={{ width: '100vw', marginLeft: 'calc(50% - 50vw)' }}
       >
-        <div className="mx-auto flex h-full max-w-3xl items-center justify-between">
+        <div className="mx-auto flex h-full max-w-5xl items-center justify-between">
         <Btn variant="ghost" className="px-0" onClick={onCancel}>Cancel</Btn>
         <span className="text-xs font-semibold tracking-wide text-neutral-500">ART19</span>
         {isEdit ? (
@@ -774,7 +782,9 @@ function AdForm({
         </div>
       </div>
 
-      <div className="flex flex-col gap-4">
+      <div className="grid grid-cols-[200px_minmax(0,1fr)] items-start gap-8">
+        <AdPreview ads={ads} currentId={currentId} />
+      <div className="mx-auto flex w-full max-w-3xl flex-col gap-4">
         <div className="flex h-9 items-center gap-3">
           <h1 className="text-xl text-neutral-900">{title}</h1>
           {status && <StatusTag status={status} />}
@@ -883,7 +893,47 @@ function AdForm({
           </div>
         </Section>
       </div>
+      </div>
     </div>
+  );
+}
+
+// Left rail of the ad form: every ad, grouped by the roll(s) it plays in.
+function AdPreview({ ads, currentId }: { ads: Ad[]; currentId?: string }) {
+  const groups: Location[] = ['Pre', 'Mid', 'Post'];
+  const chip: Record<Location, { label: string; className: string }> = {
+    Pre: { label: 'Pre-roll', className: 'bg-[#DCEBFF] text-[#1E4FA8]' },
+    Mid: { label: 'Mid-roll', className: 'bg-[#FADDF2] text-[#A0218A]' },
+    Post: { label: 'Post-roll', className: 'bg-[#FFE3BF] text-[#8A4B12]' },
+  };
+  return (
+    <aside className="sticky top-20 flex flex-col gap-6 self-start">
+      <h2 className="text-base font-semibold text-neutral-900">Ads preview</h2>
+      {groups.map((loc) => {
+        const items = ads.filter((a) => a.targets.some((t) => t.location === loc));
+        return (
+          <div key={loc} className="flex flex-col">
+            <div className="flex items-center gap-3 pb-2">
+              <span className={`rounded px-2 py-0.5 text-xs font-semibold ${chip[loc].className}`}>{chip[loc].label}</span>
+              <span className="h-px flex-1 bg-neutral-200" />
+              <span className="text-xs text-neutral-400">{items.length}</span>
+            </div>
+            {items.length === 0 && <p className="py-2 text-xs text-neutral-400">No ads</p>}
+            {items.map((a) => (
+              <div
+                key={a.id}
+                className={`flex items-center justify-between py-1.5 text-sm ${
+                  a.id === currentId ? 'font-semibold text-[#0B6BCB]' : a.status === 'Inactive' ? 'text-neutral-400' : 'text-neutral-800'
+                }`}
+              >
+                <span>{a.name}</span>
+                {a.status === 'Inactive' && <span className="text-[11px] text-neutral-400">Inactive</span>}
+              </div>
+            ))}
+          </div>
+        );
+      })}
+    </aside>
   );
 }
 
