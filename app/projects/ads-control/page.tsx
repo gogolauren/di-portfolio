@@ -383,7 +383,7 @@ const PROTOTYPE_VIEWS = [
 
 // The view controls sit outside the prototype, so the embedded screen shows only the app itself.
 function PrototypeEmbed() {
-  const [view, setView] = useState<(typeof PROTOTYPE_VIEWS)[number]["id"]>("line-item");
+  const [view, setView] = useState<(typeof PROTOTYPE_VIEWS)[number]["id"]>("ads");
   const current = PROTOTYPE_VIEWS.find((v) => v.id === view) ?? PROTOTYPE_VIEWS[0];
   const src = `/projects/ads-control/prototype${current.query}`;
 
@@ -946,13 +946,12 @@ export default function AdsControlCaseStudy() {
             className={`${SANS} m-0 flex flex-col gap-3 rounded-2xl bg-[oklch(0.965_0.018_285)] px-8 py-7`}
           >
             <span className={`${MONO} text-xs uppercase tracking-[0.08em] text-[oklch(0.5_0.24_295)]`}>Result</span>
-            <ul className="flex flex-col gap-3 text-base leading-[1.6] text-[oklch(0.42_0.24_290)]">
+            <ul className="flex flex-col gap-3 text-base font-medium leading-[1.6] text-[oklch(0.42_0.24_290)]">
               <li className="flex gap-3">
                 <span className={`${MONO} text-xs text-[oklch(0.5_0.24_295)]`}>01</span>
                 <span>
-                  Seeing both flows and the user experience in scenarios like saving, editing, managing errors, and
-                  leaving without saving, engineering gave a more reasonable implementation estimate and agreed to build
-                  One Page Creation for ads.
+                  Engineering gave a more reasonable implementation estimate and agreed to build One Page Creation for
+                  ads.
                 </span>
               </li>
               <li className="flex gap-3">
