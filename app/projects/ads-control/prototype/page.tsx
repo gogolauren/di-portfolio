@@ -80,6 +80,7 @@ const ICON = {
   calendar: 'M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM5 8V6h14v2H5z',
   target: 'M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm8.94 3A8.994 8.994 0 0 0 13 3.06V1h-2v2.06A8.994 8.994 0 0 0 3.06 11H1v2h2.06A8.994 8.994 0 0 0 11 20.94V23h2v-2.06A8.994 8.994 0 0 0 20.94 13H23v-2h-2.06zM12 19c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z',
   sort: 'M3 18h6v-2H3v2zM3 6v2h18V6H3zm0 7h12v-2H3v2z',
+  info: 'M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z',
 };
 
 const Icon = ({ d, className = 'h-4 w-4' }: { d: string; className?: string }) => (
@@ -269,8 +270,8 @@ type Screen = 'line-item' | 'ads' | 'edit-ad' | 'new-ad';
 type LineItemTab = 'details' | 'targeting' | 'ads';
 
 export default function AdsControlPrototype() {
-  const [screen, setScreen] = useState<Screen>('line-item');
-  const [tab, setTab] = useState<LineItemTab>('details');
+  const [screen, setScreen] = useState<Screen>('ads');
+  const [tab, setTab] = useState<LineItemTab>('ads');
   const [ads, setAds] = useState<Ad[]>(INITIAL_ADS);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [bulkEdit, setBulkEdit] = useState(false);
@@ -288,9 +289,9 @@ export default function AdsControlPrototype() {
   // The case study page picks the starting view with ?view=; the controls live outside this prototype.
   useEffect(() => {
     const view = new URLSearchParams(window.location.search).get('view');
-    if (view === 'ads') {
-      setScreen('ads');
-      setTab('ads');
+    if (view === 'line-item') {
+      setScreen('line-item');
+      setTab('details');
     } else if (view === 'ad') {
       setScreen('new-ad');
     }
@@ -620,8 +621,6 @@ export default function AdsControlPrototype() {
             title={`Edit Ad: ${editing.name}`}
             status={editing.status}
             initial={editing}
-            ads={ads}
-            currentId={editing.id}
             onCancel={backToAds}
             onSave={(next) => {
               setAds((prev) => prev.map((a) => (a.id === next.id ? next : a)));
@@ -645,7 +644,6 @@ export default function AdsControlPrototype() {
         {screen === 'new-ad' && (
           <AdForm
             title="New Ad"
-            ads={ads}
             onCancel={backToAds}
             onSave={(next) => {
               setAds((prev) => [...prev, next]);
@@ -704,8 +702,6 @@ function AdForm({
   onSave,
   onDeactivate,
   onDelete,
-  ads,
-  currentId,
 }: {
   title: string;
   status?: Status;
@@ -714,8 +710,6 @@ function AdForm({
   onSave: (ad: Ad) => void;
   onDeactivate?: () => void; // present only when editing an existing ad
   onDelete?: () => void;
-  ads: Ad[];
-  currentId?: string;
 }) {
   const [name, setName] = useState(initial.name);
   const [weight, setWeight] = useState(initial.weight);
@@ -782,9 +776,8 @@ function AdForm({
         </div>
       </div>
 
-      <div className="grid grid-cols-[200px_minmax(0,1fr)] items-start gap-8">
-        <AdPreview ads={ads} currentId={currentId} />
-      <div className="mx-auto flex w-full max-w-3xl flex-col gap-4">
+      <div className="grid grid-cols-[minmax(0,1fr)_280px] items-start gap-8">
+      <div className="flex w-full max-w-3xl flex-col gap-4">
         <div className="flex h-9 items-center gap-3">
           <h1 className="text-xl text-neutral-900">{title}</h1>
           {status && <StatusTag status={status} />}
@@ -893,46 +886,53 @@ function AdForm({
           </div>
         </Section>
       </div>
+      <ForecastCard />
       </div>
     </div>
   );
 }
 
-// Left rail of the ad form: every ad, grouped by the roll(s) it plays in.
-function AdPreview({ ads, currentId }: { ads: Ad[]; currentId?: string }) {
-  const groups: Location[] = ['Pre', 'Mid', 'Post'];
-  const chip: Record<Location, { label: string; className: string }> = {
-    Pre: { label: 'Pre-roll', className: 'bg-[#DCEBFF] text-[#1E4FA8]' },
-    Mid: { label: 'Mid-roll', className: 'bg-[#FADDF2] text-[#A0218A]' },
-    Post: { label: 'Post-roll', className: 'bg-[#FFE3BF] text-[#8A4B12]' },
-  };
+// Forecast panel beside the ad form, top-aligned with its title. Values stay empty until a line item has delivery data.
+function ForecastCard() {
+  const tabs = ['Impressions', 'Reach'] as const;
+  const [tab, setTab] = useState<(typeof tabs)[number]>('Impressions');
   return (
-    <aside className="sticky top-20 flex flex-col gap-6 self-start">
-      <h2 className="text-base font-semibold text-neutral-900">Ads preview</h2>
-      {groups.map((loc) => {
-        const items = ads.filter((a) => a.targets.some((t) => t.location === loc));
-        return (
-          <div key={loc} className="flex flex-col">
-            <div className="flex items-center gap-3 pb-2">
-              <span className={`rounded px-2 py-0.5 text-xs font-semibold ${chip[loc].className}`}>{chip[loc].label}</span>
-              <span className="h-px flex-1 bg-neutral-200" />
-              <span className="text-xs text-neutral-400">{items.length}</span>
-            </div>
-            {items.length === 0 && <p className="py-2 text-xs text-neutral-400">No ads</p>}
-            {items.map((a) => (
-              <div
-                key={a.id}
-                className={`flex items-center justify-between py-1.5 text-sm ${
-                  a.id === currentId ? 'font-semibold text-[#0B6BCB]' : a.status === 'Inactive' ? 'text-neutral-400' : 'text-neutral-800'
-                }`}
-              >
-                <span>{a.name}</span>
-                {a.status === 'Inactive' && <span className="text-[11px] text-neutral-400">Inactive</span>}
-              </div>
-            ))}
+    <aside className="sticky top-20 flex w-[280px] flex-col gap-4 self-start rounded-lg border border-neutral-300 bg-white p-5 shadow-lg">
+      <div className="flex items-center gap-2">
+        <h2 className="text-base font-semibold text-neutral-900">Forecast</h2>
+        <Icon d={ICON.info} className="h-4 w-4 text-neutral-600" />
+      </div>
+      <Select defaultValue="ad" className="w-full">
+        <option value="ad">Ad metrics</option>
+        <option value="line-item">Line item metrics</option>
+      </Select>
+      <Select defaultValue="cumulative" className="w-full">
+        <option value="cumulative">Cumulative</option>
+      </Select>
+      <div role="tablist" className="flex gap-6 border-b border-neutral-200">
+        {tabs.map((t) => (
+          <button
+            key={t}
+            role="tab"
+            aria-selected={tab === t}
+            type="button"
+            onClick={() => setTab(t)}
+            className={`-mb-px h-9 border-b-2 text-sm transition-colors ${
+              tab === t ? 'border-[#0B6BCB] font-semibold text-[#0B6BCB]' : 'border-transparent text-neutral-600 hover:text-neutral-900'
+            }`}
+          >
+            {t}
+          </button>
+        ))}
+      </div>
+      <dl className="flex flex-col gap-3 text-sm">
+        {['CPM', 'Available spend', 'Available impressions'].map((k) => (
+          <div key={k} className="flex h-6 items-center justify-between gap-4">
+            <dt className="text-neutral-800">{k}</dt>
+            <dd className="font-semibold text-neutral-900">—</dd>
           </div>
-        );
-      })}
+        ))}
+      </dl>
     </aside>
   );
 }

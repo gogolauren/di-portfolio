@@ -376,7 +376,7 @@ function TreeNode({ kind, name, children }: { kind: keyof typeof TREE_TAGS; name
 }
 
 const PROTOTYPE_VIEWS = [
-  { id: "line-item", label: "Line item", query: "" },
+  { id: "line-item", label: "Line item", query: "?view=line-item" },
   { id: "ads", label: "Ads list", query: "?view=ads" },
   { id: "ad", label: "Ad form", query: "?view=ad" },
 ] as const;
@@ -880,10 +880,10 @@ export default function AdsControlCaseStudy() {
               style={{ gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))" }}
             >
               <span>
-                <strong className="text-[oklch(0.5_0.24_295)]">One page</strong> — edit everything, then Save once.
+                <strong className="text-[oklch(0.5_0.2_262)]">Classic UI</strong> — edit card by card, publish separately.
               </span>
               <span>
-                <strong className="text-[oklch(0.5_0.2_262)]">Classic UI</strong> — edit card by card, publish separately.
+                <strong className="text-[oklch(0.5_0.24_295)]">One page</strong> — edit everything, then Save once.
               </span>
             </figcaption>
           </figure>
@@ -946,11 +946,29 @@ export default function AdsControlCaseStudy() {
             className={`${SANS} m-0 flex flex-col gap-3 rounded-2xl bg-[oklch(0.965_0.018_285)] px-8 py-7`}
           >
             <span className={`${MONO} text-xs uppercase tracking-[0.08em] text-[oklch(0.5_0.24_295)]`}>Result</span>
-            <p className="text-[clamp(16px,1.6vw,18px)] font-normal leading-[1.4] tracking-[-0.01em] text-balance text-[oklch(0.42_0.24_290)]">
-              Seeing both flows and the user experience in scenarios like saving, editing, managing errors, and leaving
-              without saving, engineering gave a more reasonable implementation estimate and agreed to build One Page
-              Creation.
-            </p>
+            <ul className="flex flex-col gap-3 text-base leading-[1.6] text-[oklch(0.42_0.24_290)]">
+              <li className="flex gap-3">
+                <span className={`${MONO} text-xs text-[oklch(0.5_0.24_295)]`}>01</span>
+                <span>
+                  Seeing both flows and the user experience in scenarios like saving, editing, managing errors, and
+                  leaving without saving, engineering gave a more reasonable implementation estimate and agreed to build
+                  One Page Creation for ads.
+                </span>
+              </li>
+              <li className="flex gap-3">
+                <span className={`${MONO} text-xs text-[oklch(0.5_0.24_295)]`}>02</span>
+                <span>
+                  I defined the behavior and specs of One Page Creation as a reusable pattern, and added it to the design
+                  system for future projects.
+                </span>
+              </li>
+              <li className="flex gap-3">
+                <span className={`${MONO} text-xs text-[oklch(0.5_0.24_295)]`}>03</span>
+                <span>
+                  I convinced engineering to build this reusable UI as an MVP, rather than all at once.
+                </span>
+              </li>
+            </ul>
           </figure>
         </section>
 
