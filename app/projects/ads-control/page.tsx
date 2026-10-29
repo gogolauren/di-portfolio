@@ -578,7 +578,7 @@ export default function AdsControlCaseStudy() {
                 “
               </span>
               <h2
-                className={`${SANS} relative text-[clamp(24px,2.8vw,34px)] font-semibold leading-[1.2] tracking-[-0.02em] text-balance text-[#5000FA]`}
+                className={`${SANS} relative text-[clamp(24px,2.6vw,32px)] font-semibold leading-[1.2] tracking-[-0.02em] text-balance text-[#5000FA]`}
               >
                 Added another content structure: creative-level control.
               </h2>
@@ -718,7 +718,7 @@ export default function AdsControlCaseStudy() {
           <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-[72px]">
             <div className="flex flex-col gap-7">
               <DesignEyebrow number="06" label="Decisions" />
-              <h2 className="text-[clamp(30px,3.6vw,44px)] font-semibold leading-[1.1] tracking-[-0.03em]">
+              <h2 className="text-[clamp(24px,2.6vw,32px)] font-semibold leading-[1.2] tracking-[-0.015em]">
                 <span className="text-[oklch(0.5_0.2_262)]">Allow flexibility</span>
                 <span className="text-[#9a98b0]"> vs. </span>
                 <span className="text-[#5000FA]">set limits</span>
@@ -846,9 +846,117 @@ export default function AdsControlCaseStudy() {
           </div>
         </section>
 
-        {/* 7. User testing */}
+        {/* 7. Pushing past Classic UI */}
         <section className="mb-20 flex w-full max-w-5xl flex-col gap-8">
-          <DesignEyebrow number="07" label="Testing" />
+          <DesignEyebrow number="07" label="Pushing past Classic UI" />
+          <div
+            className="grid items-end gap-x-14 gap-y-6"
+            style={{ gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 420px), 1fr))" }}
+          >
+            <h2 className={`${SANS} text-[clamp(24px,2.6vw,32px)] font-semibold leading-[1.2] tracking-[-0.015em] text-balance text-[#1a1a2e]`}>
+              <span className="text-[oklch(0.5_0.2_262)]">Classic UI</span>
+              <span className="text-[#9a98b0]"> → </span>
+              <br />
+              <span className="text-[oklch(0.5_0.24_295)]">One Page Creation</span>
+            </h2>
+            <p className={`${SANS} text-base leading-[1.65] text-pretty text-[#4a4a60]`}>
+              Engineering wanted to keep the Classic UI, where each card is edited and published separately. I mapped how
+              ad status changes in both models, and the flowcharts made the case: Classic UI hides status changes behind
+              every edit.
+            </p>
+          </div>
+          <figure className="flex flex-col gap-4">
+            <div className="rounded-2xl border border-[#e6e5ef] bg-white p-6">
+              <Image
+                src="/AdLevel-twoviews.png"
+                alt="One page edit view next to the Classic UI ad view"
+                width={3040}
+                height={1460}
+                className="h-auto w-full"
+              />
+            </div>
+            <figcaption
+              className={`${SANS} grid gap-4 text-sm leading-normal text-[#4a4a60]`}
+              style={{ gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))" }}
+            >
+              <span>
+                <strong className="text-[oklch(0.5_0.24_295)]">One page</strong> — edit everything, then Save once.
+              </span>
+              <span>
+                <strong className="text-[oklch(0.5_0.2_262)]">Classic UI</strong> — edit card by card, publish separately.
+              </span>
+            </figcaption>
+          </figure>
+          <div
+            className="grid items-start gap-x-6 gap-y-10"
+            style={{ gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 440px), 1fr))" }}
+          >
+            <div className="flex flex-col gap-5">
+              <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-2.5">
+                  <span className={`${MONO} text-xs uppercase tracking-[0.08em] text-[oklch(0.5_0.2_262)]`}>
+                    Before · Classic UI
+                  </span>
+                  <h3 className={`${SANS} text-[clamp(20px,2.2vw,26px)] font-semibold leading-[1.3] tracking-[-0.015em] text-balance text-[#1a1a2e]`}>
+                    Every edit can silently change an ad&apos;s status.
+                  </h3>
+                </div>
+                <p className={`${SANS} min-h-[4.8em] text-[15px] leading-[1.6] text-pretty text-[#4a4a60]`}>
+                  Deleting a flight makes a live ad inactive. Removing media from a live ad throws an error, but from a
+                  scheduled ad it quietly reverts to draft.
+                </p>
+              </div>
+              <div className="rounded-2xl border border-[#e6e5ef] bg-white p-4">
+                <Image
+                  src="/AdLevel-classicUI.png"
+                  alt="Flowchart of ad status in Classic UI with wireframes"
+                  width={7520}
+                  height={4296}
+                  className="h-auto w-full"
+                />
+              </div>
+            </div>
+            <div className="flex flex-col gap-5">
+              <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-2.5">
+                  <span className={`${MONO} text-xs uppercase tracking-[0.08em] text-[oklch(0.5_0.24_295)]`}>
+                    After · One page
+                  </span>
+                  <h3 className={`${SANS} text-[clamp(20px,2.2vw,26px)] font-semibold leading-[1.3] tracking-[-0.015em] text-balance text-[#1a1a2e]`}>
+                    One Save button, one linear check.
+                  </h3>
+                </div>
+                <p className={`${SANS} min-h-[4.8em] text-[15px] leading-[1.6] text-pretty text-[#4a4a60]`}>
+                  On save, the ad is checked for name, media, positions and flights. Problems show up before saving, and
+                  status follows from the flight dates.
+                </p>
+              </div>
+              <div className="rounded-2xl border border-[#e6e5ef] bg-white p-4">
+                <Image
+                  src="/AdLevel-onepage.png"
+                  alt="Flowchart of saving ads on one page with wireframes"
+                  width={6025}
+                  height={4296}
+                  className="h-auto w-full"
+                />
+              </div>
+            </div>
+          </div>
+          <figure
+            className={`${SANS} m-0 flex flex-col gap-3 rounded-2xl bg-[oklch(0.965_0.018_285)] px-8 py-7`}
+          >
+            <span className={`${MONO} text-xs uppercase tracking-[0.08em] text-[oklch(0.5_0.24_295)]`}>Result</span>
+            <p className="text-[clamp(16px,1.6vw,18px)] font-normal leading-[1.4] tracking-[-0.01em] text-balance text-[oklch(0.42_0.24_290)]">
+              Seeing both flows and the user experience in scenarios like saving, editing, managing errors, and leaving
+              without saving, engineering gave a more reasonable implementation estimate and agreed to build One Page
+              Creation.
+            </p>
+          </figure>
+        </section>
+
+        {/* 8. User testing */}
+        <section className="mb-20 flex w-full max-w-5xl flex-col gap-8">
+          <DesignEyebrow number="08" label="Testing" />
           <div className="grid gap-4 md:grid-cols-3">
             <div className={`${SANS} flex flex-col rounded-2xl border border-[#e6e5ef] bg-white p-7 text-[#1a1a2e] md:col-span-2`}>
               <Image
@@ -865,7 +973,7 @@ export default function AdsControlCaseStudy() {
               style={{ background: "oklch(0.965 0.018 285)" }}
             >
               <span aria-hidden className="text-[72px] font-bold leading-[0.6] text-[oklch(0.85_0.07_285)]">“</span>
-              <blockquote className="text-[clamp(20px,2.2vw,24px)] font-semibold leading-[1.35] text-[#5000FA]">
+              <blockquote className="text-xl font-semibold leading-[1.5] text-[#5000FA]">
                 This will be very helpful for us to train a new campaign manager.
               </blockquote>
               <span className={`${MONO} text-xs text-[#6a6a80]`}>Usability test participant</span>
@@ -873,9 +981,9 @@ export default function AdsControlCaseStudy() {
           </div>
         </section>
 
-        {/* 8. Dynamic prototype */}
+        {/* 9. Dynamic prototype */}
         <section className="mb-20 flex w-full max-w-5xl flex-col gap-8">
-          <DesignEyebrow number="08" label="Prototype" />
+          <DesignEyebrow number="09" label="Prototype" />
           <div
             className="grid items-start gap-x-14 gap-y-4"
             style={{ gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 380px), 1fr))" }}
